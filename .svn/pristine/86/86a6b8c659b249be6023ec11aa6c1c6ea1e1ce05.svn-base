@@ -1,0 +1,11 @@
+/* color style */
+@leaf:#8dc634;
+@orange:#FFA500;
+
+/* fontsize style*/
+@font_14:14px;
+@font_16:16px;
+@font_18:18px;
+
+/* font style*/
+@font_style:'Glegoo', serif;

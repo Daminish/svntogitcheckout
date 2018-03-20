@@ -1,0 +1,153 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/smart_bg"
+    android:clickable="true"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical"
+    tools:context=".presentation.budgeting.step1.EstimateBudgetStep1Fragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/text.page.heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="@string/estimate_budget_1_fragment" />
+
+        <ImageView
+            style="@style/icon"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_margin="5dp"
+            app:srcCompat="@drawable/ic_info" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/text.budget.form.label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:text="Applicant" />
+
+
+            <com.capco.technologies.living.presentation.ui.custom.SegmentedGroup
+                android:id="@+id/srg_applicant_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:sc_border_width="2dp"
+                app:sc_checked_text_color="@color/colorWhite"
+                app:sc_corner_radius="5dp"
+                app:sc_tint_color="@color/colorOrange"
+                app:sc_unchecked_tint_color="#00000000">
+
+                <RadioButton
+                    android:id="@+id/rb_single_application"
+                    style="@style/RadioButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Single" />
+
+                <RadioButton
+                    android:id="@+id/rb_join_applicant"
+                    style="@style/RadioButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Joint Applicant" />
+
+                />
+            </com.capco.technologies.living.presentation.ui.custom.SegmentedGroup>
+
+
+            <TextView
+                style="@style/text.budget.form.label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/form_lable_estimate_mortgage_amount" />
+
+            <EditText
+                android:id="@+id/et_estimated_morgage_amount"
+                style="@style/text.budget.form.field"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_money"
+                android:hint="Required Mortgage Amount"
+                android:inputType="numberDecimal" />
+
+            <TextView
+                style="@style/text.budget.form.label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Mortgage Term (years)" />
+
+            <EditText
+                android:id="@+id/et_estimated_morgage_term"
+                style="@style/text.budget.form.field"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Term in Years"
+                android:inputType="number" />
+
+
+            <TextView
+                style="@style/text.budget.form.label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Enter your THAI ID" />
+
+            <EditText
+                android:id="@+id/et_national_id"
+                style="@style/text.budget.form.field"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="National ID" />
+
+            <!--<TextView-->
+                <!--style="@style/text.budget.form.label"-->
+                <!--android:id="@+id/txt_second_national_id"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="Enter your second THAI ID"-->
+                <!--android:visibility="gone" />-->
+
+            <!--<EditText-->
+                <!--android:id="@+id/et_second_national_id"-->
+                <!--style="@style/text.budget.form.field"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:hint="National ID"-->
+                <!--android:visibility="gone" />-->
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+</LinearLayout>

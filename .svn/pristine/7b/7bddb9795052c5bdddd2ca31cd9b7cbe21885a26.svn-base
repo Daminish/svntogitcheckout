@@ -1,0 +1,120 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/login_bg"
+    android:orientation="vertical"
+    android:padding="30dp">
+
+    <ImageView
+        android:id="@+id/home_move"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
+        android:layout_marginTop="70dp"
+        android:contentDescription="@string/app_name"
+        android:scaleType="centerInside"
+        android:src="@drawable/home_move" />
+
+    <!-- Login progress -->
+    <ProgressBar
+        android:id="@+id/login_progress"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
+
+
+    <EditText
+        android:id="@+id/et_username"
+        style="@style/editText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bottom_line"
+        android:drawableStart="@drawable/user_logo"
+        android:hint="@string/hint_username"
+        android:imeOptions="actionNext"
+        android:singleLine="true"
+        android:text="@string/dummy_username" />
+
+
+    <EditText
+        android:id="@+id/et_password"
+        style="@style/editText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bottom_line"
+        android:drawableStart="@drawable/pwd_logo"
+        android:hint="@string/hint_password"
+        android:imeOptions="actionDone"
+        android:inputType="textPassword"
+        android:text="@string/dummy_password" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/et_host"
+            style="@style/editText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/bottom_line"
+            android:hint="@string/hint_host"
+            android:imeOptions="actionNext" />
+
+        <EditText
+            android:id="@+id/et_port"
+            style="@style/editText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/bottom_line"
+            android:hint="@string/hint_host_port"
+            android:imeOptions="actionDone"
+            android:inputType="numberSigned" />
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/btn_forgot_password"
+        style="@style/description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginTop="10dp"
+        android:background="@null"
+        android:minHeight="1dp"
+        android:onClick="onForgotPasswordClick"
+        android:padding="5dp"
+        android:text="@string/forgot_password"
+        android:textAllCaps="false" />
+
+
+    <Button
+        android:id="@+id/login_btn"
+        style="@style/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/border_for_button"
+        android:onClick="onLoginClick"
+        android:text="@string/login"
+        android:textAllCaps="false" />
+
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:visibility="gone" />
+
+
+    <TextView
+        android:id="@+id/txt_screen_error"
+        style="@style/error"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

@@ -1,0 +1,24 @@
+ <!------------------------- Start of header------------------------------- -->
+
+        <header class="hdr-h f-box p">
+            <section>
+                <article class="pull-left">
+                    <img class="tp-logo img-responsive" src="/capco-travel-portal-webApp/assets/images/logo_white.png">
+                </article>
+
+                <article class="pull-right head-pad">
+                    <div class="dropdown">
+                        <div class="travel-user-btn dropdown-toggle" type="button" data-toggle="dropdown"><span><img class="img-circle" width="20px" src="/capco-travel-portal-webApp/assets/images/user.png" alt=""></span>
+                            <label>Hemant Vedak</label>
+                            <span class="caret"></span>
+                        </div>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Logout</a>
+                            </li>
+                        </ul>
+                    </div>
+                </article>
+            </section>
+        </header>
+
+        <!------------------------- End of header------------------------------- -->

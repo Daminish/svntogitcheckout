@@ -1,0 +1,15 @@
+use capco_hcm;
+CREATE TABLE PROJECT_HISTORY (
+	Emp_Id INT,
+	From_Date DATE,
+	To_Date DATE,
+	Project_List VARCHAR(25),
+	Reporting_To VARCHAR(70),
+	Managed_By VARCHAR(30),
+	Deleted BOOLEAN,
+	Insertion_Date TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 
+	Inserted_By VARCHAR(100),
+	FOREIGN KEY (Emp_Id)
+		REFERENCES EMP_INFO(Emp_Id)
+		ON UPDATE CASCADE ON DELETE RESTRICT
+);

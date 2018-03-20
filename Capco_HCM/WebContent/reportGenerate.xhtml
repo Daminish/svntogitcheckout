@@ -1,0 +1,69 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	
+	<h:form id="report_form" enctype="multipart/form-data">
+
+		<h:panelGrid columns="1" id="projectInfo_PGrid" styleClass="tab-panel" 
+			cellpadding="2" cellspacing="2">
+			
+	
+		<h:panelGrid columns="4" id="projectInfo_PGrid_sum" styleClass="tab-panel" cellpadding="2" cellspacing="2">
+		
+					
+			<h:outputLabel for="report_selectreport" value="Select Report" />
+				
+				<p:selectOneMenu id="project_projectList"  value="#{reportInfo.reportgenerate.selectreport}" >
+					<f:selectItem itemValue="Select" itemLabel="Select" />
+					<f:selectItem itemValue="Basic Info" itemLabel="Basic Info" />
+					<f:selectItem itemValue="BGV" itemLabel="Background Info" />
+					<f:selectItem itemValue="Induction" itemLabel="Employee Induction Info" />
+					<f:selectItem itemValue="Financial Details" itemLabel="Financial Info" />
+					<f:selectItem itemValue="Exit Formality" itemLabel="Exit Formality Info" />
+					<f:selectItem itemValue="Probation" itemLabel="Probation Tracker Info" />
+					<f:selectItem itemValue="UserInfo" itemLabel="User Info" />
+					<f:selectItem itemValue="Project History" itemLabel="Project History Info" />
+					<f:selectItem itemValue="Nomination" itemLabel="Nominee Info" />
+					<f:selectItem itemValue="Endorsement" itemLabel="Endorsement Info" />
+					<f:selectItem itemValue="Static" itemLabel="Static Info" />
+					<f:selectItem itemValue="Promotion" itemLabel="Promotion Info" />
+					<f:selectItem itemValue="Review History" itemLabel="Review Cycle Info" />
+					<f:selectItem itemValue="Static" itemLabel="Static Info" />
+					<f:selectItem itemValue="Benefits" itemLabel="Joining Benefits Info" />
+					<f:selectItem itemValue="Skills" itemLabel="Skills Info" />
+					<f:selectItem itemValue="Travel" itemLabel="Travel Info" />
+					<f:selectItem itemValue="HCM Letter" itemLabel="HCM Letter Info" /> -->
+					
+						
+			</p:selectOneMenu>
+			
+				<h:outputLabel for="report_file" value="Import file" />	
+			<!-- 	<p:fileUpload id="fileIdResume"  value="#{reportInfo.file}" mode="simple" skinSimple="true"/>
+			 -->	
+			 <p:fileUpload id="fileIdResume"  value="#{reportInfo.file}" mode="simple" skinSimple="true" />
+				
+					
+						 
+		</h:panelGrid>
+
+		<h:panelGrid columns="2" id="projectSubmit_PGrid"
+			styleClass="button-panel" cellpadding="2" cellspacing="2">
+
+			<p:commandButton ajax="false" style="align:center" value="Export to Excel" update="@form" 
+			  actionListener="#{reportInfo.exportToExcel}" >
+			 
+			  </p:commandButton>
+
+			
+			 <p:commandButton  ajax="false" value="Import in Excel"  actionListener="#{reportInfo.upload}" />
+			
+		</h:panelGrid>
+		
+	
+		</h:panelGrid>
+	
+		</h:form>	
+</ui:composition>

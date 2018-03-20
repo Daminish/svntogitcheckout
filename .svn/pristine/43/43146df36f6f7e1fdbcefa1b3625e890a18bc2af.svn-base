@@ -1,0 +1,18 @@
+.msg-val {
+	color: red;
+}
+.msg-success {
+	color: green;
+}
+.menu-list{
+    padding-left: 300px;
+    padding-top: 10px;
+}
+.home-section{
+    float:left;
+    width: 30%;
+}
+.section{
+    margin-left: 0%;
+    float:left;
+}

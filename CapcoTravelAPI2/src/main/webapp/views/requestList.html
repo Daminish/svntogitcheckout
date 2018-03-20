@@ -1,0 +1,122 @@
+
+    <style>
+      .input-s-sm {
+          width: 120px;
+      }
+      .v-middle {
+          vertical-align: middle !important;
+      }
+      .inline {
+          display: inline-block !important;
+      }
+      .th-sort i {
+          position: relative;
+          z-index: 1;
+      }
+
+      .text-active, .active > .text, .active > .auto .text {
+          display: none !important;
+      }
+
+      .panel .table-striped > thead th {
+          background-color: #f9fafc;
+          border-right: 1px solid #eaeef1;
+          padding: 8px 15px;
+      }
+    </style>
+
+
+<header-component></header-component>
+  <section class="f-box" ng-init="checkList()">
+    <section>
+      <section class="hbox stretch">
+        <!-- .aside -->
+
+        <!-- /.aside -->
+        <section id="content">
+          <section class="vbox">
+            <section class="container-bg">
+              <div class="m-b-md">
+                <h3 class="m-b-none">Request Lists</h3>
+              </div>
+
+              <section class="panel panel-default">
+
+                <!-- <div class="row p">
+                  <div class="col-sm-5 m-b-xs">
+                    <select class="input-sm form-control input-s-sm inline v-middle">
+                      <option value="0">Bulk action</option>
+                      <option value="1">Delete selected</option>
+                      <option value="2">Bulk edit</option>
+                      <option value="3">Export</option>
+                    </select>
+                    <button class="btn btn-sm btn-default">Apply</button>
+                  </div>
+                  <div class="col-sm-4 m-b-xs">
+                    <div class="btn-group" data-toggle="buttons">
+                      <label class="btn btn-sm btn-default active">
+                        <input type="radio" name="options" id="option1"> Day
+                      </label>
+                      <label class="btn btn-sm btn-default">
+                        <input type="radio" name="options" id="option2"> Week
+                      </label>
+                      <label class="btn btn-sm btn-default">
+                        <input type="radio" name="options" id="option2"> Month
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col-sm-3">
+                    <div class="input-group">
+                      <input type="text" class="input-sm form-control" placeholder="Search">
+                      <span class="input-group-btn">
+                        <button class="btn btn-sm btn-default" type="button">Go!</button>
+                      </span>
+                    </div>
+                  </div>
+                </div> -->
+                <div class="table-responsive">
+                  <table class="table table-striped b-t b-light">
+                    <thead>
+                      <tr>
+                       <!--  <th width="20"></th> -->
+                        <th class="text-cen">Request Id</th>
+                        <th class="text-cen">Requested By</th>
+                        <th class="text-cen">Status</th>
+                        <th class="text-cen">Date</th>
+                        
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr ng-repeat="x in requestToApprove">
+                        <!-- <td><label class="checkbox m-n i-checks"><input type="checkbox" name="post[]"><i></i></label></td>  -->
+                        <td>{{x.requestId}}</td>
+                        <td>{{x.requestedBy}}</td>
+                        <td>{{x.currentStatus}}</td>
+                        <td>{{x.createdOn}}</td>
+                       <!--  <td>
+                          <a href="#" class="active" data-toggle="class"><i class="fa fa-check text-success text-active"></i><i class="fa fa-times text-danger hide"></i></a>
+                        </td> -->
+                         <td>
+                         	<md-button class="md-raised" md-colors="{background: 'Blue'}" ng-click="getRequestToApproveDetails(x.requestId)" data-toggle="tooltip" title="View"><i class="fa fa-eye"></i></md-button>
+                           	<!-- <button class="btn btn-success" data-toggle="tooltip" data-placement="right" title="Edit" ng-click="editRequest(x.requestId)"><i class="fa fa-edit"></i></button> -->
+                           	<!-- <button class="btn btn-danger" data-toggle="tooltip" data-placement="right" title="Cancel" ng-click="deleteRequest(x.requestId)"><i class="fa fa-trash-o"></i></button> -->
+                      	 </td>
+                      </tr>
+                      
+                    </tbody>
+                  </table>
+                  <footer class="p">
+                  	<md-button class="md-raised pull-left" md-colors="{background: 'Blue'}" ng-click="back()">Back</md-button>
+                </footer>
+                </div>
+                
+              </section>
+              
+            </section>
+          </section>
+          
+          <a href="#" class="hide nav-off-screen-block" data-toggle="class:nav-off-screen" data-target="#nav"></a>
+        </section>
+      </section>
+    </section>
+  </section>

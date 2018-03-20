@@ -1,0 +1,39 @@
+ <!------------------------- Start of header------------------------------- -->
+
+        <header class="hdr-h tp-fullwidth p">
+            <section>
+            
+                <article class="pull-left">
+                    <img class="tp-logo img-responsive curPointer" ng-click="home()" src="/capco-travel-portal-webApp/assets/images/logo_white.png">
+                </article>
+			
+			
+			
+                <article class="pull-right head-pad">
+			<div class="dropdown">
+
+				<md-menu md-position-mode="target-right target"> 
+				
+					<md-button aria-label="Open phone interactions menu" class="md-icon-button"> 
+					<md-icon class="color-white" md-menu-origin md-svg-icon="notifications:account-circle"></md-icon> 
+					</md-button> 
+					<md-menu-content width="2"> 
+						<md-menu-item> 
+							<md-button ng-click="logout()">
+								<md-icon md-menu-origin md-svg-icon="notifications:power"></md-icon>Logout
+							</md-button> 
+						</md-menu-item> 
+					</md-menu-content> 
+					<label ng-click="openMenu($mdMenu, $event)" class="color-white">{{user.employeeName}}</label>
+					<i class="fa fa-caret-down color-white" ng-click="openMenu($mdMenu, $event)"></i>
+				</md-menu>
+				
+			</div>
+
+
+		</article>
+               
+            </section>
+        </header>
+
+        <!------------------------- End of header------------------------------- -->

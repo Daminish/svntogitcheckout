@@ -1,0 +1,285 @@
+<section class="f-box">
+                                            <header class="row">
+                                                <!-- <h1 class="p-tb-md m-n p">Approve Request</h1> -->
+
+                                            </header>
+                                            <div class="main-bg p">
+                                                <header>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <h2>Take Action</h2>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                        <h3 class="req pull-right">Request ID: #{{requestToApproveDetails.travelRequest.requestId}}</h3>
+                                                        </div>
+                                                        </div>
+                                                        
+                                                        
+                                                </header>
+                                                <hr>
+                                               
+
+                                                <header>
+                                                    <h3>Request Details</h3>
+                                                    
+                                                </header>
+                                                <hr>
+                                                <!-- ===============article====================== -->
+                                                <article>
+
+                                                    <h4>Flight Booking</h4>
+                                                    <table class="table table-bordered">
+                                                        <tr>
+                                                            <td><label>Tour Type:</label></td>
+                                                            <td colspan="2"><label ng-if="flightObj.tourType==1">Domestic</label>
+                                                            <label ng-if="flightObj.tourType==2">International</label>
+                                                            </td>
+                                                            <td><label>Travel Type:</label></td>
+                                                            <td colspan="2"><label ng-if="flightObj.travelType=='1'">One way</label>
+                                                            <label ng-if="flightObj.travelType=='2'">Round way</label>
+                                                            </td>
+                                                        </tr>
+
+                                                        <tr ng-if="flightObj.tourType==2">
+                                                                <td><label>Origin Country:</label></td>
+                                                                <td>{{flightObj.originCountry}}</td>
+                                                                <td><label>Destination Country:</label></td>
+                                                                <td>{{flightObj.destinationCountry}}</td>
+                                                                <td><label>Preferred Class:</label></td>
+                                                                <td>{{flightObj.prefClass}}</td>
+                                                            </tr>
+                                                        
+
+                                                        <tr>
+                                                            <td><label>Business Purpose:</label></td>
+                                                            <td>{{flightObj.businessPurpose}}</td>
+                                                            <td><label>From:</label></td>
+                                                            <td>{{flightObj.departureLocation}}</td>
+                                                            <td><label>To:</label></td>
+                                                            <td>{{flightObj.destinationLocation}}</td>
+                                                        </tr>
+
+                                                      
+
+                                                        <tr>
+                                                            <td><label>Departure Date:</label></td>
+                                                            <td colspan="2">{{flightObj.departureDate}}</td>
+                                                            <td><label>Departure Time:</label></td>
+                                                            <td colspan="2">{{flightObj.departureTime}}</td>
+                                                        </tr>
+
+                                                        <tr ng-if="flightObj.flightTravelType==2">
+                                                                <td><label>Return Date:</label></td>
+                                                                <td colspan="2">{{flightObj.returnDate}}</td>
+                                                                <td><label>Return Time:</label></td>
+                                                                <td colspan="2">{{flightObj.returnTime}}</td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                    <td><label>Surname:</label></td>
+                                                                    <td>{{flightObj.surname}}</td>
+                                                                    <td><label>Given Name:</label></td>
+                                                                    <td>{{flightObj.givenName}}</td>
+                                                                    <td><label>Date of Birth:</label></td>
+                                                                    <td>{{flightObj.dateOfBirth}}</td>
+                                                                </tr>
+
+                                                                <tr>
+                                                                        <td><label>Passport Number:</label></td>
+                                                                        <td>{{flightObj.passportNumber}}</td>
+                                                                        <td><label>Passport Issue date:</label></td>
+                                                                        <td>{{flightObj.passportIssueDate}}</td>
+                                                                        <td><label>Passport expiry date:</label></td>
+                                                                        <td>{{flightObj.passportExpiryDate}}</td>
+                                                                    </tr>
+
+                                                                    <tr>
+                                                                    <td><label>Meal Preference</label></td>
+                                                                            <td colspan="2">{{flightObj.mealPref}}</td>
+                                                                            <td><label>Nationality:</label></td>
+                                                                            <td colspan="2">{{flightObj.nationality}}</td>
+                                                                        </tr>
+
+                                                                    <tr>
+                                                                            
+                                                                            <td><label>Remark</label></td>
+                                                                            <td colspan="5">{{flightObj.remarks}}</td>
+                                                                        </tr>
+
+                                                        
+
+                                                    </table>
+
+                                                </article>
+                                                <!-- ===================end of article======================-->
+
+                                                <!-- ====================article====================-->
+                                                <article>
+
+                                                    <h4>Taxi Booking</h4>
+                                                    <table class="table table-bordered">
+                                                        <tr>
+                                                            <td><label>From:</label></td>
+                                                            <td>{{cabObj.pickUpLocation}} {{cabObj.city}}</td>
+                                                            <td><label>To:</label></td>
+                                                            <td>{{cabObj.dropLocation}}</td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td><label>Departure Date:</label></td>
+                                                            <td>{{cabObj.fromDate}}</td>
+                                                            <td><label>Departure Time:</label></td>
+                                                            <td>{{cabObj.toDate}}</td>
+
+                                                        </tr>
+                                                        <tr>
+                                                            <td><label>Remark</label></td>
+                                                            <td colspan="3">{{cabObj.remarks}}</td>
+                                                        </tr>
+                                                    </table>
+
+                                                </article>
+                                                <!-- ====================end of article==================== -->
+
+                                                <!-- ==================== article=========================-->
+                                                <article>
+                                                    <h4>Hotel/Accommodation Booking</h4>
+
+                                                    <table class="table table-bordered">
+                                                        <tr>
+                                                            <td>Country:</td>
+                                                            <td colspan="2">{{accomodationObj.country}}</td>
+                                                            <td>City:</td>
+                                                            <td colspan="2">{{accomodationObj.city}}</td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td>Check-in Date & Time:</td>
+                                                            <td colspan="2">{{accomodationObj.checkIn}} </td>
+                                                            <td>Check-out Date & Time:</td>
+                                                            <td colspan="2">{{accomodationObj.checkOut}}</td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td>Budget Per Day:</td>
+                                                            <td>{{accomodationObj.budget}}</td>
+                                                            <td>Type of Room:</td>
+                                                            <td>{{accomodationObj.roomType}}</td>
+                                                            <td>Nearest Facility:</td>
+                                                            <td>{{accomodationObj.nearestFacility}}</td>
+                                                        </tr>
+
+                                                    </table>
+
+                                                </article>
+
+                                                <article>
+                                                        <h4>Forex</h4>
+    
+                                                        <table class="table table-bordered">
+                                                                <tr>
+                                                                        <td>Country:</td>
+                                                                        <td>{{forexObj.forexCountry}}</td>
+                                                                        <td>Currency:</td>
+                                                                        <td>{{forexObj.forexCurrency}}</td>
+                                                                        <td>Bankdesk:</td>
+                                                                        <td>{{forexObj.forexBankDesk}}</td>
+                                                                    </tr>
+
+                                                                    <tr>
+                                                                            <td>From:</td>
+                                                                            <td>{{forexObj.forexFromDate}}</td>
+                                                                            <td>To:</td>
+                                                                            <td>{{forexObj.forexToDate}}</td>
+                                                                            <td>Travelling Days:</td>
+                                                                            <td>{{forexObj.forexNoOfDays}}</td>
+                                                                        </tr>
+
+                                                                        <tr>
+                                                                            <td>Collection Center:</td>
+                                                                            <td>{{forexObj.forexCollectionCenter}}</td>
+                                                                            <td>Remark:</td>
+                                                                            <td colspan="3">{{forexObj.forexRemarks}}</td>    
+                                                                            </tr>
+
+    
+                                                        </table>
+    
+                                                    </article>
+                                                <!-- ================end of article====================== -->
+                                                 <div class="panel panel-default p container-bg">
+                             <div class="row">
+                                 <div class="col-md-6">
+                                     <p>Select Type:</p>
+                                     <input type="radio" name="type"> <label>Billable</label>
+                                     <input type="radio" name="type"> <label>Non-Billable</label>
+                                 </div>
+
+                                 <div class="col-md-6">
+                                        <label>Select Second Level Approvers:</label>
+                                            <select name="" id="" class="form-control">
+                                                <option>---Select Approver--</option>
+
+                                            </select>                                       
+                                    </div>
+                                 
+                             </div>
+
+                             <div class="row" align="center">
+                                 <button class="btn btn-danger" data-toggle="modal" data-target="#rejectRequestModal"><i class="fa fa-times"></i> Reject</button>
+                                 <button class="btn btn-success" data-toggle="modal" data-target="#approveRequestModal"><i class="fa fa-check"></i> Approve</button>
+
+
+                             </div>
+                                  </div>
+
+                                                </div>
+
+                                        </section>
+                                        
+                                         <!-- ----------------------------------------------------
+                |                  end of section                         |
+                ------------------------------------------------------- -->
+                <div class="modal fade" id="rejectRequestModal" role="dialog">
+                        <div class="modal-dialog">
+                        
+                          <!-- Modal content-->
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                              <h4 class="modal-title">Reject Request</h4>
+                            </div>
+                            <div class="modal-body">
+                              <label>Remark*</label>
+                              <textarea class="form-control" placeholder="Remark" ng-model="rejectRemark"></textarea>
+                            </div>
+                            <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                              <button type="button" class="btn btn-success" ng-click="l1Reject(requestToApproveDetails.travelRequest.requestId)" data-dismiss="modal">Submit</button>
+                            </div>
+                          </div>
+                          
+                        </div>
+                      </div>
+
+
+                      <div class="modal fade" id="approveRequestModal" role="dialog">
+                            <div class="modal-dialog">
+                            
+                              <!-- Modal content-->
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                  <h4 class="modal-title">Approve Request</h4>
+                                </div>
+                                <div class="modal-body">
+                                  <h3>Are you sure you want to approve request?</h3>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                  <button type="button" class="btn btn-success" ng-click="forwardToApprove(requestToApproveDetails.travelRequest.requestId)" data-dismiss="modal">Approve</button>
+                                </div>
+                              </div>
+                              
+                            </div>
+                          </div>

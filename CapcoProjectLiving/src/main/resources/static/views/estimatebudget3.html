@@ -1,0 +1,172 @@
+<header>
+	<nav>
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-3 col-sm-3">
+					<p class="liv-head-back-btm">
+						<i class="fa fa-chevron-left"></i>&nbsp;<a ng-href="/#!/monthlyexpences">Back</a>
+					</p>
+				</div>
+				<div class="col-xs-7 col-md-7">
+					<p class="liv-head-heading">Estimated budget</p>
+				</div>
+				<div class="col-xs-2 col-md-2">
+					<p class="liv-head-back-btm">
+						<a ng-href="/#!/budget">Done</a>
+					</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-3 col-md-3"></div>
+				<div class="col-xs-12 liv-head-btm-text">
+					<p class="text-center">Hey Steve ! You have $ 15,00,000 as per
+						approved loan</p>
+				</div>
+
+			</div>
+		</div>
+	</nav>
+</header>
+<div class="container">
+	<div class=" row div-gray-bgcolor">
+		<!--Common Div -->
+		<div style="padding-top: 10px">
+			<div style="padding-left: 10px">
+				<!--First section after header -->
+				<p>Based on the information from you, we have calculated monthly
+					mortage that you may have to pay
+			</div>
+		</div>
+
+		<!-- Block styling -->
+		<div
+			style="border: 1px solid green; padding: 5px; margin: 10px 40px 10px 40px; background-color: white;">
+
+			<center>
+				<p class="center">HOME LOAN MORTAGE</p>
+				<p class="font24">${{loan_mortgage}} </p>
+				<hr style="width: 100%;">
+				<p>Available in your account</p>
+				<p class="font22">${{avl_balance}}</p>
+
+			</center>
+		</div>
+	</div>
+
+</div>
+<!-- End of common Div-->
+<div class="container">
+	<div class="row white-strip">
+		<div class="col-xs-10">
+			<p class="text-col-green mar0">WHATS YOUR PLAN</p>
+		</div>
+
+		<div class="col-xs-2">
+			<b class="fa-icon-col-orange" style="align-self: right;" data-toggle="modal" data-target="#planModal">Edit</b>
+		</div>
+
+	</div>
+
+	<div class="row div-gray-bgcolor">
+		<div class="col-xs-9">
+			<p class="mar0">Estimated mortage amount</p>
+		</div>
+		<div class="col-xs-3">
+			<b>${{morAmount}} </b>
+
+		</div>
+	</div>
+	<div class="row div-gray-bgcolor">
+		<div class="col-xs-9">
+			<p class="mar0">Mortage term (year)</p>
+		</div>
+		<div class="col-xs-3">
+			<b> {{morTerm}}</b>
+		</div>
+	</div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="planModal" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content col-xs-12">
+				<div class="modal-header col-xs-12">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">WHATS YOUR PLAN</h4>
+				</div>
+				<div class="modal-body col-xs-12">
+					
+					
+					<div class="col-xs-12 popup-form-box">
+						<div class="col-xs-6 popup-inner">
+							<span>Estimated mortage amount</span>
+						</div>
+						<div class="col-xs-6 popup-inner">
+							<input type="text" class="form-control"  ng-model="morAmount">
+						</div>
+					</div>
+					<div class="col-xs-12 popup-form-box">
+						<div class="col-xs-6 popup-inner">
+							<span>Mortage term (year)</span>
+						</div>
+						<div class="col-xs-6 popup-inner">
+							<input type="text" class="form-control"  ng-model="morTerm">
+						</div>
+					</div>
+					
+					
+				</div>
+				<div class="modal-footer">
+					
+					<button type="button" class="btn btn-default" data-dismiss="modal">Add</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="row white-strip">
+		<div class="col-xs-10 col-md-10">
+			<p class="text-col-green mar0">WHATS YOUR INCOME</p>
+		</div>
+		<div class="col-xs-2 col-md-2">
+			<b class="fa-icon-col-orange">Edit</b>
+		</div>
+	</div>
+
+	<div class="row div-gray-bgcolor">
+		<div class="col-xs-9">
+			<p class="mar0">Your total Income</p>
+		</div>
+		<div class="col-xs-3">
+			<b>${{total_income}}</b>
+		</div>
+	</div>
+	<div class="row div-gray-bgcolor">
+		<div class="col-xs-9">
+			<p class="mar0">Mortgage term(year)</p>
+		</div>
+		<div class="col-xs-3">
+			<b>{{morTerm}}</b>
+		</div>
+	</div>
+
+	<div class="row white-strip">
+		<div class="col-xs-10">
+			<p class="text-col-green mar0">MONTHLY EXPENSES</p>
+		</div>
+		<div class="col-xs-2">
+			<b class="fa-icon-col-orange">Edit</b>
+		</div>
+	</div>
+	<div class="row div-gray-bgcolor">
+		<div class="col-xs-9">
+			<p class="mar0">Your total Income</p>
+		</div>
+		<div class="col-xs-3">
+			<b>${{mon_income}}</b>
+		</div>
+	</div>
+</div>
+

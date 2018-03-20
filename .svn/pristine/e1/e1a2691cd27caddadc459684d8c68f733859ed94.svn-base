@@ -1,0 +1,62 @@
+header{
+    background-color: #8dc634;
+    height: 40px;
+    width: 100%;
+    nav{
+                    /*.container{
+                                    padding-left: 5px;
+                                    padding-right: 5px; */
+                                    .row{
+                                                    margin-top: 10px;
+                                                    color: white;
+                                                    font-size: 16px;
+                                                    font-style:sans-serif;
+
+                                                    .liv-head-btm-text{                         
+                                                                    font-size: 12px;
+                                                    }
+                                                    .liv-head-heading{
+                                                                    text-align: center;
+                                                                    margin-right:50px; 
+                                                    }
+                                                    .liv-head-back-btm{
+                                                                    float: left;
+                                                    }
+                                                    .liv-head-info-icon{
+                                                                    float: right;
+                                                    }
+                                    }              
+                    }
+                }
+            
+                
+
+    .bottom{
+border-bottom:solid 1px gray;
+
+padding-left: 17.7px;
+padding-right: 17.7px;
+margin-right: 17.7px;
+margin-left: 17.7px;
+    }
+.debit-body{
+    padding-top: 40px;
+    input {
+        border: 0;
+        outline: 0;
+        
+        background: transparent;
+        border-bottom: 1px solid #CBCBCB;
+        font-size: 20px;
+    }
+}
+.debit-description{
+    color: #8dc634;
+   }
+
+   .border-none{
+       border: none;
+       border-style: none;
+       
+       }
+

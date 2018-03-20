@@ -1,0 +1,35 @@
+use capco_hcm;
+CREATE TABLE EXIT_TRACKER (
+	Emp_Id INT,
+	Last_Working_Date DATE,
+	Resignation_Date DATE,
+	Resignation_Reason VARCHAR(256),
+	Notice_Period VARCHAR(15),
+	Comments VARCHAR(256),
+	Medical_Insurance_Informed boolean,
+	Library_Book_Collected VARCHAR(50),
+	Exit_Interview_Completed boolean,
+	Birthday_App_Deletion boolean,
+	Salary_Hold boolean,
+	Fnf_Completed DATE,
+	Ts_Submitted boolean,
+	Login_Id_Terminated boolean,
+	Login_Id_Term_Date DATE,
+	Releiving_Letter_Issued boolean,
+	Releiving_Letter_Issue_Date DATE,
+	Service_Letter_Issued boolean,
+	Service_Letter_Issue_Date DATE,
+	Buyout_Letter_Issued boolean,
+	Buyout_Letter_Issue_Date DATE,
+	Buyout_Amount_Paid boolean,
+	Buyout_Amount VARCHAR(15),
+	Buyout_Number_of_Days INT,
+	Buyout_Waived boolean,
+	Buyout_Waived_Days INT,
+	Deleted BOOLEAN,
+	Insertion_Date TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 
+	Inserted_By VARCHAR(100),
+	FOREIGN KEY (Emp_Id)
+		REFERENCES EMP_INFO(Emp_Id)
+		ON UPDATE CASCADE ON DELETE RESTRICT
+);

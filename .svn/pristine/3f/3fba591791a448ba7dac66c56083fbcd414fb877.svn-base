@@ -1,0 +1,237 @@
+@CHARSET "ISO-8859-1";
+
+body {
+	font-family: Verdana, Geneva, sans-serif;
+	background-color: #F6F6DA;
+	color: #5a5656;
+	background-image: url("/Sparta/resources/images/bg4.jpg");
+	font-size: 12px;
+}
+
+label {
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 12px;
+	appearance: none;
+	box-shadow: none;
+	border-radius: 4px;
+	width: 150px !important;
+}
+
+input[type=text] {
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 12px;
+	appearance: none;
+	box-shadow: none;
+	border-radius: 4px;
+	width: 180px !important;
+	line-height: 20px;
+}
+
+input {
+	/* display: block; */
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 12px;
+	appearance: none;
+	box-shadow: none;
+	border-radius: 4px;
+	width: 180px !important;
+	line-height: 20px;
+}
+
+input:focus {
+	outline: none;
+	background-color: lightblue;
+}
+
+.calendar-input input {
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 12px;
+	appearance: none;
+	box-shadow: none;
+	border-radius: 4px;
+	width: 120px !important;
+}
+
+.ui-selectonemenu-label {
+	font-family: Verdana, Geneva, sans-serif;
+	background: #F0FFFF;
+	font-size: 12px;
+	width: 150px !important;
+}
+
+.ui-button .ui-button-text {
+	padding-right: 50px;
+	color: #00008B;
+}
+
+.ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all
+	{
+	color: blue;
+}
+
+.ui-selectonemenu-list {
+	font-family: Verdana, Geneva, sans-serif;
+	background: #F0FFFF;
+	font-size: 12px;
+	width: 150px !important;
+}
+
+.ui-selectonemenu-items {
+	font-family: Verdana, Geneva, sans-serif;
+	background: #F0FFFF;
+	font-size: 12px;
+}
+
+.styled-select {
+	font-family: Verdana, Geneva, sans-serif;
+	background: transparent;
+	border: none;
+	font-size: 12px;
+	height: 29px;
+	padding: 5px;
+	width: 268px;
+}
+
+.ui-button {
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 20px;
+	background: none;
+}
+
+.tab-panel {
+	width: 100%;
+	font-size: 12px;
+	border: 0 !important;
+	margin-top: 0px!importnat;
+}
+
+.search-panel {
+	width: auto;
+	font-size: 12px;
+	text-align: center;
+	padding-left: 20%;
+	border: 0 !important;
+}
+
+.button-panel {
+	width: 100%;
+	/* font-size: 12px; */
+	text-align: center;
+	margin-top: 20px;
+}
+
+.tab-header {
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 12px;
+	text-align: center;
+	/* background: #8CC63F !important; */
+	font-weight: none !important;
+}
+
+.ui-datepicker {
+	font-family: Verdana, Geneva, sans-serif;
+	background-position: center center !important;
+	background: white;
+	font-size: 10px;
+}
+
+.ui-datepicker .ui-datepicker-header {
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 12px;
+	background: white;
+}
+
+.ui-boolean-button {
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 12px !important;
+	background: LightSteelBlue !important;
+	width: 80px !important;
+	text-align: center !important;
+}
+
+.ui-staticLabel {
+	font-family: Verdana, Geneva, sans-serif;
+	color: #555753;
+	font-weight: bold;
+}
+
+.ui-header-panel {
+	/* font: georgia, sans-serif; */
+	color: #555753;
+	font-weight: bold;
+	background-color: grey;
+}
+
+.ui-layout-pane {
+	border: 0 !important;
+	padding: 0em !important;
+	overflow: hidden !important;
+}
+
+.app-footer {
+	font-family: "Arial Black", Gadget, sans-serif !important;
+	overflow: hidden;
+	border: none !important;
+	width: 100% !important;
+	margin: 0 0 0 0 !important;
+	padding: 0 0 0 0 !important;
+}
+
+.ui-auditLabel {
+	font-family: Verdana, Geneva, sans-serif;
+	color: grey;
+	font-weight: bold;
+	font-size: 11px;
+}
+
+.ui-auditValue {
+	font-family: Verdana, Geneva, sans-serif;
+	color: grey;
+	font-weight: bold;
+	text-decoration: underline;
+	font-style: italic;
+	font-size: 11px !important;
+}
+
+.ui-button[type=submit] {
+	color: white !important;
+	background: #077696 !important;
+	border-radius: 5px !important;
+	font-size: 14px !important;
+	width: 150px !important;
+	padding: 2px 2px 2px 2px !important;
+}
+
+.ui-button[type=submit] .ui-button-text {
+	font-weight: normal !important;
+	color: white !important;
+	font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif !important;
+	letter-spacing: 1px;
+	text-align: center;
+}
+
+.search-button[type=submit] {
+	color: #c1bfbf !important;
+	background: #c1bfbf !important;
+	border-radius: 3px !important;
+	font-size: 14px !important;
+	width: 25px !important;
+	height: 30px !important;
+	margin: 5px !important;
+	vertical-align: baseline !important
+}
+
+.char_remaining_label {
+	font-style: italic;
+	color: light-grey;
+	font-size: 10px !important;
+	float: right;
+}
+
+.ui-errorLabel {
+	font-family: Verdana, Geneva, sans-serif;
+	color: red;
+	font-weight: bold;
+	font-style: italic;
+	font-size: 12px !important;
+}

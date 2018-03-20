@@ -1,0 +1,92 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+	<h:form>
+
+		<h:panelGrid columns="3" id="static_PGrid" styleClass="tab-panel" cellpadding="2" cellspacing="2">
+
+			<h:outputLabel for="sttc_category" value="Select Category" />
+			<p:selectOneMenu value="#{staticValuesView.selectedCategory}" id="sttc_category">
+				<f:selectItem itemLabel="Select One" itemValue="Select One" />
+				<f:selectItems value="#{staticValuesView.filedCategoryInDb}" />
+				<p:ajax update="staticFvLbl"/>
+			</p:selectOneMenu>
+
+			<p:commandButton value="Load" actionListener="#{staticValuesView.loadAllStaticFieldsForCategory}" update="staticFld_list"/>
+		</h:panelGrid>
+
+		<p:separator />
+
+
+		<h:panelGrid columns="7" id="static_fv_PGrid" styleClass="tab-panel" cellpadding="2" cellspacing="2">
+			<f:facet name="header">
+				<h:outputLabel value="Current Category: " styleClass="ui-staticLabel"/>
+				<p:outputLabel id="staticFvLbl" value="#{staticValuesView.selectedCategory}" styleClass="ui-staticLabel"/>
+			</f:facet>
+
+			<h:outputLabel for="sttc_addCat" value="Add/Select Category" />
+			<p:selectOneMenu id="sttc_addCat" value="#{staticValuesView.selectedCategory}" effect="fold" disabled="true">
+            	<f:selectItem itemLabel="Select One" itemValue="Select One" />
+            	
+            	
+            	<f:selectItems value="#{staticValuesView.filedCategoryInDb}" />
+        	</p:selectOneMenu>
+
+			<h:outputLabel for="sttc_addKey" value="Add Key" />
+			<h:inputText value="#{staticValuesView.fieldKey}" id="sttc_addKey" />
+
+			<h:outputLabel for="sttc_addValue" value="Add Values" />
+			<h:inputText  id="sttc_addValues" value="#{staticValuesView.fieldValue}" />
+
+			<p:commandButton value="Add" style="text-align:center;" update="staticFld_list" 
+				actionListener="#{staticValuesView.addNewFieldForCategory}"/>
+		</h:panelGrid>
+
+		<p:separator />
+
+		<p:dataTable id="staticFld_list" var="st" styleClass="employeeTable" value="#{staticValuesView.staticFieldList}"
+		widgetVar="projectTable" filteredValue="#{staticValuesView.staticsearchhistory}" lazy="false"
+		rows="5" paginator="true" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} 
+		{NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,15"
+			rowClasses="employeeTableEvenRow, employeeTableOddRow" border="1"
+			headerClass="employeeTableHeader" rowIndexVar="rowId">
+
+			<p:column>
+				<f:facet name="header">Sr. No.</f:facet>
+				<h:outputText value="#{rowId}"/>
+			</p:column>
+			<p:column sortBy="#{st.fieldCategory}" filterBy="#{st.fieldCategory}">
+				<f:facet name="header">Field Category</f:facet>
+				<h:outputText value="#{st.fieldCategory}"/>
+			</p:column>
+			<p:column sortBy="#{st.fieldKey}" filterBy="#{st.fieldKey}">
+				<f:facet name="header">Key / Identifier</f:facet>
+				<h:outputText value="#{st.fieldKey}"/>
+			</p:column>
+			<p:column sortBy="#{st.fieldName}" filterBy="#{st.fieldName}">
+				<f:facet name="header">Field Value</f:facet>
+				<h:inputText value="#{st.fieldName}"/>
+			</p:column>
+			<p:column>
+				<f:facet name="header">Status</f:facet>
+				<h:outputText value="#{st.deletedB eq true ? 'DELETED' : ''}"/>
+			</p:column>
+			<p:column>
+				<f:facet name="header">Save</f:facet>
+				<p:commandButton title="Save" icon="ui-icon-disk" actionListener="#{staticValuesView.updateExistingField(st)}" styleClass="search-button"/>
+			</p:column>
+			<p:column style="width: auto; text-align: center !important;">
+				<f:facet name="header">Delete</f:facet>
+				<p:commandButton title="Delete" icon="ui-icon-trash" update="staticFld_list"  actionListener="#{staticValuesView.deleteRecord(st)}" styleClass="search-button">
+				</p:commandButton>
+			</p:column>
+
+		</p:dataTable>
+
+	</h:form>
+
+</ui:composition>

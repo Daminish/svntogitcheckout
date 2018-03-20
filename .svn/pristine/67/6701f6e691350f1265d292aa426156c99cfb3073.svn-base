@@ -1,0 +1,24 @@
+<!------------------------- Start of Login------------------------------- -->
+<section id="content" class="m-t-lg wrapper-md animated fadeInUp">    
+    <div class="tp-loginbox">
+      <img class="tp-logoclass" src="https://upload.wikimedia.org/wikipedia/commons/7/76/Capco_wiki_logo.png"/>
+      <section class="m-b-lg">
+        <header class="p text-center">
+          <strong>Sign in to get in touch</strong>
+        </header>
+        <form>
+          <div class="list-group">
+            <div class="list-group-item">
+              <input type="text" placeholder="User ID" class="form-control no-border" ng-model="user.capcoUserId">
+            </div>
+            <div class="list-group-item">
+               <input type="password" placeholder="Password" class="form-control no-border" ng-model="user.password">
+            </div>
+          </div>
+          <button type="submit" class="btn btn-lg btn-primary btn-block" ng-click="login()">Sign in</button>
+          <div class="line line-dashed"></div>
+        </form>
+      </section>
+    </div>
+  </section>
+  <!------------------------- Start of Login------------------------------- -->

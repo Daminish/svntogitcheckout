@@ -1,0 +1,434 @@
+<resources>
+
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorGreen</item>
+        <item name="colorPrimaryDark">@color/colorGreen</item>
+        <item name="colorAccent">@color/colorOrange</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:alertDialogTheme">@style/AlertDialogTheme</item>
+
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBarOverlay">@null</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="ToolbarTitleAppearance" parent="@style/TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">20dp</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <!-- include other attributes you want to change: textColor, textStyle, etc -->
+    </style>
+
+    <style name="ToolbarSubtitleAppearance" parent="@style/TextAppearance.Widget.AppCompat.Toolbar.Subtitle">
+        <item name="android:textSize">14dp</item>
+
+    </style>
+
+
+    <style name="icon">
+        <item name="android:tint">@color/colorGreyDark</item>
+    </style>
+
+    <style name="icon.budget">
+        <!--<item name="android:minHeight">48dp</item>-->
+        <item name="android:maxHeight">36dp</item>
+        <!--<item name="android:minWidth">48dp</item>-->
+        <item name="android:maxWidth">36dp</item>
+        <item name="android:tint">#5BC5FA</item>
+    </style>
+
+    <style name="icon.budget.forward">
+        <item name="android:tint">#FF7700</item>
+    </style>
+
+
+    <style name="text">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+
+    <style name="text.page">
+
+    </style>
+
+    <style name="text.page.heading">
+        <item name="android:textColor">@color/light_black</item>
+        <item name="android:textSize">22sp</item>
+    </style>
+
+
+    <style name="text.budget">
+        <item name="android:textColor">@color/light_black</item>
+        <item name="android:gravity">left|start</item>
+    </style>
+
+    <style name="text.budget.list">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="text.budget.list.header">
+        <item name="android:textColor">@color/colorGreen</item>
+        <item name="android:textAllCaps">true</item>
+
+    </style>
+
+    <style name="text.budget.list.item">
+        <item name="android:textColor">@color/colorGreyDark</item>
+
+    </style>
+
+    <style name="text.budget.form">
+        <item name="android:textColor">@color/colorOrange</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="text.budget.form.label">
+        <item name="android:paddingTop">10dp</item>
+    </style>
+
+    <style name="text.budget.form.field">
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:tint">@color/colorGrey</item>
+        <item name="android:imeOptions">actionNext</item>
+        <item name="android:backgroundTint">@color/colorGrey</item>
+        <item name="android:textCursorDrawable">@null</item>
+    </style>
+
+
+    <style name="text.budget.menu">
+
+    </style>
+
+
+    <style name="text.budget.menu.title">
+        <item name="android:textSize">20sp</item>
+        <item name="android:maxLines">1</item>
+    </style>
+
+    <style name="text.budget.menu.subtitle">
+        <item name="android:textSize">14sp</item>
+        <item name="android:maxLines">2</item>
+
+    </style>
+
+
+    <style name="text.banner">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:padding">10dp</item>
+    </style>
+
+
+    <style name="text.offer">
+        <item name="android:paddingStart">10dp</item>
+        <item name="android:paddingEnd">10dp</item>
+    </style>
+
+    <style name="text.offer.title">
+        <item name="android:textSize">22sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="text.offer.description">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="text.citylocality">
+        <item name="android:textColor">@color/colorGreyDark</item>
+        <item name="android:padding">10dp</item>
+    </style>
+
+
+    <style name="text.areacode">
+
+    </style>
+
+    <style name="text.localaddress">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">16sp</item>
+
+    </style>
+
+
+    <style name="text.localaddress.head">
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="text.findlocation">
+        <item name="android:padding">10dp</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/colorGreyDark</item>
+        <item name="android:background">@drawable/background_for_edit_text</item>
+
+    </style>
+
+
+    <style name="text.areacode.locationTitle">
+        <item name="android:textColor">@color/colorGreyDark</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:typeface">sans</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:gravity">left|center</item>
+        <item name="android:drawablePadding">10dp</item>
+    </style>
+
+
+    <!-- Base application theme. -->
+    <!--<style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">-->
+    <!--&lt;!&ndash; Customize your theme here. &ndash;&gt;-->
+    <!--<item name="colorPrimary">@color/colorGreen</item>-->
+    <!--<item name="colorPrimaryDark">@color/colorGreen</item>-->
+    <!--<item name="colorAccent">@color/colorWhite</item>-->
+    <!--</style>-->
+
+    <!-- heading -->
+    <style name="heading">
+        <item name="android:textSize">28sp</item>
+        <item name="android:fontFamily">@font/corporatesdemi</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <!-- title -->
+    <style name="title">
+        <item name="android:textSize">18sp</item>
+
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="description">
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textStyle">italic</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+
+    <style name="error">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:padding">5dp</item>
+        <item name="android:textColor">@color/red</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <!-- hint -->
+    <style name="hint">
+        <item name="android:textSize">15sp</item>
+
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <!-- button -->
+    <style name="button">
+        <item name="android:textSize">22sp</item>
+        <item name="android:background">@null</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:gravity">center</item>
+
+    </style>
+
+    <!-- editText -->
+    <style name="editText">
+        <item name="android:textSize">18sp</item>
+
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textColorHint">@color/colorGreyLight</item>
+        <item name="android:background">@null</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:drawablePadding">10dp</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:padding">10dp</item>
+
+    </style>
+
+    <style name="editText_areacode">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/colorGreyDark</item>
+        <item name="android:background">@drawable/background_for_edit_text</item>
+        <item name="android:drawableEnd">@drawable/ic_search_24dp</item>
+        <item name="android:textColorHint">@color/colorGreyDark</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textCursorDrawable">@color/colorGreyDark</item>
+
+    </style>
+
+
+    <!-- checkBox -->
+    <style name="checkBox">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+
+    <!-- menu_label -->
+    <style name="menu_label">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:typeface">sans</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <!-- menu_text -->
+    <style name="menu_text">
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:typeface">sans</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+
+    <!-- menu_list_title -->
+    <style name="menu_list_title">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:typeface">sans</item>
+    </style>
+
+    <!-- menu_list_description -->
+    <style name="menu_list_description">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:typeface">sans</item>
+    </style>
+
+
+    <!-- form_title -->
+    <style name="form_title">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/colorWhite</item>
+    </style>
+
+    <!-- form_label -->
+    <style name="form_label">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/colorWhite</item>
+    </style>
+
+    <!-- form_hint -->
+    <style name="form_hint">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/colorWhite</item>
+    </style>
+
+    <!-- form_text -->
+    <style name="form_text">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/colorWhite</item>
+    </style>
+
+    <!-- form_tab-->
+    <style name="form_tab">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/colorWhite</item>
+    </style>
+
+
+    <!--for home screen-->
+
+    <!-- title -->
+    <style name="homescreen_title">
+        <item name="android:textSize">20sp</item>
+
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_margin">3dp</item>
+    </style>
+
+    <!-- description -->
+    <style name="homescreen_item_description">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/colorGrey</item>
+        <item name="android:gravity">center</item>
+        <!--<item name="android:textStyle">bold</item>-->
+    </style>
+
+    <color name="fieldHint">#CCCCCC</color>
+    <color name="red">#FF0000</color>
+    <color name="light_black">#555555</color>
+
+
+    <style name="RadioButton">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:minHeight">42dp</item>
+        <item name="android:minWidth">70dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:button">@null</item>
+        <item name="android:paddingStart">5dp</item>
+        <item name="android:paddingEnd">5dp</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingBottom">10dp</item>
+    </style>
+
+    <!--<<<<<<< .mine-->
+    <!--<style name="ButtonRed" parent="Widget.AppCompat.Button">-->
+    <!--||||||| .r414-->
+    <!--<style parent="Widget.AppCompat.Button" name="ButtonRed">-->
+    <!--=======-->
+    <!--&gt;>>>>>> .r438-->
+
+    <!--<<<<<<< .mine-->
+    <!--<item name="android:layout_width">wrap_content</item>-->
+
+    <!--<item name="android:layout_height">wrap_content</item>-->
+
+    <!--<item name="android:paddingLeft">50dp</item>-->
+
+    <!--<item name="android:paddingRight">50dp</item>-->
+
+    <!--<item name="android:textSize">20sp</item>-->
+
+    <!--<item name="android:textColor">#fff</item>-->
+
+    <!--<item name="android:background">@drawable/button_red_selector</item>-->
+
+    <!--</style>-->
+
+    <!--||||||| .r414-->
+    <!--<item name="android:layout_width">wrap_content</item>-->
+
+    <!--<item name="android:layout_height">wrap_content</item>-->
+
+    <!--<item name="android:paddingLeft">50dp</item>-->
+
+    <!--<item name="android:paddingRight">50dp</item>-->
+
+    <!--<item name="android:textSize">20sp</item>-->
+
+    <!--<item name="android:textColor">#fff</item>-->
+
+    <!--<item name="android:background">@drawable/button_red_selector</item>-->
+
+    <!--</style>-->
+
+    <!--=======-->
+    <!--&gt;>>>>>> .r438-->
+    <style name="AlertDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorPrimary">@color/colorGreyDark</item>
+        <item name="colorPrimaryDark">@color/colorGreyDark</item>
+        <item name="colorAccent">@color/colorGreyDark</item>
+    </style>
+
+
+</resources>

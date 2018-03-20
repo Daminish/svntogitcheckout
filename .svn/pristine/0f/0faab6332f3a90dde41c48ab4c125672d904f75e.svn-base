@@ -1,0 +1,131 @@
+angular.module('myApp')
+	.config(['$urlRouterProvider', '$stateProvider', function ($urlRouterProvider, $stateProvider) {
+		
+		
+		$stateProvider
+			.state('login', {
+				url: '/',
+				templateUrl: 'views/loginTemplate.html',
+				controller: 'loginCtrl'
+			})
+
+			.state('home', {
+				url: '/home',
+				templateUrl: 'views/homeTemplate.html',
+				controller: 'homeCtrl'
+			})
+			
+			.state('newRequest', {
+				url: '/newRequest',
+				templateUrl: 'views/newRequest.html',
+				controller: 'newRequestCtrl'
+			})
+			// .state('home.newRequest.personalDetails', {
+			//   url: '/personalDetails',
+			//   templateUrl:'views/personalDetails.html',
+			//   })
+
+			.state('myrequests', {
+				url: '/myrequests',
+				templateUrl: 'views/myRequestsList.html',
+				controller: 'newRequestCtrl'
+			})
+			.state('approval', {
+				url: '/approval',
+				templateUrl: 'views/newRequest.html'
+				// controller: 'aboutCtrl'
+			})
+			.state('pendingrequests', {
+				url: '/pendingRequests',
+				templateUrl: 'views/requestList.html',
+				controller: 'newRequestCtrl'
+			})
+			.state('actionOnRequest',{
+				url: '/takeAction',
+				templateUrl: 'views/approveRequest.html',
+				controller: 'approverController'
+			})
+//		   $urlRouterProvider.otherwise('/'); 
+//			$locationProvider.html5Mode(true);
+	}])
+
+	.component('headerComponent', {
+		templateUrl: 'views/headerTemplate.html',
+		controller:'homeCtrl'
+	})
+	.component('homeComponent', {
+		templateUrl: 'views/homeTemplate.html',
+		controller: 'homeCtrl'
+	})
+	.component('myRequestComponent', {
+		template: '<h1>myRequestComponent</h1>'
+	})
+	.component('newRequestComponent', {
+		templateUrl: '../views/newRequest.html',
+
+		// $routeConfig:[
+		// 	{path:'/personalDetails', component:'personalDetailsComponent',useAsDefault:true},
+		// 	{path:'/requestDetails', component:'requestDetailsComponent'},
+		// 	{path:'/confirm', component:'confirmComponent'}
+		// 	],
+		controller: 'newRequestCtrl'
+	})
+	.component('personalDetailsComponent', {
+		templateUrl: '../views/tabs.html',
+		controller: 'newRequestCtrl'
+	})
+	.component('requestDetailsComponent', {
+		templateUrl: '../views/requestDetails.html',
+		controller: 'newRequestCtrl'
+	})
+	.component('confirmComponent', {
+		templateUrl: '../views/confirmView.html',
+		controller: 'newRequestCtrl'
+	})
+	.component('requestListComponent', {
+		templateUrl: 'views/requestList.html',
+		controller: 'newRequestCtrl'
+	})
+	.component('approvalComponent', {
+		templateUrl: 'views/confirmView.html',
+	})
+	.component('requestListComponent', {
+		templateUrl: '../views/requestList.html',
+		controller: 'newRequestCtrl'
+	})
+
+
+	.component('footerComponent', {
+		templateUrl: 'views/footerTemplate.html'
+	})
+	// .value('$routerRootComponent','masterComponent')
+	// .component('masterComponent',{
+	// 	template:'<ng-outlet></ng-outlet>',
+	// 	$routeConfig:[
+	// 	{path:'/login', component:'loginComponent',useAsDefault:true},
+	// 	{path:'/home/...',component:'homeComponent'}
+	// 	]
+	// })
+	.component('loginComponent', {
+		templateUrl: 'views/loginTemplate.html',
+		controller: 'loginCtrl'
+	})
+	.component('personalDetailsComponent', {
+		templateUrl: 'views/firstTab.html'
+	})
+
+// .component('homeComponent',{
+// 	template:'<div><header-component></header-component></div>
+// 	<div>
+// 	<div ui-view></div>
+// 	</div>
+// 	<div>
+// 	<footer-component></footer-component></div>'
+// 	// $routeConfig:[
+// 	// {path:'/', component:'dashboardComponent'},
+// 	// {path:'/myrequests', component:'myRequestComponent'},
+// 	// {path:'/newrequest/...', component:'newRequestComponent'},
+// 	// {path:'/approval', component:'approvalComponent'},
+// 	// {path:'/reports', component:'reportsComponent'}
+// 	// ]
+// })

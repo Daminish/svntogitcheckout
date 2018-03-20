@@ -1,0 +1,158 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+	<p:layout style="min-width:400px; min-height:800px; border: none !important; padding:0px !important; margin: 0px !important;">
+		<p:layoutUnit position="center">
+	<h:form>
+	<p:messages showSummary="true" styleClass="ui-errorLabel" />	
+			
+		<h:panelGrid columns="4" id="project_PGrid_Audit" styleClass="tab-panel" style="width: 40% !important; float: right;">
+			<h:outputLabel for="project_insertedDate" value="Inserted Date" styleClass="ui-auditLabel" />
+			<p:outputLabel id="project_insertedDate" value="#{userView.userInfoObj.insertedDate}" styleClass="ui-auditValue" />
+
+			<h:outputLabel for="project_updatedDate" value="Inserted By" styleClass="ui-auditLabel" />
+			<p:outputLabel id="project_updatedDate" value="#{userView.userInfoObj.insertedBy}" styleClass="ui-auditValue" />
+		</h:panelGrid>
+			
+			<h:panelGrid columns="4" id="userMan_PGrid" styleClass="tab-panel" >
+			
+				<p:outputLabel for="userMan_capcoId" value="Capco Id"/>
+				<h:inputText id="userMan_capcoId"  value="#{userView.userInfoObj.capcoId}">
+					<!-- <f:validateLength minimum="4"  maximum="5" /> -->
+				</h:inputText>
+				
+				<p:outputLabel for="userMan_fisId" value="FIS Id"/>
+				<h:inputText id="userMan_fisId"  value="#{userView.userInfoObj.fisId}">
+					<!-- <f:validateLength minimum="8" maximum="9"  /> -->
+				</h:inputText>
+				
+				<p:outputLabel for="userMan_empName" value="Employee Name"/>
+				<h:inputText id="userMan_empName"  value="#{userView.userInfoObj.userName}">
+					<!-- <f:validateLength minimum="5" maximum="25" /> -->
+				</h:inputText>
+				
+				<p:outputLabel for="userMan_adminRigths" value="Administrator Rights"/>
+				<p:selectBooleanButton id="userMan_adminRigths" value="#{userView.userInfoObj.adminRights}"
+					onLabel="Yes" offLabel="No" onIcon="ui-icon-check" offIcon="ui-icon-close" styleClass="ui-boolean-button">
+				</p:selectBooleanButton>
+				
+				<p:outputLabel for="userMan_hcmRigths" value="HCM User Rights"/>
+				<p:selectBooleanButton id="userMan_hcmRigths" value="#{userView.userInfoObj.hcmRights}"
+					onLabel="Yes" offLabel="No" onIcon="ui-icon-check" offIcon="ui-icon-close" styleClass="ui-boolean-button">
+				</p:selectBooleanButton>
+			</h:panelGrid>
+			
+			<h:panelGrid columns="2" id="userMan_submit_PGrid" styleClass="button-panel" cellpadding="2" cellspacing="2">
+				<p:commandButton style="align:center" value="Save" update="@form" styleClass="submit-button" 
+				actionListener="#{userView.saveSelectedUserInfo}" />
+				
+				<p:commandButton value="Reset">
+				<p:ajax update="userMan_PGrid" resetValues="true" />
+				</p:commandButton>
+			</h:panelGrid>
+			
+			<p:dataTable id="userMan_userList_dTab" value="#{userView.userList}"
+			widgetVar="projectTable" filteredValue="#{userView.usersearchhistory}" lazy="false"
+			rows="5" paginator="true"  paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+             rowsPerPageTemplate="5,10,15"
+				var="usrList" styleClass="employeeTable" border="1" 
+				rowStyleClass="#{(row mod 2) eq 0 ? 'employeeTableEvenRow' : 'employeeTableOddRow'}" 
+				headerClass="employeeTableHeader" rowIndexVar="rowId">
+				<f:facet name="header">
+					Approved User List
+		      	</f:facet>
+		      	
+				<p:column>
+				<f:facet name="header">Sr. No.</f:facet>
+				<h:outputText value="#{rowId}"/>
+				</p:column>
+				
+				<p:column sortBy="#{usrList.employeeId}" filterBy="#{usrList.employeeId}">
+				<f:facet name="header">Emp ID</f:facet>
+				<h:outputText value="#{usrList.employeeId}"/>
+				</p:column>
+				
+				<p:column sortBy="#{usrList.adminRights}">
+				<f:facet name="header">Administrator Rights</f:facet>
+				<p:selectBooleanButton value="#{usrList.adminRights}"
+					onLabel="Yes" offLabel="No" onIcon="ui-icon-check" offIcon="ui-icon-close" styleClass="ui-boolean-button">
+					<p:ajax event="blur"></p:ajax>
+				</p:selectBooleanButton>
+					</p:column>
+				
+				<p:column sortBy="#{usrList.hcmRights}">
+				<f:facet name="header">HCM User Rights</f:facet>
+					<p:selectBooleanButton value="#{usrList.hcmRights}"
+					onLabel="Yes" offLabel="No" onIcon="ui-icon-check" offIcon="ui-icon-close" styleClass="ui-boolean-button">
+					<p:ajax event="blur"></p:ajax>
+				</p:selectBooleanButton>
+				</p:column>
+				
+				
+				<p:column sortBy="#{usrList.userName}" filterBy="#{usrList.userName}">
+					<f:facet name="header">User Name</f:facet>
+					<h:inputText value="#{usrList.userName}">
+						<p:ajax event="blur"></p:ajax>
+					</h:inputText>
+				</p:column>
+				
+				<p:column sortBy="#{usrList.capcoId}" filterBy="#{usrList.capcoId}">
+					<f:facet name="header">Capco ID</f:facet>
+					<p:inputText value="#{usrList.capcoId}">
+						<p:ajax event="blur"></p:ajax>
+					</p:inputText>
+				</p:column>
+				
+				<p:column sortBy="#{usrList.fisId}" filterBy="#{usrList.fisId}">
+					<f:facet name="header">FIS ID</f:facet>
+					<h:inputText value="#{usrList.fisId}">
+						<p:ajax event="blur"></p:ajax>
+					</h:inputText>
+				</p:column>
+				
+				<p:column>		
+					<f:facet name="header">STATUS</f:facet>
+					<h:outputText value="#{usrList.userDeleted eq true ? 'DELETED' : ''}"/>
+				</p:column>
+				
+				<!-- <p:column style="width: auto; text-align: center !important;">
+					<f:facet name="header">Click To Load</f:facet>
+					<p:commandButton icon="ui-icon-search" styleClass="search-button" oncomplete="PF('userConfirm').show()"
+						actionListener="#{userView.setSelectedUserInfoForLoad(usrList)}" />
+				</p:column>
+				 -->
+					<p:column style="width: auto; text-align: center !important;">
+						<f:facet name="header">SAVE</f:facet>
+						<p:commandButton icon="ui-icon-disk" immediate="true" disabled="#{usrList.userDeleted eq true}" 
+						update="userMan_userList_dTab" actionListener="#{userView.updateUserInfo(usrList)}" 
+						styleClass="search-button">
+						</p:commandButton>
+					</p:column>
+			
+			
+				<p:column style="width: auto; text-align: center !important;">
+					<f:facet name="header">DELETE</f:facet>
+					<p:commandButton icon="ui-icon-trash"  styleClass="search-button"  immediate="true" disabled="#{usrList.userDeleted eq true}"  
+				 	update="userMan_userList_dTab" actionListener="#{userView.deleteUserHistoryRecord(usrList)}" >
+ 					</p:commandButton>
+				</p:column>
+				
+			</p:dataTable>
+		
+	
+	<!-- <p:dialog header="Confirm" widgetVar="userConfirm" showEffect="fade" hideEffect="fade" resizable="false">
+		<h:outputText value="Are you sure you want to load the selected Employee?" styleClass="ui-staticLabel"/>
+		<h:panelGrid columns="2" styleClass="button-panel" cellpadding="2" cellspacing="2" style="margin-top: 15px;">
+			<p:commandButton value="Load" update="@form" action="#{userView.loadSelectedUserInfo}"/>
+			<p:commandButton value="Cancel" update="@form" oncomplete="PF('userConfirm').hide()"/>
+		</h:panelGrid>
+	</p:dialog> -->
+	
+</h:form>
+</p:layoutUnit>
+	</p:layout>
+</ui:composition>

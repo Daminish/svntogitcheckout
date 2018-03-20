@@ -1,0 +1,58 @@
+package com.capco.living.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.capco.living.dao.PersonDAO;
+import com.capco.living.model.Person;
+ 
+@RestController
+@RequestMapping("/person")
+public class PersonController {
+    @Autowired
+    private PersonDAO personDao;
+    
+ 
+    @RequestMapping(value = "/delete")
+    @ResponseBody
+    public String delete(long id) {
+        try {
+            Person person = new Person();
+            person.setId(id);
+            personDao.delete(person);
+        } catch (Exception ex) {
+            return ex.getMessage();
+        }
+        return "Person succesfully deleted!";
+    }
+ 
+    @RequestMapping(value = "/save")
+    @ResponseBody
+    public String create(String name, String city) {
+        try {
+            Person person = new Person();
+            person.setName(name);
+            person.setCity(city);
+            personDao.savePerson(person);
+        } catch (Exception ex) {
+            return ex.getMessage();
+        }
+        return "Person succesfully saved!";
+    }
+    @RequestMapping(value = "/allPersons")
+    @ResponseBody
+    public List<Person> getAllPersons() {
+    	
+        try {
+            return personDao.getAllPersons();
+        } catch (Exception ex) {
+        	 	System.out.println("Exception occurred inside controller : " +ex.getMessage());
+        	
+            return null;
+        }
+    }
+}

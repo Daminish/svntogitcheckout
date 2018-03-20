@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<h:head>
+<title>Capco HCM</title>
+<style type="text/css">
+body {
+	background-color: #F6F6DA;
+	color: #5a5656;
+	background-image: url("/Sparta/resources/images/bg4.jpg");
+}
+
+label {
+	display: block;
+	margin: 0px 0px 5px;
+	float: left;
+	width: 20%;
+	text-align: right;
+	padding-right: 10px;
+	margin-top: 10px;
+}
+
+label:after {
+	content: ": "
+}
+
+input {
+	display: block;
+	width: 100%;
+	font-family: sans-serif;
+	font-size: 15px;
+	appearance: none;
+	box-shadow: none;
+	border-radius: 4px;
+}
+.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight
+{
+	background-color: pink;
+}
+
+
+input:focus {
+	outline: none;
+	background-color: lightblue;
+}
+
+/* ---------- LOGIN ---------- */
+#login {
+	border-radius: 25px;
+	margin: 40px auto;
+	width: 400px;
+	length: 800px;
+	background-color: #F6F6F6;
+	font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+	margin-bottom: 10px;
+	text-align: center; 
+	
+}
+
+legend {
+	text-align: center;
+	font-weight: bold;
+}
+
+#notice {
+	border-radius: 25px;
+	margin: 40px auto;
+	width: 100%;
+	color: black;
+	font-family: "Times New Roman", Georgia, Serif;
+	font-size: 16px;
+}
+
+.btn-roundG {
+	background-color: #4CAF50; /* Green */
+	border: none;
+	color: white;
+	padding: 8px 28px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+}
+
+.btn-roundN {
+	background-color: red;
+	border: none;
+	color: white;
+	padding: 8px 28px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+}
+
+.lbl-title {
+	word-spacing: 4px;
+	text-decoration: underline;
+	font-weight: bold;
+	text-align: center;
+	margin-left: 200px
+}
+</style>
+
+<script type="text/javascript">
+function handleLoginRequest(xhr, status, args) {
+    if(args.validationFailed) {
+        jQuery('#dialog').effect("shake", { times:3 }, 100);
+    } else {
+        dlg.hide();
+        jQuery('#loginLink').fadeOut();
+    }
+}
+	</script>
+</h:head>
+
+<h:body>
+
+	<div id="login">
+		<h:form>
+			<h:outputLink value="javascript:void(0)"  id="loginLink" onclick="PF('dlg').show();"
+				title="login" /> 
+			<p:growl id="growl" sticky="true" showDetail="true" life="3000" />
+
+			<h:panelGrid columns="2" cellpadding="2" style="font-size: 20px;">
+				<img src="/Capco_HCM/resources/images/Capco_Logo.png" height="60"
+					width="60" style="margin-top: 30px; margin-left: 30px" />
+				<h:outputText style="margin-left: 40px; color: black; font-size:24px; font-weight: bold" value="Capco HCM Portal" />
+			</h:panelGrid>
+
+			<h:panelGrid columns="1" cellpadding="1"
+				style="text-align: center; margin-top: 10px; display: inline-block; margin-bottom:10px">
+				<h:outputLabel for="username" value="Username" />
+				<h:inputText id="username" value="#{userLoginView.userName}"
+					required="true" label="username" styleClass="w3-input" />
+				<h:outputLabel for="password" value="Password" />
+				<h:inputSecret id="password" value="#{userLoginView.password}"
+					required="true" label="password" styleClass="w3-input"  >
+					
+				</h:inputSecret>
+			</h:panelGrid>
+			<h:panelGrid columns="2"
+				style="margin:auto" cellspacing="18">
+				<p:commandButton value="Log in" title="LOGIN" update="growl"
+					actionListener="#{userLoginView.validateUserLogin}"
+					oncomplete="handleLoginRequest(xhr, status, args)"
+					styleClass="btn-roundG" >
+					<f:ajax />
+					</p:commandButton>
+					
+				<p:commandButton value="Cancel" styleClass="btn-roundN" />
+			</h:panelGrid>
+		</h:form>
+	</div>
+
+	<div id="notice">
+		<p:fieldset legend="NOTICE">
+			<h:outputText styleClass="lbl-title"
+				value="UNAUTHORIZED USE OF THIS SYSTEM IS STRICTLY PROHIBITED AND PUNISHABLE BY LAW" />
+			<br />
+			<h:outputText
+				style="text-indent: 50px;line-height: 10px; margin-top: 40px; text-align: justify;"
+				value="Individuals using this computer system with or without proper authority are subject to 
+								having all of their activities monitored and recorded and should have no expectation 
+								of privacy unless local law, regulation or contract provides otherwise. 
+								Anyone using this system expressly consents to such monitoring and to all appropriate 
+								disclosure of any evidence of criminal activity to law enforcement officials, and violation of 
+								Capco's rules, policies or standards of conduct to management." />
+			<br />
+
+			<h:outputText
+				style="text-indent: 50px; text-align: justify;"
+				value="IMPORTANT: Protection of Confidential Information is Your Responsibility Individuals using 
+								this computer system have a legal obligation to treat all information on the system as 
+								strictly confidential and not to disclose or allow such information to be disclosed to any 
+								third party. Confidential information includes any information relating to Capco and its 
+								affiliates and their employees, vendors and clients, and any information relating to Capco's 
+								products and services. These obligations survive any separation from employment with Capco." />
+		</p:fieldset>
+	</div>
+	 
+	<!-- end login -->
+</h:body>
+
+</html>

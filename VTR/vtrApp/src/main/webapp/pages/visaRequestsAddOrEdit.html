@@ -1,0 +1,287 @@
+<div>
+	<h2>{{ heading }}</h2>
+	
+	<form name="visaRequestForm">
+	
+		<div ng-show="!isAdd">
+			<table>
+				<tr><td>Visa Request ID:</td><td>{{ visaRequest.visarequestid }} </td></tr>
+				<tr><td>Status:</td><td>{{ visaRequest.status }} </td></tr>
+				<tr><td>In Queue:</td><td>{{ visaRequest.inqueue }} </td></tr>
+			</table>
+			<hr>
+		</div>
+		
+		<div ng-show="isEmployeeBlockVisible" name="employeeBlock">
+			<div>
+				Visa Request for Self: 	
+				<input type="checkbox" ng-model="visaRequest.selforothers" ng-disabled="empBlockDisabled" 
+					ng-change="selfOrOthersChange()">
+			</div>
+			<div ng-show="isAdd && !visaRequest.selforothers">
+				<ui-select ng-model="employee.selected" theme="select2" style="min-width: 300px;"  
+					on-select="empChange($item, $model)" >
+					<ui-select-match placeholder="Select a employee in the list or search his name/id">{{$select.selected.empname}}</ui-select-match>
+					<ui-select-choices repeat="employee in empList | filter: $select.search">
+					<div ng-bind-html="employee.empname | highlight: $select.search"></div>
+					<small>
+					email: {{employee.mailid}}
+					id: <span ng-bind-html="''+employee.empid | highlight: $select.search"></span>
+					</small>
+					</ui-select-choices>
+				</ui-select>
+			</div>
+
+			<hr>
+			Traveller's
+			<hr>
+			<table>
+				<tr>
+					<td>Emp. ID: </td>
+					<td>
+						<input type="text" name="tEmpId" readonly style="border:0px; background: transparent;"
+						ng-model="visaRequest.travelersempid" required> 
+						<!-- <span ng-show="tEmpId.$error.required" class="msg-val">
+							Traveller's Emp. ID is required.
+						</span> -->
+					</td>
+				</tr>
+				<tr>
+					<td>Name: </td>
+					<td align="left">
+						<input type="text" name="tEmpName" readonly style="width:400px; border:0px; background: transparent;"
+							ng-model="visaRequest.travelersname" required> 
+						<!-- {{ employee.selected.empname }} -->
+					</td>
+				</tr>
+				<tr>
+					<td>M Level: </td>
+					<td align="left">
+						<input type="text" name="tEmpMlevel" readonly style="border:0px; background: transparent;"
+							ng-model="visaRequest.travelersmlevel" required> 
+						<!-- {{ employee.selected.mlevel }} -->
+					</td>
+				</tr>
+				<tr>
+					<td>Designation: </td>
+					<td align="left">
+						<input type="text" name="tEmpDesignation" readonly style="border:0px; background: transparent;"
+							ng-model="visaRequest.travelersdesignation" required> 
+						<!-- {{ employee.selected.designation }} -->
+					</td>
+				</tr>
+				<tr>
+					<td>Gender: </td>
+					<td align="left">
+						<input type="text" name="tEmpGender" readonly style="border:0px; background: transparent;"
+							ng-model="visaRequest.travelersgender" required> 
+						<!-- {{ employee.selected.gender | genderFilter }} -->
+					</td>
+				</tr>
+				<tr>
+					<td>Mail ID: </td>
+					<td align="left">
+						<input type="text" name="tEmpMailID" readonly style="width:400px; border:0px; background: transparent;"
+							ng-model="visaRequest.travelersmailid" required> 
+							<!-- ng-model="visaRequest." --> 
+						<!-- {{ employee.selected.mailid }} -->
+					</td>
+				</tr>
+			</table>
+			
+			<hr>
+			<!-- </fieldset> -->
+		
+			<table>
+				<tr>
+					<td>Approving Manager: </td>
+					<td>
+						<select name="aManager" ng-model="visaRequest.approvingmanager" 
+							ng-options="manager.empid as manager.empname for manager in m6AndM7List" 
+							ng-disabled="aManagerDisabled" required>
+						<!-- <option ng-repeat="manager in m6AndM7List" value="{{manager.empid}}">{{manager.empname}}</option> -->
+						</select>
+						<span ng-show="visaRequestForm.aManager.$touched && visaRequestForm.aManager.$invalid">
+							Select Approving Manager
+						</span>
+					</td>
+				</tr>
+				<tr>
+					<td>Travel Destination: </td>
+					<td>
+						<select name="tDest" ng-model="visaRequest.traveldestination" ng-disabled="empBlockDisabled" required>
+							<option ng-repeat="destination in travelDestList" 
+								value="{{destination.country}}">{{destination.country}}</option>
+						</select>
+						<span ng-show="visaRequestForm.tDest.$touched && visaRequestForm.tDest.$invalid">
+							Select Travel Destination
+						</span>
+						
+					</td>
+				</tr>
+				<tr>
+					<td>Visa Type: </td>
+					<td>
+						<select name="vType" ng-model="visaRequest.visatype" ng-disabled="empBlockDisabled" required>
+							<option>Business Visa</option>
+							<option>Work Permit</option>
+							<option>On Arrival</option>
+							<option>Tourists</option>
+							<option>CERFA</option>
+						</select>
+						<span ng-show="visaRequestForm.vType.$touched && visaRequestForm.vType.$invalid">
+							Select Visa Type
+						</span>
+					</td>
+				</tr>
+				<tr>
+					<td>Type of visit: </td>
+					<td>
+						<select name="typeOfVisit" ng-model="visaRequest.typeofvisit" ng-disabled="empBlockDisabled" required>
+							<option>Project Related</option>
+							<option>Training</option>
+							<option>Business Development</option>
+							<option>Others</option>
+						</select>
+						<span ng-show="visaRequestForm.typeOfVisit.$touched && visaRequestForm.typeOfVisit.$invalid">
+							Select Type of visit
+						</span>
+					</td>
+				</tr>
+				<tr>
+					<td>Project Code: </td>
+					<td align="left">
+						<input type="text" name="tProjectCode" ng-model="visaRequest.projectcode" 
+							ng-disabled="empBlockDisabled" required 
+							ng-maxlength="7" ng-minlength="7" numbers-only> 
+						    <span ng-show="visaRequestForm.tProjectCode.$touched && visaRequestForm.tProjectCode.$invalid">
+						    	Only numbers are allowed and of length 7
+						    </span>
+					</td>
+				</tr>
+				<tr>
+					<td>Activity Code: </td>
+					<td align="left">
+						<input type="text" name="tActivityCode" ng-model="visaRequest.activitycode" 
+							ng-disabled="empBlockDisabled" required 
+							ng-maxlength="2" ng-minlength="2" numbers-only> 
+						<span ng-show="visaRequestForm.tActivityCode.$touched && visaRequestForm.tActivityCode.$invalid">
+							Only numbers are allowed and of length 2
+						</span>
+					</td>
+				</tr>
+			</table>
+			
+			<hr>
+			
+		</div>
+		
+		<div ng-show="isManagerBlockVisible" name="managerBlock">
+			<table>
+				<tr>
+					<td>Manager Comments: </td>
+					<td>
+						<textarea name="taManagerComments" ng-model="visaRequest.managerapprovalcomments" ng-maxlength="300"
+						ng-disabled="managerBlockDisabled" ng-required="managerBlockRequired">
+						</textarea>
+						<span ng-show="visaRequestForm.taManagerComments.$touched && visaRequestForm.taManagerComments.$invalid">
+					    	Comments should not be blank or length should not be greater than 300 characters!
+					    </span>
+					</td>
+				</tr>
+			</table>
+		<hr>
+		
+		</div>
+		
+		<div ng-show="isFinanceBlockVisible" name="financeBlock">
+		
+			<table>
+				<tr>
+					<td> </td>
+					<td>
+						<input type="radio" ng-model="visaRequest.isbillable" ng-value="true" 
+						ng-disabled="financeBlockDisabled" ng-required="financeBlockRequired"> Billable
+					</td>
+				</tr>
+				<tr>
+					<td> </td>
+					<td>
+						<input type="radio" ng-model="visaRequest.isbillable" ng-value="false" 
+						ng-disabled="financeBlockDisabled" ng-required="financeBlockRequired"> Non-Billable 
+					</td>
+				</tr>
+				<tr>
+					<td>Finance Team Comments: </td>
+					<td>
+						<textarea ng-model="visaRequest.financeteamcomments" ng-maxlength="300"
+							ng-disabled="financeBlockDisabled" ng-required="financeBlockRequired">
+						</textarea>
+					</td>
+				</tr>
+			</table>
+		
+		<hr>
+		
+		</div>
+		
+		<div ng-show="isPartnerBlockVisible" name="partnerBlock">
+
+			<table>
+				<tr ng-show="isShowForOnlyPartner">
+					<td>Action: </td>
+					<td>
+						<select  ng-model="partnerAction" name="partnerAction" 
+							ng-disabled="partnerBlockDisabled" ng-required="partnerBlockRequired" ng-change="pActionChange()">
+							<option>Approve</option>
+							<option>Need More Details</option>
+						</select>
+					</td>
+				</tr>
+				<tr ng-show="isShowForOnlyPartner">
+					<td>To Queue: </td>
+					<td>
+						<select ng-model="partnerToQ" name="partnerToQ" 
+							ng-disabled="partnerToQDisabled" ng-required="partnerToQRequired">
+							<option></option>
+							<option>Manager</option>
+							<option>Finance</option>
+						</select>					
+					</td>
+				</tr>
+				<tr>
+					<td>Partner Comments: </td>
+					<td>
+						<textarea ng-model="visaRequest.partnercomments" ng-maxlength="300"
+							ng-disabled="partnerBlockDisabled" ng-required="partnerBlockRequired"></textarea>
+						</textarea>
+					</td>
+				</tr>
+			</table>		
+		
+		<hr>
+		
+		</div>
+
+		<table>
+			<tr>
+				<td>
+					<button ng-show="isSaveDraftBtnVisible" 
+						class="btn btn-default btn-xs" ng-click="addEditVisaRequest('DRAFT')">Save as Draft</button>
+				</td>
+				<td>
+					<button ng-show="isSubmitBtnVisible"
+						class="btn btn-default btn-xs" ng-click="addEditVisaRequest('SUBMIT')">{{ submitBtnLabel }}</button>
+				</td>
+				<td>
+					<button ng-show="isResetBtnVisible" 
+						class="btn btn-default btn-xs" ng-click="clear()">Reset</button>
+				</td>
+				<td>
+					<button class="btn btn-default btn-xs" ng-click="goToVisaRequests()">Back</button>
+				</td>
+			</tr>
+		</table>
+	</form>
+
+</div>

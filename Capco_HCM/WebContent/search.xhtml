@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>CPACO HCM</title>
+	<h:outputStylesheet library="css" name="framework.css" />
+	<h:outputStylesheet library="css" name="TableStyles.css" />
+</h:head>
+
+<h:body>
+
+	<h:form>
+		
+		<h:panelGrid columns="4"  id="empBio_search_PGrid" styleClass="search-panel" cellpadding="5" cellspacing="5">
+			<p:outputLabel value="Name" for="empBio_search_eName" />
+			<h:inputText id="empBio_search_eName" value="#{empSearchView.empName}" />
+			<p:outputLabel value="ID (CAPCO Employee ID)" for="empBio_search_primId" />
+			<h:inputText id="empBio_search_primId" value="#{empSearchView.empId}" />
+			<p:outputLabel value="ID (FIS)" for="empBio_search_secId" />
+			<h:inputText id="empBio_search_secId" value="#{empSearchView.secondaryEmpId}" />
+			<p:outputLabel value="Designation" for="empBio_search_desgn" />
+			<h:inputText id="empBio_search_desgn" value="#{empSearchView.designation}" />
+			<p:outputLabel value="Active Status" for="empBio_search_empStatus" />
+			<p:selectOneMenu value="#{empSearchView.employeeStatus}" id="empBio_search_empStatus">
+				<f:selectItem itemValue="NA" itemLabel="Select" />
+				<f:selectItem itemValue="A" itemLabel="Active" />
+				<f:selectItem itemValue="I" itemLabel="Inactive" />
+			</p:selectOneMenu>
+		</h:panelGrid>
+		<h:panelGrid columns="2" styleClass="button-panel" cellpadding="2" cellspacing="2">
+			<p:commandButton style="align:center;" value="Search" update="empBio_search_dTab" 
+					actionListener="#{empSearchView.loadEmpBasedOnSearchParams}" styleClass="ui-boolean-button"/>
+			<p:commandButton style="align:center;" value="Back" action="Framework.xhtml" styleClass="ui-boolean-button"/>
+		</h:panelGrid>
+		
+		<p:dataTable var="ebo" scrollable="true" scrollHeight="200"  
+		widgetVar="projectTable" filteredValue="#{empSearchView.empsearchhistory}" lazy="false"
+ 		value="#{empSearchView.empListFoundBySearchParam}" id="empBio_search_dTab" rowIndexVar="rowId"
+		rows="5" paginator="true" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+          rowsPerPageTemplate="5,10,15"   styleClass="employeeTable" border="1" rowStyleClass="#{(row mod 2) eq 0 ? 'employeeTableEvenRow' : 'employeeTableOddRow'}">
+			
+				<f:facet name="header">
+   		 <p:outputPanel>
+       		 <h:outputText value="Search all fields:" />
+       		 <h:inputText id="globalFilter" onkeyup="PF('projectTable').filter()" />
+   		 </p:outputPanel>
+		</f:facet>
+			
+			
+			<f:facet name="header">
+				Employee List
+		     </f:facet>
+		    
+		     <p:column>
+				<f:facet name="header">Sr. No.</f:facet>
+				<h:outputText value="#{rowId}"/>
+				</p:column>
+			
+			<p:column headerText="Emp Name" sortBy="#{ebo.empName}" filterBy="#{ebo.empName}" >
+				<h:outputText value="#{ebo.empName}" />
+			</p:column>
+			
+			<p:column headerText="Capco ID" sortBy="#{ebo.empId}" filterBy="#{ebo.empId}">
+				<h:outputText value="#{ebo.empId}" />
+			</p:column>
+			
+			<p:column headerText="FIS ID" sortBy="#{ebo.secondaryEmpId}" filterBy="#{ebo.secondaryEmpId}">
+				<h:outputText value="#{ebo.secondaryEmpId}" />
+			</p:column>
+			
+			<p:column headerText="Date Of Joining" sortBy="#{ebo.joiningDate}">
+				<h:outputText value="#{ebo.joiningDate}" />
+			</p:column>
+			
+			<p:column headerText="Designation" sortBy="#{ebo.designation}" filterBy="#{ebo.designation}">
+				<h:outputText value="#{ebo.designation}" />
+			</p:column>
+			
+			<p:column headerText="Project" sortBy="#{ebo.project}" filterBy="#{ebo.project}">
+				<h:outputText value="#{ebo.project}" />
+			</p:column>
+			
+			<p:column headerText="Active / Inactive" sortBy="#{ebo.employeeStatus}" filterBy="#{ebo.employeeStatus}">
+				<h:outputText value="#{ebo.employeeStatus}" />
+			</p:column>
+			
+			<p:column headerText="Click To Load" style="width:auto;text-align: center;">
+				<p:commandButton icon="ui-icon-search" oncomplete="PF('confirmEmpLoad').show()" styleClass="search-button" 
+					 actionListener="#{empBasicInfo.setSelectedEmployeeBasicInfoForLoad(ebo)}">
+            </p:commandButton>
+			</p:column>
+		</p:dataTable>
+	
+		<p:dialog header="Confirm" widgetVar="confirmEmpLoad" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+			<h:outputText value="Are you sure you want to load the selected Employee?" styleClass="ui-staticLabel"/>
+			<h:panelGrid columns="2" styleClass="button-panel" cellpadding="2" cellspacing="2" style="margin-top: 15px;">
+				<p:commandButton value="Load" action="#{empBasicInfo.loadSelectedEmpBasicInfo}"/>
+				<p:commandButton value="Cancel" oncomplete="PF('confirmEmpLoad').hide()"/>
+			</h:panelGrid>
+			
+		</p:dialog>
+	</h:form>
+	
+</h:body>
+
+</html>

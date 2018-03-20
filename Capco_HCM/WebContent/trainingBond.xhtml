@@ -1,0 +1,646 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	<h:form id="benefits_form">
+		<p:messages showSummary="true" styleClass="ui-errorLabel" />
+
+		<h:panelGrid columns="4" id="benefitBond_PGrid_Audit"
+			styleClass="tab-panel" style="width: 40% !important; float: right;">
+
+			<h:outputLabel for="benefitBond_insertedDate" value="Inserted Date"
+				styleClass="ui-auditLabel" />
+			<p:outputLabel id="benefitBond_insertedDate"
+				value="#{beneTrvlTrainView.trvlBondInfoObj.insertedDate}"
+				styleClass="ui-auditValue">
+				<f:convertDateTime pattern="dd-MMM-yyyy HH:mm " />
+			</p:outputLabel>
+
+			<h:outputLabel for="benefitBond_insertedBy" value="Inserted By"
+				styleClass="ui-auditLabel" />
+			<p:outputLabel id="benefitBond_insertedBy"
+				value="#{beneTrvlTrainView.trvlBondInfoObj.insertedBy}"
+				styleClass="ui-auditValue" />
+		</h:panelGrid>
+
+
+		<h:panelGrid columns="1" id="benefitsBond_PGrid"
+			styleClass="tab-panel" cellpadding="2" cellspacing="2">
+
+			<p:separator>
+				<h:outputLabel value="Joining Benefits" styleClass="ui-staticLabel"
+					style="color:blue;" />
+			</p:separator>
+
+			<h:panelGrid columns="4" id="benefitBond_PGrid_ben"
+				styleClass="tab-panel" cellpadding="2" cellspacing="2">
+
+				<h:outputLabel for="benefit_relocAssist"
+					value="Relocation Assistance" />
+				<p:selectBooleanButton id="benefit_relocAssist"
+					value="#{beneTrvlTrainView.joinBeneInfoObj.relocAssistance}"
+					onLabel="Yes" offLabel="No" onIcon="ui-icon-check"
+					offIcon="ui-icon-close" styleClass="ui-boolean-button"
+					immediate="true" />
+
+				<h:outputLabel for="benefit_relocAssistAmt"
+					value="Relocation Assist Amount" />
+				<p:inputText id="benefit_relocAssistAmt"
+					value="#{beneTrvlTrainView.joinBeneInfoObj.relocAssistAmt}"
+					>
+					<f:validateLength minimum="5" maximum="15" />
+				</p:inputText>
+
+				<h:outputLabel for="benefit_joinBonus" value="Joining Bonus" />
+				<p:selectBooleanButton id="benefit_joinBonus"
+					value="#{beneTrvlTrainView.joinBeneInfoObj.joiningBonus}"
+					onLabel="Yes" offLabel="No" onIcon="ui-icon-check"
+					offIcon="ui-icon-close" styleClass="ui-boolean-button"
+					immediate="true" />
+
+				<h:outputLabel for="benefit_joinBonusAmt"
+					value="Joining Bonus Amount" />
+				<p:inputText id="benefit_joinBonusAmt"
+					value="#{beneTrvlTrainView.joinBeneInfoObj.joiningBonusAmt}"
+					>
+					<!-- <f:validateLength minimum="5" maximum="15" /> -->
+				</p:inputText>
+
+				<h:outputLabel for="benefit_refBonus" value="Referal Bonus" />
+				<p:selectBooleanButton id="benefit_refBonus"
+					value="#{beneTrvlTrainView.joinBeneInfoObj.referralBonus}"
+					onLabel="Yes" offLabel="No" onIcon="ui-icon-check"
+					offIcon="ui-icon-close" styleClass="ui-boolean-button"
+					immediate="true" />
+
+				<h:outputLabel for="benefit_refBonusAmt"
+					value="Referal Bonus Amount" />
+				<p:inputText id="benefit_refBonusAmt"
+					value="#{beneTrvlTrainView.joinBeneInfoObj.referralBonusAmt}"
+					>
+					<!-- <f:validateLength minimum="5" maximum="15" /> -->
+				</p:inputText>
+
+				<h:outputLabel for="benefit_refCandidateName"
+					value="Referal Candidate Name" />
+				<p:inputText id="benefit_refCandidateName"
+					value="#{beneTrvlTrainView.joinBeneInfoObj.referrealCandidateName}"
+					>
+					<!-- <f:validateLength minimum="5" maximum="25" /> -->
+				</p:inputText>
+
+			</h:panelGrid>
+
+			<h:panelGrid id="benefitBondSubmit_bene_PGrid"
+				styleClass="button-panel" columns="2" cellpadding="2"
+				cellspacing="2">
+				<p:commandButton style="align:center" value="Save" update="@form"
+					styleClass="submit-button"
+					actionListener="#{beneTrvlTrainView.insertBenefitsDetailsInfo}" />
+				<p:commandButton value="Reset">
+					<p:ajax update="benefits_form" resetValues="true" />
+				</p:commandButton>
+			</h:panelGrid>
+			
+			<p:dataTable id="benefit_dTab" value="#{beneTrvlTrainView.benefitList}" 
+			widgetVar="projectTable" filteredValue="#{beneTrvlTrainView.benefitsearchhistory}" lazy="false"
+			rows="3" paginator="true" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} 
+			{PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,15"
+				style="width: 150%; height: 150%; "
+				var="benefit"  styleClass="employeeTable" border="1" rowStyleClass="#{(row mod 2) eq 0 ? 'employeeTableEvenRow' : 'employeeTableOddRow'}"  
+				headerClass="employeeTableHeader" rowIndexVar="rowId">
+				
+				<f:facet name="header">
+   		 <p:outputPanel>
+       		 <h:outputText value="Search all fields:" />
+       		 <h:inputText id="globalFilter" onkeyup="PF('projectTable').filter()" />
+   		 </p:outputPanel>
+		</f:facet>
+				
+				
+				<f:facet name="header">
+					Benefit History List
+		      	</f:facet>
+		      	<p:column>
+				<f:facet name="header">Sr. No.</f:facet>
+				<h:outputText value="#{rowId}"/>
+				</p:column>
+				
+				<p:column sortBy="#{benefit.empId}" filterBy="#{benefit.empId}">
+				<f:facet name="header">EMP ID</f:facet>
+				<h:outputText value="#{benefit.empId}"/>
+				</p:column>
+				
+				<p:column sortBy="#{benefit.relocAssistance}">
+				<f:facet name="header">Relocation Assistance</f:facet>
+				<p:selectBooleanButton value="#{benefit.relocAssistance}"
+					onLabel="Yes" offLabel="No" onIcon="ui-icon-check"
+					offIcon="ui-icon-close" styleClass="ui-boolean-button"
+					immediate="true">
+				<p:ajax event="blur"></p:ajax>
+					</p:selectBooleanButton>
+				</p:column>
+				
+				<p:column sortBy="#{benefit.joiningBonus}">
+				<f:facet name="header">Joining Bonus</f:facet>
+				<p:selectBooleanButton value="#{benefit.joiningBonus}"
+					onLabel="Yes" offLabel="No" onIcon="ui-icon-check"
+					offIcon="ui-icon-close" styleClass="ui-boolean-button"
+					immediate="true">
+				<p:ajax event="blur"></p:ajax>
+					</p:selectBooleanButton>
+				</p:column>
+				
+				<p:column sortBy="#{benefit.referralBonus}">
+				<f:facet name="header">Referal Bonus</f:facet>
+					<p:selectBooleanButton value="#{benefit.referralBonus}"
+					onLabel="Yes" offLabel="No" onIcon="ui-icon-check"
+					offIcon="ui-icon-close" styleClass="ui-boolean-button"
+					immediate="true">
+				<p:ajax event="blur"></p:ajax>
+					</p:selectBooleanButton>
+					
+				</p:column>
+				
+		      	<p:column sortBy="#{benefit.relocAssistAmt}" filterBy="#{benefit.relocAssistAmt}">
+					<f:facet name="header">	Relocation Assist Amount</f:facet>
+					<h:inputText value="#{benefit.relocAssistAmt}">
+						<p:ajax event="blur"></p:ajax>
+					</h:inputText>
+				</p:column>
+		      	
+		      	<p:column sortBy="#{benefit.joiningBonusAmt}" filterBy="#{benefit.joiningBonusAmt}">
+					<f:facet name="header">Joining Bonus Amount</f:facet>
+					<h:inputText value="#{benefit.joiningBonusAmt}">
+						<p:ajax event="blur"></p:ajax>
+					</h:inputText>
+				</p:column>
+		      	
+		      	<p:column sortBy="#{benefit.referralBonusAmt}" filterBy="#{benefit.referralBonusAmt}">
+				<f:facet name="header">Referal Bonus Amount</f:facet>
+				<h:inputText value="#{benefit.referralBonusAmt}">
+					<p:ajax event="blur"></p:ajax>
+				</h:inputText>
+				</p:column>
+				
+				<p:column>		
+					<f:facet name="header">STATUS</f:facet>
+					<h:outputText value="#{benefit.deletedB eq true ? 'DELETED' : ''}"/>
+				</p:column>
+				
+		      	<p:column sortBy="#{benefit.referrealCandidateName}" filterBy="#{benefit.referrealCandidateName}">
+					<f:facet name="header">Referal Candidate Name</f:facet>
+					<h:inputText value="#{benefit.referrealCandidateName}">
+					<p:ajax event="blur"></p:ajax>
+					</h:inputText>
+				</p:column>
+				
+					<!-- <p:column style="width: auto; text-align: center !important;">
+						<f:facet name="header">Click To Load</f:facet>
+				
+						<p:commandButton icon="ui-icon-search" styleClass="search-button" oncomplete="PF('benefitConfirm').show()"
+							actionListener="#{beneTrvlTrainView.setSelectedBenefitInfoForLoad(benefit)}">
+						</p:commandButton>
+					</p:column> -->
+				
+				
+				
+			 		<p:column style="width: auto; text-align: center !important;">
+						<f:facet name="header">SAVE</f:facet>
+						<p:commandButton icon="ui-icon-disk"  immediate="true" disabled="#{benefit.deletedB eq true}"
+						update="benefit_dTab" actionListener="#{beneTrvlTrainView.updateBenefitHistory(benefit)}" 
+						styleClass="search-button">
+						</p:commandButton>
+					</p:column>
+			
+			
+				 <p:column style="width: auto; text-align: center !important;">
+					<f:facet name="header">DELETE</f:facet>
+					<p:commandButton icon="ui-icon-trash"  styleClass="search-button" immediate="true" disabled="#{benefit.deletedB eq true}" 
+				 	update="benefit_dTab" actionListener="#{beneTrvlTrainView.deleteBenefitHistoryRecord(benefit)}" >
+ 					</p:commandButton>
+				</p:column>
+			 
+			</p:dataTable>
+			
+			<!-- <p:dialog header="Confirm" widgetVar="benefitConfirm" showEffect="fade" hideEffect="fade" resizable="false">
+				<h:outputText
+				value="Are you sure you want to load the Benefit?"
+				styleClass="ui-staticLabel" />
+			<h:panelGrid columns="2" styleClass="button-panel" cellpadding="2"
+				cellspacing="2" style="margin-top: 15px;">
+				<p:commandButton value="Load" update="@form"
+					action="#{beneTrvlTrainView.loadSelectedBenefitInfo}" />
+				<p:commandButton value="Cancel"  update="@form"
+					oncomplete="PF('benefitConfirm').hide()" />
+			</h:panelGrid>
+		</p:dialog> -->
+			
+		</h:panelGrid>
+	</h:form>
+
+	<br/>
+
+	<h:form id="benefits_form_trainings">
+		<p:messages showSummary="true" styleClass="ui-errorLabel" />
+		<p:separator>
+			<h:outputLabel value="Trainings &amp; Skillset"
+				styleClass="ui-staticLabel" style="color:blue;" />
+		</p:separator>
+
+
+		<h:panelGrid columns="4" id="benefitBond_PGrid_tss"
+			styleClass="tab-panel" cellpadding="2" cellspacing="2">
+			<h:outputLabel for="tss_primSkill" value="Primary Skill" />
+			<h:panelGrid columns="1" style="border: none !important;">
+				<p:inputTextarea id="tss_primSkill"
+					value="#{beneTrvlTrainView.skillTrainInfoObj.primarySkills}"
+					 rows="5" cols="50" scrollHeight="50"
+					counter="tss_primSkill_char" maxlength="1024"
+					counterTemplate="{0} characters remaining." />
+				<h:outputText id="tss_primSkill_char"
+					styleClass="char_remaining_label" />
+			</h:panelGrid>
+
+			<h:outputLabel for="tss_currSkill" value="Current Skill" />
+			<h:panelGrid columns="1" style="border: none !important;">
+				<p:inputTextarea id="tss_currSkill" 
+					value="#{beneTrvlTrainView.skillTrainInfoObj.currentSkill}"
+					rows="5" cols="50" scrollHeight="50" counter="tss_currSkill_char"
+					maxlength="1024" counterTemplate="{0} characters remaining." />
+				<h:outputText id="tss_currSkill_char"
+					styleClass="char_remaining_label" />
+			</h:panelGrid>
+
+			<h:outputLabel for="tss_capcoCert" value="Capco Certification" />
+			<h:panelGrid columns="1" style="border: none !important;">
+				<p:inputTextarea id="tss_capcoCert"
+					value="#{beneTrvlTrainView.skillTrainInfoObj.capcoCertification}"
+					 rows="5" cols="50" scrollHeight="50"
+					counter="tss_capcoCert_char" maxlength="1024"
+					counterTemplate="{0} characters remaining." />
+				<h:outputText id="tss_capcoCert_char"
+					styleClass="char_remaining_label" />
+			</h:panelGrid>
+
+			<h:outputLabel for="tss_otherTrain" value="Other Trainings" />
+			<h:panelGrid columns="1" style="border: none !important;">
+				<p:inputTextarea id="tss_otherTrain"
+					value="#{beneTrvlTrainView.skillTrainInfoObj.otherTrainings}"
+					 rows="5" cols="50" scrollHeight="50"
+					counter="tss_otherTrain_char" maxlength="1024"
+					counterTemplate="{0} characters remaining." />
+				<h:outputText id="tss_otherTrain_char"
+					styleClass="char_remaining_label" />
+			</h:panelGrid>
+		</h:panelGrid>
+
+		<h:panelGrid columns="6" id="benefitBond_PGrid_tssExp"
+			styleClass="tab-panel" cellpadding="2" cellspacing="2">
+
+			<h:outputLabel for="tss_priorExp"
+				value="Prior Experience (in months)" />
+			<p:inputText id="tss_priorExp"
+				value="#{beneTrvlTrainView.skillTrainInfoObj.priorExp}"
+				>
+				<!-- <f:validateLength minimum="1" maximum="3" /> -->
+			</p:inputText>
+
+
+			<h:outputLabel for="tss_capcoExp"
+				value="Capco Experience (in months)" />
+			<p:inputText id="tss_capcoExp"
+				value="#{beneTrvlTrainView.skillTrainInfoObj.capcoExp}"
+				>
+				<!-- <f:validateLength minimum="1" maximum="3" /> -->
+			</p:inputText>
+
+
+			<h:outputLabel for="tss_totalExp"
+				value="Total Experience (in months)" />
+			<p:inputText id="tss_totalExp"
+				value="#{beneTrvlTrainView.skillTrainInfoObj.totalExp}"
+				>
+				<!-- <f:validateLength minimum="1" maximum="3" /> -->
+			</p:inputText>
+
+		</h:panelGrid>
+
+		<h:panelGrid id="benefitBondSubmit_tss_PGrid"
+			styleClass="button-panel" columns="2" cellpadding="2" cellspacing="2">
+			<p:commandButton style="align:center" value="Save" update="@form"
+				styleClass="submit-button"
+				actionListener="#{beneTrvlTrainView.insertSkillSetDetailsInfo}" />
+			<p:commandButton value="Reset">
+				<p:ajax update="benefits_form_trainings" resetValues="true" />
+			</p:commandButton>
+		</h:panelGrid>
+		
+			<p:dataTable id="Skiils_dTab" value="#{beneTrvlTrainView.skillList}" 
+			widgetVar="projectTable" filteredValue="#{beneTrvlTrainView.skillsearchhistory}" lazy="false"
+			rows="3" paginator="true" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} 
+			{LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,15"
+				style="width: 150%; height: 150%; "
+				var="skill"  styleClass="employeeTable" border="1" rowStyleClass="#{(row mod 2) eq 0 ? 'employeeTableEvenRow' : 'employeeTableOddRow'}"  
+				headerClass="employeeTableHeader" rowIndexVar="rowId">
+				
+						
+		<f:facet name="header">
+   		 <p:outputPanel>
+       		 <h:outputText value="Search all fields:" />
+       		 <h:inputText id="globalFilter" onkeyup="PF('projectTable').filter()" />
+   		 </p:outputPanel>
+		</f:facet>
+		
+				
+				<f:facet name="header">
+					skill History List
+		      	</f:facet>
+		
+		      	<p:column>
+				<f:facet name="header">Sr. No.</f:facet>
+				<h:outputText value="#{rowId}"/>
+				</p:column>
+		
+				<p:column sortBy="#{skill.empId}" filterBy="#{skill.empId}">
+				<f:facet name="header">EMP ID</f:facet>
+				<h:outputText value="#{skill.empId}"/>
+				</p:column>
+		
+		      	<p:column sortBy="#{skill.primarySkills}" filterBy="#{skill.primarySkills}"> 
+					<f:facet name="header">Primary Skill</f:facet>
+					<h:inputText value="#{skill.primarySkills}">
+						<p:ajax event="blur"></p:ajax>
+					</h:inputText>
+				</p:column>
+		
+		      	<p:column sortBy="#{skill.currentSkill}" filterBy="#{skill.currentSkill}">
+					<f:facet name="header">Current Skill</f:facet>
+					<h:inputText value="#{skill.currentSkill}">
+						<p:ajax event="blur"></p:ajax>
+					</h:inputText>
+				</p:column>
+		      	
+		      	<p:column sortBy="#{skill.capcoCertification}" filterBy="#{skill.capcoCertification}">
+				<f:facet name="header">Capco Certification</f:facet>
+				<h:inputText value="#{skill.capcoCertification}">
+					<p:ajax event="blur"></p:ajax>
+				</h:inputText>
+				</p:column>
+				
+				<p:column sortBy="#{skill.otherTrainings}" filterBy="#{skill.otherTrainings}">
+				<f:facet name="header">Other Trainings</f:facet>
+				<h:inputText value="#{skill.otherTrainings}">
+					<p:ajax event="blur"></p:ajax>
+				</h:inputText>
+				</p:column>
+				
+				<p:column sortBy="#{skill.priorExp}">
+				<f:facet name="header">Prior Experience (in months)</f:facet>
+				<h:inputText value="#{skill.priorExp}">
+				<p:ajax event="blur"></p:ajax>
+				</h:inputText>
+				</p:column>
+				
+				
+				<p:column sortBy="#{skill.capcoExp}">
+				<f:facet name="header">Capco Experience (in months)</f:facet>
+				<h:inputText value="#{skill.capcoExp}">
+					<p:ajax event="blur"></p:ajax>
+				</h:inputText>
+				</p:column>
+				
+				
+				<p:column sortBy="#{skill.totalExp}">
+				<f:facet name="header">Total Experience (in months)</f:facet>
+				<h:inputText value="#{skill.totalExp}">
+					<p:ajax event="blur"></p:ajax>
+				</h:inputText>
+				</p:column>
+				
+				<p:column>		
+					<f:facet name="header">STATUS</f:facet>
+					<h:outputText value="#{skill.deletedB eq true ? 'DELETED' : ''}"/>
+				</p:column>
+				
+		     
+		     	<!-- <p:column style="width: auto; text-align: center !important;">
+				<f:facet name="header">Click To Load</f:facet>
+				
+					<p:commandButton icon="ui-icon-search" styleClass="search-button" oncomplete="PF('skillConfirm').show()"
+						actionListener="#{beneTrvlTrainView.setSelectedSkillInfoForLoad(skill)}">
+					</p:commandButton>
+				</p:column>
+				 -->
+			 	<p:column style="width: auto; text-align: center !important;">
+						<f:facet name="header">SAVE</f:facet>
+						<p:commandButton icon="ui-icon-disk" immediate="true" disabled="#{skill.deletedB eq true}"
+						update="Skiils_dTab" actionListener="#{beneTrvlTrainView.updateSkillHistory(skill)}" 
+						styleClass="search-button">
+						</p:commandButton>
+				</p:column>
+			
+			
+				<p:column style="width: auto; text-align: center !important;">
+					<f:facet name="header">DELETE</f:facet>
+					<p:commandButton icon="ui-icon-trash"  styleClass="search-button"  immediate="true" disabled="#{skill.deletedB eq true}"
+				 	update="Skiils_dTab" actionListener="#{beneTrvlTrainView.deleteSkillHistoryRecord(skill)}" >
+ 					</p:commandButton>
+				</p:column>
+			  
+			</p:dataTable>
+			
+			<!-- <p:dialog header="Confirm" widgetVar="skillConfirm" showEffect="fade" hideEffect="fade" resizable="false">
+				<h:outputText
+				value="Are you sure you want to load the Skill?"
+				styleClass="ui-staticLabel" />
+			<h:panelGrid columns="2" styleClass="button-panel" cellpadding="2"
+				cellspacing="2" style="margin-top: 15px;">
+				<p:commandButton value="Load" update="@form"
+					action="#{beneTrvlTrainView.loadSelectedSkillInfo}" />
+				<p:commandButton value="Cancel"  update="@form"
+					oncomplete="PF('skillConfirm').hide()" />
+			</h:panelGrid>
+		</p:dialog> -->
+		
+	</h:form>
+
+	<br/>
+	<h:form id="benefits_form_travel">
+		
+		<p:messages showSummary="true" styleClass="ui-errorLabel" />
+		<p:separator>
+			<h:outputLabel value="Travel Bond" styleClass="ui-staticLabel"
+				style="color:blue;" />
+		</p:separator>
+
+
+		<h:panelGrid columns="4" id="benefitBond_PGrid_trvl"
+			styleClass="tab-panel" cellpadding="2" cellspacing="2">
+
+			<h:outputLabel for="travelBond_type" value="Type of Travel" />
+			<p:selectOneMenu id="exit_libraryBooksCollected" 
+				value="#{beneTrvlTrainView.trvlBondInfoObj.typeOfTravel}">
+				<f:selectItem itemValue="" itemLabel="-- SELECT --" />
+				<f:selectItem itemValue="Secondment" itemLabel="Secondment" />
+				<f:selectItem itemValue="STA" itemLabel="Short Term Assignment" />
+				<f:selectItem itemValue="LTA" itemLabel="Long term Assignment" />
+				<f:selectItem itemValue="PT" itemLabel="Payroll Transfer" />
+				<f:selectItem itemValue="Grow" itemLabel="Grow" />
+			</p:selectOneMenu>
+
+			<h:outputLabel for="travelBond_country" value="Country of Travel" />
+			<p:inputText id="travelBond_country"
+				value="#{beneTrvlTrainView.trvlBondInfoObj.travelCountry}"
+				>
+				<!-- <f:validateLength minimum="5" maximum="30" /> -->
+			</p:inputText>
+
+			<h:outputLabel for="travelBond_claw" value="Claw Back Month" />
+			<p:inputText id="travelBond_claw"
+				value="#{beneTrvlTrainView.trvlBondInfoObj.clawBackMonth}"
+				>
+				<!-- <f:validateLength minimum="1" maximum="5" /> -->
+			</p:inputText>
+
+
+			<h:outputLabel for="travelBond_months" value="No. of Months" />
+			<p:inputText id="travelBond_months"
+				value="#{beneTrvlTrainView.trvlBondInfoObj.numberOfMonth}"
+				>
+				<!-- <f:validateLength minimum="1" maximum="5" /> -->
+			</p:inputText>
+
+
+		</h:panelGrid>
+
+		<h:panelGrid id="benefitBondSubmit_trvl_PGrid"
+			styleClass="button-panel" columns="2" cellpadding="2" cellspacing="2">
+			<p:commandButton style="align:center" value="Save" update="@form"
+				styleClass="submit-button"
+				actionListener="#{beneTrvlTrainView.insertTravelBondDetailsInfo}" />
+			<p:commandButton value="Reset">
+				<p:ajax update="benefits_form_travel" resetValues="true" />
+			</p:commandButton>
+		</h:panelGrid>
+
+	
+  
+    	<p:dataTable id="travelBond_dTab" value="#{beneTrvlTrainView.travelBondList}" var="tb"
+    	widgetVar="projectTable" filteredValue="#{beneTrvlTrainView.travelsearchhistory}" lazy="false"
+			rows="10" paginator="true" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks}
+			 {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,15"
+			styleClass="employeeTable" headerClass="employeeTableHeader" border="1"
+			style="width: 150%; height: 150%; "
+			rowStyleClass="#{(row mod 2) eq 0 ? 'employeeTableEvenRow' : 'employeeTableOddRow'}" rowIndexVar="rowId">
+			
+					
+		<f:facet name="header">
+   		 <p:outputPanel>
+       		 <h:outputText value="Search all fields:" />
+       		 <h:inputText id="globalFilter" onkeyup="PF('projectTable').filter()" />
+   		 </p:outputPanel>
+		</f:facet>
+			
+			
+			<f:facet name="header">
+					Travel List
+		      	</f:facet>
+			
+			<p:column>
+				<f:facet name="header">Sr. No.</f:facet>
+				<h:outputText value="#{rowId}"/>
+			</p:column>
+			
+			<p:column sortBy="#{tb.empId}" filterBy="#{tb.empId}">
+				<f:facet name="header">EMP ID</f:facet>
+				<h:outputText value="#{tb.empId}"/>
+				</p:column>
+			
+			<p:column sortBy="#{tb.typeOfTravel}" filterBy="#{tb.typeOfTravel}">
+				<f:facet name="header">Type of Travel</f:facet>
+				<p:selectOneMenu  
+				value="#{tb.typeOfTravel}">
+				<f:selectItem itemValue="" itemLabel="-- SELECT --" />
+				<f:selectItem itemValue="Secondment" itemLabel="Secondment" />
+				<f:selectItem itemValue="STA" itemLabel="Short Term Assignment" />
+				<f:selectItem itemValue="LTA" itemLabel="Long term Assignment" />
+				<f:selectItem itemValue="PT" itemLabel="Payroll Transfer" />
+				<f:selectItem itemValue="Grow" itemLabel="Grow" />
+				<p:ajax update="travelBond_dTab"/>	
+			</p:selectOneMenu>
+			</p:column>
+			
+			<p:column sortBy="#{tb.travelCountry}" filterBy="#{tb.travelCountry}">
+				<f:facet name="header">Travel Country</f:facet>
+				<h:inputText value="#{tb.travelCountry}">
+						<p:ajax event="blur"></p:ajax>
+				</h:inputText>
+			</p:column>
+	
+			<p:column sortBy="#{tb.clawBackMonth}">
+				<f:facet name="header">Claw Back Month</f:facet>
+				<h:inputText value="#{tb.clawBackMonth}">
+					<p:ajax event="blur"></p:ajax>
+				</h:inputText>
+			</p:column>
+			
+		
+			<p:column sortBy="#{tb.numberOfMonth}">
+				<f:facet name="header">No. of Months</f:facet>
+				<h:inputText value="#{tb.numberOfMonth}">
+					<p:ajax event="blur"></p:ajax>
+				</h:inputText>
+			</p:column>
+		
+			<p:column>		
+			<f:facet name="header">STATUS</f:facet>
+				<h:outputText value="#{tb.deletedB eq true ? 'DELETED' : ''}"/>
+			</p:column>
+		
+			<!-- <p:column style="width: auto; text-align: center !important;">
+				<f:facet name="header">Click To Load</f:facet>
+				
+				<p:commandButton icon="ui-icon-search" styleClass="search-button" oncomplete="PF('travelConfirm').show()"
+					actionListener="#{beneTrvlTrainView.setSelectedTravelInfoForLoad(tb)}">
+				</p:commandButton>
+			</p:column> -->
+			
+			<p:column style="width: auto; text-align: center !important;">
+				<f:facet name="header">SAVE</f:facet>
+				<p:commandButton icon="ui-icon-disk" styleClass="search-button"  immediate="true" disabled="#{tb.deletedB eq true}" 
+				 update="travelBond_dTab"	actionListener="#{beneTrvlTrainView.updateTravelField(tb)}">
+				</p:commandButton>
+			</p:column>
+		
+			<p:column style="width: auto; text-align: center !important;">
+				<f:facet name="header">DELETE</f:facet>
+				<p:commandButton icon="ui-icon-trash"  styleClass="search-button"  immediate="true" disabled="#{tb.deletedB eq true}" 
+				 update="travelBond_dTab" actionListener="#{beneTrvlTrainView.deleteTravelRecord(tb)}" >
+ 				</p:commandButton>
+			</p:column>
+			
+		</p:dataTable>
+	<!-- 	
+		<p:dialog header="Confirm" widgetVar="travelConfirm" showEffect="fade" hideEffect="fade" resizable="false">
+			<h:outputText
+				value="Are you sure you want to load the selected Travel Bond?"
+				styleClass="ui-staticLabel" />
+			<h:panelGrid columns="2" styleClass="button-panel" cellpadding="2"
+				cellspacing="2" style="margin-top: 15px;">
+				<p:commandButton value="Load" update="@form"
+					action="#{beneTrvlTrainView.loadSelectedTravelInfo}" />
+				<p:commandButton value="Cancel" update="@form"
+					oncomplete="PF('travelConfirm').hide()" />
+			</h:panelGrid>
+		</p:dialog>
+	 -->
+	
+	</h:form>
+	
+
+</ui:composition>

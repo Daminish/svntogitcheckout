@@ -1,0 +1,96 @@
+ <style>
+ #map{
+    height:500px; 
+    max-width:980px; 
+    box-shadow: 3px 3px 10px gray;
+    }
+ </style>
+ <header>
+
+      <nav>
+      <div class="container">
+          <div class="row">
+            <div class="col-xs-3" >
+              <p class="liv-head-back-btm"><i class="fa fa-chevron-left"></i><a ng-href="#!/findhome"> Back</a></p>
+            </div>
+            <div class="col-xs-7">
+              <p class="liv-head-heading" ng-bind="areaguideheading">Area Guide</p>
+            </div>
+            <div class="col-xs-2" ng-if="showIcons">
+             <i class="fa fa-heart"></i> &nbsp <i class="fa fa-info"></i>
+            </div>
+          </div>
+          <div class="row" id="liv-input-row">
+            <div ng-class="showSearchDiv">
+              <div class="input-group">         
+              <input type="text" class="form-control" ng-model="city" placeholder="Search City" id="address">
+              <span class="input-group-addon" id="liv-input-search" ng-click="getSuggestion(city)"><i class="fa fa-search"></i></span>  	
+		    </div>
+		    <!-- <ul class="list-group" ng-model="hidethis" ng-hide="hidethis">
+					<li class="list-group-item" ng-repeat="city in filterCity" ng-click="filteredCity(city.city_name)">
+						{{city}}
+					</li>
+			</ul> -->
+            </div>
+            <div class="col-xs-1 liv-gps">
+            <i class="fa fa-crosshairs" aria-hidden="true" ng-if="showGPS"></i>
+            </div>
+          </div>
+          
+          <div class="row" id="liv-input-row" ng-if="showLocality">
+          	<div class="col-xs-12">
+          		<div class="input-group">         
+	              <input type="text" class="form-control" placeholder="Enter Location" id="address" ng-model="locality">
+	              <span class="input-group-addon" id="liv-input-search" ng-click="getLocalitiesAvailability(locality)"><i class="fa fa-search"></i></span>
+	            </div>
+          	</div>
+          </div>    
+        </div>
+      </nav>
+ </header>
+ <section>
+ 	<div id="map">
+ 		
+ 	</div>
+ </section>
+ <div id="myBottomnav" class="bottomNav">
+        <p style="font-size: 18px;
+    cursor: pointer;
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+    color: #ff7600;" ng-click="openNav()">Area Guide 
+    <i class="fa fa-angle-down" id="down" aria-hidden="true" style="display: none;"></i>
+    <i class="fa fa-angle-up" id="up" aria-hidden="true"></i></p>
+  
+  <p data-toggle="modal" data-target="#myModal"><a href="javascript:void(0)">Flat/Apartment <i class="fa fa-info circle" aria-hidden="true"></i></a></p>
+  <p data-toggle="modal" data-target="#myModal"><a href="javascript:void(0)">House/Villa <i class="fa fa-info circle" aria-hidden="true"></i></a></p>
+  <p data-toggle="modal" data-target="#myModal"><a href="javascript:void(0)">Village house <i class="fa fa-info circle" aria-hidden="true"></i></a></p>
+  <p data-toggle="modal" data-target="#myModal"><a href="javascript:void(0)">Crime rating <i class="fa fa-info circle" aria-hidden="true"></i></a></p>
+  <p data-toggle="modal" data-target="#myModal"><a href="javascript:void(0)">School rating <i class="fa fa-info circle" aria-hidden="true"></i></a></p>
+  <p data-toggle="modal" data-target="#myModal"><a href="javascript:void(0)">Broadband <i class="fa fa-info circle" aria-hidden="true"></i></a></p>
+  <p data-toggle="modal" data-target="#myModal"><a href="javascript:void(0)">Population <i class="fa fa-info circle" aria-hidden="true"></i></a></p>
+</div>
+<!-- Modal -->
+	<div class="modal fade" id="myModal" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content col-xs-12">
+				<div class="modal-header col-xs-12">
+					
+					<h4 class="modal-title text-center">Details</h4>
+				</div>
+				<div class="modal-body col-xs-12 text-center">
+					Content
+					
+					
+				</div>
+				<div class="modal-footer">
+					
+					<button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
+				</div>
+			</div>
+
+		</div>
+	</div>

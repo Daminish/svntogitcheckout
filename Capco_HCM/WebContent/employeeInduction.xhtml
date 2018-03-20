@@ -1,0 +1,180 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+      <h:form id="EmployeeInduction">
+         <p:messages showSummary="true" styleClass="ui-errorLabel" />
+         
+         	<h:panelGrid columns="4" id="induction_PGrid_Audit" styleClass="tab-panel" style="width: 40% !important; float: right;">
+
+				<h:outputLabel for="inductionTracker_insertedDate" value="Inserted Date" styleClass="ui-auditLabel" />
+				<p:outputLabel id="inductionTracker_insertedDate" value="#{empIndTrkrView.empIndTrkrObj.insertedDate}" styleClass="ui-auditValue" />
+
+				<h:outputLabel for="inductionTracker_insertedBy" value="Inserted By" styleClass="ui-auditLabel" />
+				<p:outputLabel id="inductionTracker_insertedBy" value="#{empIndTrkrView.empIndTrkrObj.insertedBy}" styleClass="ui-auditValue" />
+			</h:panelGrid>
+         	
+         	<h:panelGrid columns="4" id="induction_PGrid" styleClass="tab-panel" cellpadding="3" cellspacing="3">
+          	
+          	<h:outputLabel for="inductionTracker_firstEmailSentDate" value="1st Email Sent"/>
+            <p:calendar value="#{empIndTrkrView.empIndTrkrObj.firstEmailSentDate}"  id="inductionTracker_firstEmailSentDate" 
+            effect="clip" pattern="dd-MM-yyyy" styleClass="calendar-input"/>
+            
+            <h:outputLabel for="inductionTracker_secondEmailSentDate" value="2nd Email Sent"/>
+            <p:calendar value="#{empIndTrkrView.empIndTrkrObj.secondEmailSentDate}"  id="inductionTracker_secondEmailSentDate"
+             effect="clip" pattern="dd-MM-yyyy" styleClass="calendar-input"/>
+            
+            <h:outputLabel for="inductionTracker_thirdEmailSentDate" value="3rd Email Sent"/>
+            <p:calendar value="#{empIndTrkrView.empIndTrkrObj.thirdEmailSentDate}"  id="inductionTracker_thirdEmailSentDate" 
+            style="padding-right:50px;" effect="clip" pattern="dd-MM-yyyy" styleClass="calendar-input"/>
+            
+            <h:outputLabel for="inductionTracker_fourthEmailSentDate" value="4th Email Sent"/>
+            <p:calendar value="#{empIndTrkrView.empIndTrkrObj.fourthEmailSentDate}"  id="inductionTracker_fourthEmailSentDate"
+             effect="clip" pattern="dd-MM-yyyy" styleClass="calendar-input"/>
+            
+            <h:outputLabel for="inductionTracker_fifthEmailSentDate" value="5th Email Sent"/>
+            <p:calendar value="#{empIndTrkrView.empIndTrkrObj.fifthEmailSentDate}"  id="inductionTracker_fifthEmailSentDate" 
+            effect="clip" pattern="dd-MM-yyyy" styleClass="calendar-input"/>
+            
+            <h:outputLabel for="inductionTracker_attendedOnDate" value="Attended on"/>
+            <p:calendar value="#{empIndTrkrView.empIndTrkrObj.attendedOnDate}"  id="inductionTracker_attendedOnDate" 
+	            effect="clip" pattern="dd-MM-yyyy" styleClass="calendar-input"/>
+           
+             </h:panelGrid>
+            
+            
+           <h:panelGrid columns="2" id="induction" styleClass="button-panel">
+         	
+         	 <p:commandButton style="align:center;" value="Save" update="@form" styleClass="submit-button" 
+         	 actionListener="#{empIndTrkrView.insertEmpInductionTrkrStatus}" />
+              
+              <p:commandButton value="Reset">
+	                <p:ajax update="induction_PGrid" resetValues="true" />
+	         </p:commandButton>
+	         
+           </h:panelGrid>
+           
+           	<p:dataTable id="induction_dTab" value="#{empIndTrkrView.inductionHistory}" 
+           	widgetVar="projectTable" filteredValue="#{empIndTrkrView.inductionsearchhistory}"
+           	rows="5"  paginator="true"  paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} 
+           	{NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  rowsPerPageTemplate="5,10,15" lazy="false"
+				var="pro"  styleClass="employeeTable" border="1" rowStyleClass="#{(row mod 2) eq 0 ? 'employeeTableEvenRow' : 'employeeTableOddRow'}"  
+				headerClass="employeeTableHeader" rowIndexVar="rowId">
+				
+				<f:facet name="header">
+   		 <p:outputPanel>
+       		 <h:outputText value="Search all fields:" />
+       		 <h:inputText id="globalFilter" onkeyup="PF('projectTable').filter()" />
+   		 </p:outputPanel>
+		</f:facet>
+			
+				<f:facet name="header">
+					Induction History List
+		      	</f:facet>
+		      	<p:column>
+		      	
+		      	
+				<f:facet name="header">Sr. No.</f:facet>
+				<h:outputText value="#{rowId}"/>
+				</p:column>
+				
+				<p:column sortBy="#{pro.employeeId}" filterBy="#{pro.employeeId}">
+				<f:facet name="header">Emp ID</f:facet>
+				<h:outputText value="#{pro.employeeId}"/>
+				</p:column>
+		      	
+		      	<p:column sortBy="#{pro.firstEmailSentDate}">
+					<f:facet name="header">First Email Date</f:facet>
+					 <p:calendar value="#{pro.firstEmailSentDate}"
+             		effect="clip" pattern="dd-MM-yyyy" styleClass="calendar-input">
+             		<p:ajax event="dateSelect"  listener="#{empIndTrkrView.onDateSelect}" />
+             		</p:calendar>
+					
+				</p:column>
+				
+				<p:column sortBy="#{pro.secondEmailSentDate}">
+					<f:facet name="header">Second Email Date</f:facet>
+					 <p:calendar value="#{pro.secondEmailSentDate}"
+             		effect="clip" pattern="dd-MM-yyyy" styleClass="calendar-input">
+             			<p:ajax event="dateSelect"  listener="#{empIndTrkrView.onDateSelect}" />
+             		</p:calendar>
+					
+				</p:column>
+				
+				<p:column sortBy="#{pro.thirdEmailSentDate}">
+					<f:facet name="header">third Email Date</f:facet>
+					<p:calendar value="#{pro.thirdEmailSentDate}"
+             		effect="clip" pattern="dd-MM-yyyy" styleClass="calendar-input">
+             		<p:ajax event="dateSelect"  listener="#{empIndTrkrView.onDateSelect}" />
+             		</p:calendar>
+					
+				</p:column>
+				
+				<p:column sortBy="#{pro.fourthEmailSentDate}">
+					<f:facet name="header">Fourth Email Date</f:facet>
+					<p:calendar value="#{pro.fourthEmailSentDate}"
+             		effect="clip" pattern="dd-MM-yyyy" styleClass="calendar-input">
+             			<p:ajax event="dateSelect"  listener="#{empIndTrkrView.onDateSelect}" />
+             		</p:calendar>
+				</p:column>
+				
+				<p:column sortBy="#{pro.fifthEmailSentDate}">
+					<f:facet name="header">Fifth Email Date</f:facet>
+					<p:calendar value="#{pro.fifthEmailSentDate}"
+             		effect="clip" pattern="dd-MM-yyyy" styleClass="calendar-input">
+             			<p:ajax event="dateSelect"  listener="#{empIndTrkrView.onDateSelect}" />
+             		</p:calendar>
+				</p:column>
+				
+				<p:column sortBy="#{pro.attendedOnDate}">
+					<f:facet name="header">Attended Date</f:facet>
+					<p:calendar value="#{pro.attendedOnDate}"
+             		effect="clip" pattern="dd-MM-yyyy" styleClass="calendar-input">
+             			<p:ajax event="dateSelect"  listener="#{empIndTrkrView.onDateSelect}" />
+             		</p:calendar>
+				</p:column>
+				
+				<p:column>		
+					<f:facet name="header">STATUS</f:facet>
+					<h:outputText value="#{pro.deletedB eq true ? 'DELETED' : ''}"/>
+				</p:column> 
+				<!-- 
+				<p:column style="width: auto; text-align: center !important;">
+					<f:facet name="header">Click To Load</f:facet>
+					<p:commandButton icon="ui-icon-search" oncomplete="PF('inductionConfirm').show()"  
+						actionListener="#{empIndTrkrView.setSelectedInductionHistoryForLoad(pro)}" 
+						styleClass="search-button">
+					</p:commandButton>
+				</p:column> -->
+				
+				
+				 <p:column style="width: auto; text-align: center !important;">
+						<f:facet name="header">SAVE</f:facet>
+						<p:commandButton icon="ui-icon-disk" immediate="true" disabled="#{pro.deletedB eq true}"
+						update="induction_dTab" actionListener="#{empIndTrkrView.updateInductionHistory(pro)}" 
+						styleClass="search-button">
+						</p:commandButton>
+				</p:column>
+			
+			
+				<p:column style="width: auto; text-align: center !important;">
+					<f:facet name="header">DELETE</f:facet>
+					<p:commandButton icon="ui-icon-trash"  styleClass="search-button" immediate="true" disabled="#{pro.deletedB eq true}" 
+				 	update="induction_dTab" actionListener="#{empIndTrkrView.deleteInductionHistoryRecord(pro)}" >
+ 					</p:commandButton>
+				</p:column>
+			 
+			</p:dataTable>
+			
+			<!-- <p:dialog header="Confirm" widgetVar="inductionConfirm"  showEffect="fade" hideEffect="fade" resizable="false">
+			<h:outputText value="Are you sure you want to load the selected Employee?" styleClass="ui-staticLabel"/>
+			<h:panelGrid columns="2" styleClass="button-panel" cellpadding="2" cellspacing="2" style="margin-top: 15px;">
+				<p:commandButton value="Load" update="@form" action="#{empIndTrkrView.loadSelectedProjectInfo}"/>
+				<p:commandButton value="Cancel" update="@form" oncomplete="PF('inductionConfirm').hide()"/>
+			</h:panelGrid>
+		</p:dialog> -->
+           
+        </h:form>
+</ui:composition>

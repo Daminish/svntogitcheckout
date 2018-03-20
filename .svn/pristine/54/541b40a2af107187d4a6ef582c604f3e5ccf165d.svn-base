@@ -1,0 +1,34 @@
+<header>
+      <nav>
+      <div class="container">
+          <div class="row">
+            <div class="col-xs-3" >
+              <p class="liv-head-back-btm"><i class="fa fa-chevron-left"></i><a ng-href="#!/dashboard"> Back</a></p>
+            </div>
+            <div class="col-xs-7">
+              <p class="liv-head-heading">Find Home</p>
+            </div>
+            <div class="col-xs-2" >
+             <i class="fa fa-heart"></i>   <i class="fa fa-info"></i>
+            </div>
+          </div>
+        </div>
+      </nav>
+</header>
+ <section class="">
+      <div class="row liv-grid">
+        <a ng-href="#!/areaguide"><div class="col-xs-2"><i class="fa fa-database liv-grid-left-icon"></i></div>
+        <div class="col-xs-8">Area guide</div>
+       
+        <div class="col-xs-2">
+        <i class="fa fa-chevron-right liv-grid-right-icon pull-right"></i></div></a>
+
+      </div>
+       <div class="row liv-grid">
+       <!-- <a href="#"> -->
+        <div class="col-xs-2"><i class="fa fa-database liv-grid-left-icon"></i></div>
+        <div class="col-xs-8">Finding your property</div>
+        <div class="col-xs-2"><i class="fa fa-chevron-right liv-grid-right-icon pull-right"></i></div>
+        <!-- </a> -->
+      </div>
+</section>

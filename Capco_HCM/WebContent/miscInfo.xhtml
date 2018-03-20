@@ -1,0 +1,18 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	
+	<p:separator>
+		<h:outputLabel value="Financial Information" styleClass="ui-staticLabel" style="color: blue;"/>
+	</p:separator>
+	
+	<ui:include src="financial.xhtml" />
+	<br/><br/><br/>
+	<p:separator>
+		<h:outputLabel value="Induction Details" styleClass="ui-staticLabel" style="color: blue;"/>
+	</p:separator>
+	
+	<ui:include src="employeeInduction.xhtml" />	
+</ui:composition>

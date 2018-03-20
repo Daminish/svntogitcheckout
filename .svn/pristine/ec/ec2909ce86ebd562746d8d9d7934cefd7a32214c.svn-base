@@ -1,0 +1,91 @@
+@import 'variables';
+/* Header Design*/
+header{
+	background-color: @leaf;
+	width: 100%;
+
+	nav{
+			.row{
+				margin-top: 10px;
+				color: white;
+				font-size: @font_16;
+				font-style: @font_style;
+
+				.liv-head-btm-text{		
+					font-size: 12px;
+				}
+				.liv-head-heading{
+					text-align: center;
+					margin-right:50px; 
+				}
+				.liv-head-back-btm{
+					float: left;
+				}
+				.liv-head-info-icon{
+					float: right;
+				}
+			}
+			#liv-input-row{
+				margin-bottom:10px;
+			}
+			#liv-input-search{
+				background-color:white;
+			}
+			.liv-gps{
+				padding-left:2px;
+				margin-top:2px;
+				font-size:20px;
+			}	
+		}
+}
+/* header Design*/
+/*for map*/
+.bottomNav {
+    height: 80px;
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+    bottom: 0;
+    left: 0;
+    background-color: #fff;
+    overflow: hidden;
+    transition: 0.5s;
+    padding-top: 10px;
+    border-top: 1px solid #ccc;
+    box-shadow: 0px 15px 20px 18px #ccc;
+}
+
+.bottomNav a {
+    padding: 15px 55px;
+    text-decoration: none;
+    font-size: 18px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+    border-bottom: 1px solid #333;
+}
+.bottomNav p {
+	margin-bottom:0px;
+}
+
+
+.bottomNav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .bottomNav {padding-top: 15px;}
+  .bottomNav a {font-size: 18px;}
+}
+.circle{
+	position: absolute;
+    right: 59px;
+    border: 1px solid;
+    border-radius: 50%;
+    padding: 7px 14px 5px 12px;
+    font-style: italic;
+}

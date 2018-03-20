@@ -1,0 +1,410 @@
+ <header-component></header-component>
+        <section class="f-box">
+                
+                  <section>
+                    <section class="hbox stretch">
+                      <!-- .aside -->
+                   
+                      <!-- /.aside -->
+                      <section id="content">
+                        <section class="vbox">
+                          <section class="container-bg">
+                            <div class="m-b-md">
+                              <h3 class="m-b-none">Request Lists</h3>
+                            </div>
+                    
+                            <section class="panel panel-default">
+                          
+                              <div class="row p">
+                                <div class="col-sm-4 m-b-xs">
+                                
+                                  <select class="input-sm form-control input-s-sm inline v-middle">
+                                    <option value="0">Bulk action</option>
+                                    <option value="1">Delete selected</option>
+                                    <option value="2">Bulk edit</option>
+                                    <option value="3">Export</option>
+                                  </select>
+                                  <button class="btn btn-sm btn-success">Apply</button> 
+                                  	               
+                                </div>
+                                <div class="col-sm-4"></div>
+                              
+                                <div class="col-sm-4 pull-right">
+                                  <div class="input-group">
+                                    <input type="text" class="input-sm form-control" placeholder="Search">
+                                    <span class="input-group-btn">
+                                      <button class="btn btn-sm btn-success" type="button">Go!</button>
+                                    </span>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="table-responsive">
+                                <table class="table table-striped b-t b-light">
+                                  <thead>
+                                    <tr>
+                                     
+                                      <th width="25%">Request ID</th>
+                                      <th class="th-sortable" data-toggle="class" width="25%">Creation Date
+                                       
+                                      </th>
+                                      <th width="25%">Status</th>
+                                      <th width="25%">Action</th>
+                                      
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr ng-repeat="req in userRequest" >
+                                      
+                                      <td>{{req.requestId}}</td>
+                                      <td>{{req.createdOn}}</td>
+                                      <td>{{req.currentStatus}}</td>
+                                      <td>
+                                        <button class="btn btn-primary"  ng-click="getRequestDetails(req.requestId)" data-toggle="modal" title="View" data-target="#rejectRequestModal"><i class="fa fa-eye"></i></button>
+                                      	<button class="btn btn-success" data-toggle="tooltip" data-placement="right" title="Edit" ng-click="editRequest(req.requestId)"><i class="fa fa-edit"></i></button>
+                                      	<button class="btn btn-danger" ng-if="req.currentStatus=='Pending L1' || req.currentStatus=='Reject'" data-toggle="tooltip" data-placement="right" title="Cancel"  ng-click="deleteRequest(req.requestId)"><i class="fa fa-trash-o"></i></button>
+                                      	<button class="btn btn-danger" ng-if="req.currentStatus!='Pending L1' && req.currentStatus!='Reject'" data-toggle="tooltip" data-placement="right" title="Cancel" disabled><i class="fa fa-trash-o"></i></button>
+                                      </td>
+                                      
+                                    </tr>
+                                   
+                                  </tbody>
+                                </table>
+                              </div>
+                              <footer class="panel-footer">
+                                
+                              </footer>
+                            </section>
+                          </section>
+                        </section>
+                        <a href="#" class="hide nav-off-screen-block" data-toggle="class:nav-off-screen" data-target="#nav"></a>
+                      </section>
+                    </section>
+                  </section>
+                </section> 
+                
+                
+
+                <div class="modal fade" id="rejectRequestModal" role="dialog">
+                        <div class="modal-dialog max-width">
+                        
+                          <!-- Modal content-->
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                              
+                            </div>
+                            <div class="modal-body">
+                                    <div>
+                                            <!-- ================================================
+                                            |             Confirmation Section                  |
+                                            ===================================================== -->
+                                           <div id="confirm" class="tab-pane">
+                                        <!-- ================================================
+                                                        |             Confirmation Section                  |
+                                                        ===================================================== -->
+                                        <section class="f-box">
+                                            <header class="row">
+                                                <!-- <h1 class="p-tb-md m-n p">Approve Request</h1> -->
+
+                                            </header>
+                                            <div class="main-bg p">
+                                                <header>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <h3>Personal Details</h3>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                        <h3 class="req pull-right">Request ID: #{{requestDetails.travelRequest.requestId}}</h3>
+                                                        </div>
+                                                        </div>
+                                                        
+                                                        
+                                                </header>
+                                                <hr>
+                                               
+
+                                               
+                                                <!-- ===============article====================== -->
+                                                <!-- Confirmation screen goes here -->
+                                                
+                         <div class="article">
+                                                    <!-- ========row 1========== -->
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <b>Employee name:</b>
+                                                            <span>{{user.employeeName}}</span>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <b>Location:</b>
+                                                            <span>{{user.employeeLocation}}</span>
+                                                        </div>
+
+                                                        <div class="col-md-4">
+                                                            <b>Contact Number:</b>
+                                                            <span>{{user.employeeMobileNumber}}</span>
+                                                        </div>
+                                                    </div>
+                                                    <!-- ========end of row 1==========-->
+
+                                                    <!--=========row 2 =========== -->
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <b>Project Code:</b>
+                                                            <span>{{travelRequest.empData.projectCode}}</span>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <b>Project Name:</b>
+                                                            <span>{{empObj.projectName}}</span>
+                                                        </div>
+
+                                                        <div class="col-md-4">
+                                                            <b>Approvers Name:</b>
+                                                            <span>{{empObj.approverName.approverName}}</span>
+                                                        </div>
+                                                    </div>
+                                                    <!-- ========end of row 2 ========= -->
+
+                                                </div>
+                                                <!-- ==================end of article =================- -->
+												<hr> 
+
+                                                <header>
+                                                    <h3>Request Details</h3>
+                                                </header>
+                                                <hr>
+                                                
+                                                <!-- ==================== confirmation section for hotel/accomodation =========================-->
+                                                <article ng-if="accomodationObj!=null">
+                                                    <h4><b>Hotel/Accommodation Booking</b></h4>
+
+                                                    <table class="table table-bordered">
+                                                        <tr>
+                                                            <td><b>Country:</b></td>
+                                                            <td colspan="2">{{accomodationObj.country}}</td>
+                                                            <td><b>City:</b></td>
+                                                            <td colspan="2">{{accomodationObj.city}}</td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td><b>Check-in Date & Time:</b></td>
+                                                            <td colspan="2">{{accomodationObj.checkIn}}</td>
+                                                            <td><b>Check-out Date & Time:</b></td>
+                                                            <td colspan="2">{{accomodationObj.checkOut}}</td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td><b>Budget Per Day:</b></td>
+                                                            <td colspan="2">{{accomodationObj.budget}}</td>
+                                                            <td><b>Type of Room:</b></td>
+                                                            <td colspan="2">{{accomodationObj.category}}</td>
+                                                        </tr>
+                                                        
+                                                        <tr>
+                                                        <td><b>Remark:</b></td>
+                                                        <td colspan="4">{{accomodationObj.remarks}}</td>>
+                                                        </tr>	
+
+                                                    </table>
+														<hr> 
+                                                </article>
+                                                <!-- ==================== end of hotel/accomodation section ==================== -->
+                                                
+                                                <!-- ==================== confirmation section for taxi/cab ====================-->
+                                                <article ng-if="cabObj!=null">
+
+                                                    <h4><b>Taxi Booking</b></h4>
+                                                    <table class="table table-bordered">
+                                                    	<tr>
+                                                            <td><b>Car request type:</b></td>
+                                                            <td>{{cabObj.taxiTravelType}}</td>
+                                                            <td><b>Type of car:</b></td>
+                                                            <td>{{cabObj.carType}}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><b>From:</b></td>
+                                                            <td>{{cabObj.pickUpLocation}} {{cabObj.city}}</td>
+                                                            <td><b>To:</b></td>
+                                                            <td>{{cabObj.dropLocation}}</td>
+                                                        </tr>
+
+
+
+                                                        <tr>
+                                                            <td><b>Departure Date and time:</b></td>
+                                                            <td colspan="3">{{cabObj.fromDate}}</td>
+                                                            
+
+                                                        </tr>
+                                                        <tr>
+                                                        	<td><b>Number of person's:</b></td>
+                                                            <td>{{cabObj.numberOfPersons}}</td>
+                                                            <td><b>Remark</b></td>
+                                                            <td>{{cabObj.remarks}}</td>
+                                                        </tr>
+                                                    </table>
+
+
+														<hr> 
+                                                </article>
+                                                <!-- ====================end of section for taxi/cab==================== -->
+                                                
+                                                
+                                                
+                                                <!-- ===============confirmation section for flight====================== -->
+                                                <article ng-if="flightObj!=null">
+
+                                                    <h4><b>Flight Booking</b></h4>
+                                                    <table class="table table-bordered">
+                                                        <tr>
+                                                            <td><b>Tour Type:</b></td>
+                                                            <td colspan="2">{{flightObj.tourType}}</td>
+                                                            <td><b>Travel Type:</b></td>
+                                                            <td colspan="2">{{flightObj.travelType}}</td>
+                                                        </tr>
+
+                                                        <tr ng-if="flightObj.tourType=='international'">
+                                                                <td><b>Origin Country:</b></td>
+                                                                <td>{{flightObj.originCountry}}</td>
+                                                                <td><b>Destination Country:</b></td>
+                                                                <td>{{flightObj.destinationCountry}}</td>
+                                                                <td><b>Preferred Class:</b></td>
+                                                                <td>{{flightObj.prefClass}}</td>
+                                                            </tr>
+                                                        
+
+                                                        <tr>
+                                                            <td><b>Business Purpose:</b></td>
+                                                            <td>{{flightObj.businessPurpose}}</td>
+                                                            <td><b>From:</b></td>
+                                                            <td>{{flightObj.departureLocation}}</td>
+                                                            <td><b>To:</b></td>
+                                                            <td>{{flightObj.destinationLocation}}</td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td><b>Departure Date:</b></td>
+                                                            <td colspan="2">{{flightObj.departureDate}}</td>
+                                                            <td><b>Departure Time:</b></td>
+                                                            <td colspan="2">{{flightObj.departureTime}}</td>
+                                                        </tr>
+
+                                                        <tr ng-if="flightObj.travelType=='round way'">
+                                                                <td><b>Return Date:</b></td>
+                                                                <td colspan="2">{{flightObj.returnDateTime}}</td>
+                                                                <td><b>Return Time:</b></td>
+                                                                <td colspan="2">{{flightObj.returnTime}}</td>
+                                                            </tr>
+
+                                                            <tr ng-if="flightObj.tourType=='international'">
+                                                                    <td><b>Surname:</b></td>
+                                                                    <td>{{flightObj.surname}}</td>
+                                                                    <td><b>Given Name:</b></td>
+                                                                    <td>{{flightObj.givenName}}</td>
+                                                                    <td><b>Date of Birth:</b></td>
+                                                                    <td>{{flightObj.dateOfBirth}}</td>
+                                                                </tr>
+
+                                                                <tr ng-if="flightObj.tourType=='international'">
+                                                                        <td><b>Passport Number:</b></td>
+                                                                        <td>{{flightObj.passportNumber}}</td>
+                                                                        <td><b>Passport Issue date:</b></td>
+                                                                        <td>{{flightObj.passportIssueDate}}</td>
+                                                                        <td><b>Meal Preference</b></td>
+                                                            			<td>{{flightObj.mealPref}}</td>
+                                                                    </tr>
+
+														
+
+                                                        <tr>
+                                                            
+                                                            <td><b>Remark</b></td>
+                                                            <td colspan="5">{{flightObj.remark}}</td>
+                                                        </tr>
+
+                                                        
+
+                                                    </table>
+
+													<hr> 
+
+                                                </article>
+                                                
+                                                 
+                                                <!-- ===================end of section for flight======================-->
+
+                                               
+
+                                                <!-- ===================confirmation section for forex======================-->
+                                                
+                                                <article ng-if="forexObj!=null">
+                                                        <h4><b>Forex</b></h4>
+    
+                                                        <table class="table table-bordered">
+                                                                <tr>
+                                                                        <td><b>Country:</b></td>
+                                                                        <td>{{forexObj.forexCountry}}</td>
+                                                                        <td><b>Currency:</b></td>
+                                                                        <td>{{forexObj.forexCurrency}}</td>
+                                                                        <td><b>Bankdesk:</b></td>
+                                                                        <td>{{forexObj.forexBankDesk}}</td>
+                                                                    </tr>
+
+
+                                                                    <tr>
+                                                                            <td><b>From:</b></td>
+                                                                            <td>{{forexObj.forexFromDate}}</td>
+                                                                            <td><b>To:</b></td>
+                                                                            <td>{{forexObj.forexToDate}}</td>
+                                                                            <td><b>Amount:</b></td>
+                                                                            <td>{{forexObj.forexAmount}}</td>
+                                                                        </tr>
+
+                                                                        <tr>
+                                                                            <td><b>Collection Center:</b></td>
+                                                                            <td>{{forexObj.forexCollectionCenter}}</td>
+                                                                            <td><b>Remark:</b></td>
+                                                                            <td colspan="3">{{forexObj.forexRemarks}}</td>    
+                                                                        </tr>
+
+    
+                                                        </table>
+    													<hr> 
+                                                    </article>
+                                                
+												<textarea class="form-control input-sm" ng-model="requestDetails.travelRequest.commentList" readonly>
+                                                
+                                                </textarea>	
+                                                </div>
+                                                <!-- ====================article====================-->
+                                                
+
+                                                
+                                                
+                                                </div>
+
+                                        </section>
+                                        <!--
+                                                             ===========================================================
+                                                            |                  end of section                         |
+                                                            ===========================================================-->
+
+                                        </div>
+
+                                            <!--
+                                                 ===========================================================
+                                                |                  end of section                         |
+                                                ===========================================================-->
+                                            
+                                            
+                                            </div>
+                                            
+                            </div>
+                            <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                             <!--  <button type="button" class="btn btn-success" >Submit</button> -->
+                            </div>
+                          </div>
+                          
+                        </div>
+                      </div>
+    

@@ -1,0 +1,41 @@
+module.exports = function(grunt) {
+  require('jit-grunt')(grunt);
+
+  grunt.initConfig({
+  /*  copy: {
+	main: {
+    expand: true,
+    src: 'myfirstapp/image/',
+    dest: 'myfirstapp/assets/images'
+  }
+},*/
+    less: {
+      development: {
+        options: {
+          compress: true,
+          yuicompress: true,
+          optimization: 2
+        },
+        files: {
+          "assets/dist/css/bootstrap.css": "assets/less/bootstrap/bootstrap.less",
+          "assets/dist/css/font-awesome.css": "assets/less/font-awesome/font-awesome.less",
+           "assets/dist/css/variable.css": "assets/less/variable.less",
+           "assets/dist/css/style.css": "assets/less/style.less",
+           "assets/dist/css/dashboard.css": "assets/less/dashboard.less"
+          // destination file and source file
+        }
+      }
+    },
+    watch: {
+      styles: {
+        files: ['assets/less/**/*.less'], // which files to watch
+        tasks: ['less'],
+        options: {
+          nospawn: true
+        }
+      }
+    }
+  });
+
+  grunt.registerTask('default', ['less', 'watch']);//'copy']);
+};

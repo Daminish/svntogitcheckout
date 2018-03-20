@@ -1,0 +1,65 @@
+
+<header>
+	<nav>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xs-3">
+					<p class="liv-head-back-btm">
+						<i class="fa fa-chevron-left"></i>&nbsp;<a ng-href="#!/login">Login</a>
+					</p>
+				</div>
+				<div class="col-xs-7">
+					<p class="liv-head-heading">Sign Up</p>
+				</div>
+				<div class="col-xs-2">
+					<p class="liv-head-info-icon">
+						<span ng-click="register()">Done</span>
+					</p>
+				</div>
+			</div>
+
+		</div>
+	</nav>
+</header>
+
+<section class="container">
+	<form>
+		<div class="liv-head-sal">
+			<label class="marT25 theme-lbl-text">First Name</label>
+			<input type="text" ng-model="fName">
+		</div>
+		<div class="liv-head-sal">
+			<label class="marT25 theme-lbl-text">Last Name</label>
+			<input type="text" ng-model="lName">
+		</div>
+		<div class="liv-head-sal">
+			<label class="marT25 theme-lbl-text">Type</label>
+			<input type="text" ng-model="uType">
+		</div>
+		<div class="liv-head-sal">
+			<label class=" theme-lbl-text">User Name</label>
+			<input type="text" ng-model="uName">
+		</div>
+		<div class="liv-head-sal">
+			<label class=" theme-lbl-text">Password</label>
+			<input type="password" ng-model="pass">
+		</div>
+		<div class="liv-head-incom">
+			<label class="theme-lbl-text">Thai ID</label>
+			<input type="text" ng-model="thaiId">
+		</div>
+		<div class="liv-head-estimate">
+			<label class="theme-lbl-text">Contact Number</label>
+			<input type="text" ng-model="cNum">
+		</div>
+		
+		<div class="liv-head-estimate">
+			<label class="theme-lbl-text">Home Address</label>
+			<textarea rows="4" cols="6" class="txtarea-theme" ng-model="hAdd"></textarea>
+		</div>
+		<div class="liv-head-estimate">
+			<label class="theme-lbl-text">Work Address</label>
+			<textarea rows="4" cols="6" class="txtarea-theme" ng-model="wAdd"></textarea>
+		</div>
+	</form>
+</section>

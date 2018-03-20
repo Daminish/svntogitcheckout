@@ -1,0 +1,92 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+
+	<context:component-scan base-package="com.capco.hcm" />
+
+	<bean id="dbController" class="com.capco.hcm.controller.impl.DatabaseControllerImpl"
+		init-method="createConnectionPool">
+		<property name="dbUrl" value="jdbc:mysql://10.75.49.49:3306/capco_hcm"/>
+		
+		<property name="dbUsername" value="root"/>
+		<property name="dbPassword" value="root-123"/>
+		<property name="maxActiveConnnCount" value="10"/>
+		<property name="startConnnCount" value="2"/>
+	</bean>
+
+	<bean id="empBasicInfoDao" class="com.capco.hcm.sql.EmployeeBasicInfoDao">
+		<property name="dbCtrl" ref="dbController" />
+	</bean>
+	<bean id="excelFileReader" class="com.capco.hcm.utils.ExcelFileReader" scope="singleton">
+		<property name="empBasicInfoDao" ref="empBasicInfoDao"/> 
+		<property name="bgvDocDao" ref="bgvDocDao"/> 
+		<property name="inductionTrkrDao" ref="inductionTrkrDao"/>
+		<property name="finDetailDao" ref="finDetailDao"/>
+		<property name="exitFormilityDao" ref="exitFormilityDao"/>
+		<property name="probationTrkrDao" ref="probationTrkrDao"/>
+		<property name="userInfoDao" ref="userInfoDao"/>
+		<property name="projecthistoryDao" ref="projecthistoryDao"/>
+		<property name="staticDao" ref="staticDao"/>
+		<property name="endorseTrkrDao" ref="endorseTrkrDao"/>
+		<property name="promotionTrkrDao" ref="promotionTrkrDao"/>
+		<property name="beneTrvlTrainDao" ref="beneTrvlTrainDao"/>
+		<property name="letterReqSqlDao" ref="letterReqSqlDao"/>
+	</bean>
+	
+
+	<bean id="bgvDocDao" class="com.capco.hcm.sql.DocAndBgvDao">
+		<property name="dbCtrl" ref="dbController" />
+	</bean>
+	
+	<bean id="exitFormilityDao" class="com.capco.hcm.sql.ExitFormalityTrackerDao">
+		<property name="dbCtrl" ref="dbController" />
+	</bean>
+	
+	<bean id="finDetailDao" class="com.capco.hcm.sql.FinancialDetailsDao">
+		<property name="dbCtrl" ref="dbController" />
+	</bean>
+	
+	<bean id="probationTrkrDao" class="com.capco.hcm.sql.ProbationTrackerDao">
+		<property name="dbCtrl" ref="dbController" />
+	</bean>
+	
+	<bean id="promotionTrkrDao" class="com.capco.hcm.sql.PromotionTrackerDao">
+		<property name="dbCtrl" ref="dbController" />
+	</bean>
+	
+	<bean id="endorseTrkrDao" class="com.capco.hcm.sql.EndorsementTrackerDao">
+		<property name="dbCtrl" ref="dbController" />
+	</bean>
+	
+	<bean id="inductionTrkrDao" class="com.capco.hcm.sql.InductionTrackerDao">
+		<property name="dbCtrl" ref="dbController" />
+	</bean>
+	
+	<bean id="staticDao" class="com.capco.hcm.sql.StaticTableDao">
+		<property name="dbCtrl" ref="dbController" />
+	</bean>
+	
+	<bean id="beneTrvlTrainDao" class="com.capco.hcm.sql.BenefitsTravelTrainingDao">
+		<property name="dbCtrl" ref="dbController" />
+	</bean>
+	
+ 	<!-- <bean id="beneTrvlTrainDao12" class="com.capco.hcm.view.fragments.BenefitsTravelTrainingView">
+		<property name="dbCtrl" ref="dbController" />
+	</bean> -->
+ 	
+	<bean id="userInfoDao" class="com.capco.hcm.sql.UserInfoDao">
+		<property name="dbCtrl" ref="dbController" />
+	</bean>
+	
+	<bean id="letterReqSqlDao" class="com.capco.hcm.sql.HcmLetterReqSqlDao">
+		<property name="dbCtrl" ref="dbController"/>
+	</bean>
+
+	<bean id="projecthistoryDao" class="com.capco.hcm.sql.ProjectHistoryDao">
+		<property name="dbCtrl" ref="dbController" />
+	</bean>
+	
+</beans>

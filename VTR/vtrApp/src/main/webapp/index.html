@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+
+<!-- define angular app -->
+<html ng-app="vtrApp">
+
+<head>
+	<!-- SCROLLS -->
+	<!--   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" /> -->
+	<!-- <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"> -->
+	
+	<link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="select.css">
+    <!-- <link rel="stylesheet" href="bootstrap.css"> -->
+    
+    <!-- Select2 theme -->
+  	<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/select2/3.4.5/select2.css">
+  	
+	<!-- SPELLS -->
+	<script src="lib/angular.min.js"></script>
+	<script src="lib/angular-ui-router.js"></script>
+	<script src="lib/angular-sanitize.js"></script>
+	<script src="lib/angular-cookies.js"></script>
+	
+	<!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-sanitize.js"></script> -->
+	 
+	 
+	<script src="scripts/app.js"></script>
+	<!-- ui-select files -->
+    <script src="scripts/select.js"></script>
+
+	<!--
+	  Selectize theme
+	  Less versions are available at https://github.com/brianreavis/selectize.js/tree/master/dist/less
+	-->
+	<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.8.5/css/selectize.default.css">
+
+</head>
+
+<!-- define angular controller -->
+<body>
+	<table>
+		<tr>
+			<td>
+				<div class="headerDiv">
+					<!-- <h2>Visa-Travel Request</h2> -->
+					<h2>Visa Travel Request</h2>
+				</div>
+				<div ng-show="isLoggedIn">
+					<!-- <h2>Visa-Travel Request</h2> -->
+					{{ loggedInEmpName }}
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div class="vertical-menu" ng-show="isLoggedIn">
+					<ul class="list-group">
+						<li class="list-group-item">Visa</li>
+						<ul class="list-group">
+							<li><a class="list-group-item" ui-sref="visaRequests">Requests</a></li>
+							<li><a class="list-group-item" ui-sref="visaRequestActions">Actions</a></li>
+						</ul>
+					</ul>
+					<ul class="list-group">
+						<li class="list-group-item">Travel</li>
+						<ul class="list-group">
+							<li><a class="list-group-item" ui-sref="travelRequests">Requests</a></li>
+							<li><a class="list-group-item" ui-sref="travelRequestActions">Actions</a></li>
+						</ul>
+					</ul>
+					<a href="#/login">Logout</a>
+				</div>
+			</td>
+			<td>
+				<div class="mainDiv">
+					<!-- angular templating -->
+					<!-- this is where content will be injected -->
+					<div ui-view></div>
+				</div>
+			</td>
+		</tr>
+</body>
+</html>

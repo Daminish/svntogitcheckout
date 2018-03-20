@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorGreen"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/layout_toolbar"
+        layout="@layout/toolbar" />
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+
+        <EditText
+            android:id="@+id/et_city"
+            style="@style/text.findlocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableEnd="@drawable/ic_search_24dp"
+            android:hint="@string/enter_city_text"
+            android:singleLine="true" />
+
+
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/img_city_location_gps"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_weight="0"
+            android:onClick="OnClickCurrentGPS"
+            android:padding="10dp"
+            android:tint="@color/colorWhite"
+            app:srcCompat="@drawable/ic_my_location" />
+
+
+    </LinearLayout>
+
+
+    <EditText
+        android:id="@+id/et_locality"
+        style="@style/text.findlocation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:drawableEnd="@drawable/ic_search_24dp"
+        android:hint="@string/enter_district_text"
+        android:singleLine="true"
+        android:visibility="gone"/>
+
+
+    <LinearLayout
+        android:id="@+id/container_default_location"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorWhite"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/current_location"
+            style="@style/description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:drawablePadding="10dp"
+            android:drawableStart="@drawable/ic_my_location"
+            android:gravity="start|center_vertical"
+            android:onClick="OnClickCurrentGPS"
+            android:padding="10dp"
+            android:text="@string/your_curent_location"
+            android:textColor="@color/light_black"
+            android:textStyle="normal" />
+
+        <include layout="@layout/local_address_layout" />
+
+
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/cityLocality_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorWhite"
+        app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
+
+</LinearLayout>

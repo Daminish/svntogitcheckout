@@ -1,0 +1,36 @@
+<div class="jumbotron text-center">
+	<h2>{{ heading }}</h2>
+
+	<button ng-show="isVRequests" ng-click="goToAddNewVisaRequest()">Add New Visa Request</button>
+	<button ng-click="reloadVisaRequests()">Reload</button>
+
+	<table border="1px solid black" padding="12px">
+<!-- 		<tr>
+			<th></th>
+			<th></th>
+			<th></th>
+			<th></th>
+			<th colspan="1"><center>Traveller's</center></th>
+		</tr> -->
+		<tr>
+			<th>Visa Request ID</th>
+			<th>Status</th>
+			<th>In Queue</th>
+			<th>Entered Date</th>
+			<th>Traveller's Name</th>
+		</tr>
+		<tr ng-repeat="visaRequest in visaRequests">
+			<td>{{ visaRequest.visarequestid }}</td>
+			<td>{{ visaRequest.status }}</td>
+			<td>{{ visaRequest.inqueue }}</td>
+			<td>{{ visaRequest.entereddate | date:'MMMM dd, yyyy' }}</td> 
+			<td>{{ visaRequest.travelersname }}</td>
+			<td><button data-ng-click="goToViewVisaRequest(visaRequest)">View</button></td>
+			<td><button ng-show="isDisplayEditBtn(visaRequest)" 
+				data-ng-click="goToEditVisaRequest(visaRequest)">Edit</button></td>
+			<td><button ng-show="isDisplayDeleteBtn(visaRequest)" 
+				data-ng-click="goToDeletetVisaRequest(visaRequest)">Delete</button></td>
+		</tr>
+
+	</table>
+</div>

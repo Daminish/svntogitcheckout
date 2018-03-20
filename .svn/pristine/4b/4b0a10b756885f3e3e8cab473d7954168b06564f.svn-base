@@ -1,0 +1,145 @@
+.poc-border{
+    border-top: none;
+    border-right: none;
+    border-left: none;
+}
+.poc-form-margin{
+    //margin-left: 17.7pt;
+    margin-right: 0px;
+    padding:0pt;
+}
+
+@media only screen and (max-width: 740px) {
+    
+        .poc-image{
+            //max-width: 450px;
+            background-image: url(../../images/bg_image.png);
+            background-size: 100%;
+        }     
+   }
+   
+   
+
+.input{
+    background-color: transparent;
+}
+.poc-logo{
+    width:251.3pt;
+    height: 79.3pt;
+    margin-top:100px;
+    margin-bottom:50px;
+}
+.poc-icon{
+    position: relative;
+    top: 35px;
+    z-index: 3;
+    height: 25pt;
+    width: 18.7pt;
+}
+.poc-input-login{
+  
+   margin:-12px;
+    padding-left:50px;
+    line-height: 11.2pt;
+    font-size: 22.4pt;
+    color: white;
+}
+.poc-login-button{
+    width: 384.7pt;
+    height: 64pt;
+    margin-left: 7.7pt;
+    margin-right: 17.7pt;
+    margin-bottom: 146pt;
+    background-color: #8dc643;
+    font-size: 34px;
+    color: white;
+}
+.poc-pojo{
+    width: 395pt;
+
+}
+
+
+body{font-family:"Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;background-color:#EFEFE3}
+.loginpage{
+    margin:  auto;
+    background-image: url(../../images/bg_image.png);
+    height: 736pt;
+    width:100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.loginpage a ,.loginpage span{
+    color: #fff;
+    text-decoration: none;
+}
+.login-icon{
+    text-align: center;
+    
+}
+.login-icon img{
+    width: 250px;
+    margin-top: 144px;
+}
+.inp-box{
+    margin-bottom: 0px;
+    
+}
+.inp-box-pass{
+    margin-top:30pt;
+}
+// .login-form{
+//     margin: 50px auto;
+//     float: none;
+// }
+.inp-box input{
+    background: transparent;
+    border: 0;
+    width: 90%;
+    /* border-bottom: 2px solid #fff !important; */
+    outline: none !important;
+    box-shadow: none !important;
+    border-radius: 0px;
+    color: #fff;
+    padding: 0 10px;
+    font-size: 18px;
+    margin-left: 10%;
+    height: 40px;
+    line-height: 40px;
+}
+
+.poc-bottom-border{
+    border-bottom:2px solid grey;
+}
+.cp-btn{
+    border: none;
+    border-radius:0px;
+    width: 100%;
+    height: 64pt;
+    background-color: #8dc643;
+    font-size: 34px;
+    color: white;
+}
+
+.poc-alignment{
+    padding:30px;
+}
+.poc-mar{
+   // margin: 10px;
+    padding-bottom: 35;
+}
+.borB2{
+    border-bottom: 2px solid #fff;
+}
+.forgot-link{
+    padding-bottom: 35px;
+    font-size: 18px;
+    font-style: italic;
+    padding-top: 5px;
+}
+a{
+	color:#333;
+}
+header a{
+	color: #fff;
+}

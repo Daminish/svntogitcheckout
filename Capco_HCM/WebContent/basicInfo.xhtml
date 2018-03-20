@@ -1,0 +1,387 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<h:form id="basicinfo_form">
+	<p:messages showSummary="true" styleClass="ui-errorLabel" />
+		
+		<h:panelGrid columns="4" id="basicInfo_PGrid_Audit"
+			styleClass="tab-panel" style="width: 40% !important; float: right;">
+			<h:outputLabel for="basicInfo_insertedDate" value="Inserted Date" styleClass="ui-auditLabel" />
+			<p:outputLabel id="basicInfo_insertedDate" value="#{empBasicInfo.basicInfoObj.insertedDate}" styleClass="ui-auditValue" />
+
+			<h:outputLabel for="basicInfo_updatedDate" value="Inserted By" styleClass="ui-auditLabel" />
+			<p:outputLabel id="basicInfo_updatedDate" value="#{empBasicInfo.basicInfoObj.insertedBy}" styleClass="ui-auditValue" />
+		</h:panelGrid>
+
+		<h:panelGrid columns="1" id="basicInfo_PGrid" styleClass="tab-panel" cellpadding="2" cellspacing="2">
+
+			<h:panelGrid columns="6" id="basicInfo_PGrid_Personal" styleClass="tab-panel" cellpadding="2" cellspacing="2">
+
+				<h:outputLabel for="basicInfo_empName" value="Name" />
+				<h:inputText value="#{empBasicInfo.basicInfoObj.empName}" id="basicInfo_empName" >
+					<!-- <f:validateLength minimum="5" maximum="100" /> -->
+				</h:inputText>
+			
+				<h:outputLabel for="basicInfo_loginId" value="Login ID" />
+				<h:inputText value="#{empBasicInfo.basicInfoObj.loginId}" id="basicInfo_loginId" >
+					<!-- <f:validateLength minimum="4" maximum="5" /> -->
+				</h:inputText>
+	
+				<h:outputLabel for="basicInfo_dateOfBirth" value="DOB" />
+				<p:calendar value="#{empBasicInfo.basicInfoObj.dateOfBirth}" id="basicInfo_dateOfBirth" effect="clip" 
+					pattern="dd-MM-yyyy"  styleClass="calendar-input" />
+					
+
+				<h:outputLabel for="basicInfo_empId" value="Emp No" />
+				<h:inputText id="basicInfo_empId" style="padding-right:0px !important;" value="#{empBasicInfo.basicInfoObj.empId}" >
+					<!-- <f:validateLength minimum="4" maximum="5" /> -->
+				</h:inputText>	
+				
+				<h:outputLabel for="basicInfo_designation" value="Designation" />
+				<p:selectOneMenu id="basicInfo_designation"  value="#{empBasicInfo.basicInfoObj.designation}" >
+					<f:selectItem itemValue="Select" itemLabel="Select" />
+					<f:selectItems value="#{empBasicInfo.designationCategory}" />					
+				</p:selectOneMenu>
+				
+				
+				<h:outputLabel for="basicInfo_joiningDate" value="DOJ" />
+				<p:calendar id="basicInfo_joiningDate" value="#{empBasicInfo.basicInfoObj.joiningDate}"
+					effect="clip" pattern="dd-MM-yyyy"  styleClass="calendar-input" />
+
+				<h:outputLabel for="basicInfo_secEmpId" value="FIS e-code" />
+				<h:inputText id="basicInfo_secEmpId" value="#{empBasicInfo.basicInfoObj.secondaryEmpId}" >
+					<!-- <f:validateLength minimum="8" maximum="10" /> -->
+				</h:inputText>
+				
+				<h:outputLabel for="basicInfo_gender" value="Gender" />
+				<p:selectBooleanButton id="basicInfo_gender" value="#{empBasicInfo.basicInfoObj.gender}"
+					onLabel="Male" offLabel="Female" offIcon="ui-icon-arrowrefresh-1-n"
+					onIcon="ui-icon-arrowrefresh-1-s" styleClass="ui-boolean-button" />
+
+				<h:outputLabel for="basicInfo_startDate" value="Start Date" />
+				<p:calendar id="basicInfo_startDate" value="#{empBasicInfo.basicInfoObj.startDate}"
+					effect="clip" pattern="dd-MM-yyyy"  styleClass="calendar-input" />
+					
+				</h:panelGrid>
+		
+
+			<h:panelGrid columns="6" id="basicInfo_PGrid_Email" styleClass="tab-panel" cellpadding="2" cellspacing="2">
+				<h:outputLabel for="basicInfo_officialEmailId" value="Official Email ID" />
+				<h:inputText id="basicInfo_officialEmailId" value="#{empBasicInfo.basicInfoObj.officialEmailId}" 
+					style="width: 280px !important;">
+					<f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@capco.com" />
+					<!-- <f:validateLength maximum="100" /> -->
+				</h:inputText>
+				
+				<h:outputLabel for="basicInfo_perosnalEmailId" value="Personal Email_ID" />
+				<h:inputText id="basicInfo_perosnalEmailId" value="#{empBasicInfo.basicInfoObj.perosnalEmailId}" 
+					style="width: 280px !important;">
+					<f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+					<!-- <f:validateLength maximum="100" /> -->
+				</h:inputText>
+			</h:panelGrid>
+			
+			<p:separator> 
+			<h:outputLabel value="Reference Details" styleClass="ui-staticLabel" style="color:blue;"/>
+		</p:separator>
+
+			<h:panelGrid columns="6" id="basicInfo_PGrid_Name" styleClass="tab-panel" cellpadding="2" cellspacing="2">
+
+				<h:outputLabel for="basicInfo_fileNo" value=" File no" />
+				<h:inputText id="basicInfo_fileNo" value="#{empBasicInfo.basicInfoObj.fileNo}" required="false">
+					<!-- <f:validateLength minimum="3" maximum="20" /> -->
+				</h:inputText>
+				
+				<h:outputLabel for="basicInfo_employeeStatus" value="Employment Status" />
+				<p:selectOneMenu id="basicInfo_employeeStatus"  value="#{empBasicInfo.basicInfoObj.employeeStatus}" >
+					<f:selectItem itemValue="N" itemLabel="Select" />
+					<f:selectItem itemValue="A" itemLabel="Active" />
+					<f:selectItem itemValue="I" itemLabel="Inactive" />
+				</p:selectOneMenu>
+			
+
+				<h:outputLabel for="basicInfo_typeOfEmployment" value="Type of Employment" />
+				<p:selectOneMenu id="basicInfo_typeOfEmployment"  value="#{empBasicInfo.basicInfoObj.typeOfEmployment}" >
+					<f:selectItem itemValue="Select" itemLabel="Select" />
+					<f:selectItem itemValue="New Hire" itemLabel="New Hire" />
+					<f:selectItem itemValue="Rehire" itemLabel="Rehire" />
+					<f:selectItem itemValue="Repat" itemLabel="Repat" />
+					<f:selectItem itemValue="Expat" itemLabel="Expat" />
+				</p:selectOneMenu>
+				
+
+
+				<h:outputLabel for="basicInfo_hcBpId" value="HCBP ID" />
+				<h:inputText id="basicInfo_hcBpId" value="#{empBasicInfo.basicInfoObj.hcBpId}" >
+					<!-- <f:validateLength maximum="100" /> -->
+				</h:inputText>
+			
+				<h:outputLabel for="basicInfo_project" value="Project" />
+				<p:selectOneMenu id="basicInfo_project" value="#{empBasicInfo.basicInfoObj.project}" >
+					<f:selectItem itemValue="Select" itemLabel="Select" />
+					<f:selectItems value="#{empBasicInfo.projectCategory}" />	
+					
+				</p:selectOneMenu>
+				
+
+				<h:outputLabel for="basicInfo_billingStatus" value="Billing Status" />
+				<p:selectBooleanButton id="basicInfo_billingStatus" value="#{empBasicInfo.basicInfoObj.billingStatus}"
+					onLabel="Yes" offLabel="No" onIcon="ui-icon-check" offIcon="ui-icon-close" 
+					styleClass="ui-boolean-button" />
+				
+					
+				<h:outputLabel for="basicInfo_contactNumber" value="Contact no" />
+				<h:inputText id="basicInfo_contactNumber" value="#{empBasicInfo.basicInfoObj.contactNumber}" required="false">
+					<!-- <f:validateLength maximum="15" /> -->
+				</h:inputText>
+				
+				<h:outputLabel for="basicInfo_assignedHouse" value="House List" />
+				<p:selectOneMenu id="basicInfo_assignedHouse"  value="#{empBasicInfo.basicInfoObj.assignedHouse}" >
+					<f:selectItem itemValue="Select" itemLabel="Select" />
+					<f:selectItem itemValue="R" itemLabel="Red" /> 
+					<f:selectItem itemValue="G" itemLabel="Green" />
+					<f:selectItem itemValue="B" itemLabel="Blue" />
+					<f:selectItem itemValue="Y" itemLabel="Yellow" />
+				</p:selectOneMenu>
+
+				<h:outputLabel for="basicInfo_service" value="Service" />
+				<p:selectBooleanButton id="basicInfo_service" value="#{empBasicInfo.basicInfoObj.service}"
+					onLabel="Yes" offLabel="No" onIcon="ui-icon-check" offIcon="ui-icon-close"
+					styleClass="ui-boolean-button" />
+
+				<h:outputLabel for="basicInfo_fteOrContractor" value="FTE/Contractor" />
+				<p:selectBooleanButton id="basicInfo_fteOrContractor" value="#{empBasicInfo.basicInfoObj.fteOrContractor}"
+					onLabel="FTE" offLabel="Contractor"  onIcon="ui-icon-arrowrefresh-1-n" offIcon="ui-icon-arrowrefresh-1-s" 
+					styleClass="ui-boolean-button" />
+
+				<h:outputLabel for="basicInfo_atpB" value="ATP" />
+				<p:selectBooleanButton id="basicInfo_atpB" value="#{empBasicInfo.basicInfoObj.atpB}"
+					onLabel="Yes" offLabel="No" onIcon="ui-icon-check"  offIcon="ui-icon-close"
+					styleClass="ui-boolean-button" />
+			</h:panelGrid>
+
+		</h:panelGrid>
+
+		<h:panelGrid columns="2" id="basicInfoSubmit_PGrid"
+			styleClass="button-panel" cellpadding="2" cellspacing="2">
+			<p:commandButton style="align:center;" value="Save" update="basicinfo_dTab" styleClass="submit-button" actionListener="#{empBasicInfo.insertEmpBasicInfo}" />
+
+			<p:commandButton value="Reset">
+				<p:ajax update="basicInfo_PGrid" resetValues="true" />
+			</p:commandButton>
+		</h:panelGrid>
+		
+			<p:dataTable id="basicinfo_dTab" value="#{empBasicInfo.basichistory}" 
+			rows="5"  paginator="true" widgetVar="projectTable" filteredValue="#{empBasicInfo.basicsearchhistory}"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15" lazy="false"
+				var="basic"  style="width: 230%; height: 150%; " styleClass="employeeTable" border="1" rowStyleClass="#{(row mod 2) eq 0 ? 'employeeTableEvenRow' : 'employeeTableOddRow'}"  
+				headerClass="employeeTableHeader" rowIndexVar="rowId">
+				
+		<f:facet name="header">
+   		 <p:outputPanel>
+       		 <h:outputText value="Search all fields:" />
+       		 <h:inputText id="globalFilter" onkeyup="PF('projectTable').filter()" />
+   		 </p:outputPanel>
+		</f:facet>
+		
+				<f:facet name="header">
+					Basic Info History List
+		      	</f:facet>
+		      
+		      	<p:column>
+				<f:facet name="header" >Sr. No.</f:facet>
+				<h:outputText value="#{rowId}"/>
+				</p:column>
+				
+				<p:column sortBy="#{basic.empId}" filterBy="#{basic.empId}">
+				<f:facet name="header">EMP ID</f:facet>
+				<h:outputText value="#{basic.empId}"/>
+				</p:column>
+				
+				<p:column sortBy="#{basic.empName}" filterBy="#{basic.empName}">
+				<f:facet name="header">NAME</f:facet>
+				<h:inputText value="#{basic.empName}"/>
+				</p:column>
+				
+				<p:column sortBy="#{basic.loginId}" filterBy="#{basic.loginId}">
+				<f:facet name="header">LOGIN ID</f:facet>
+				<h:inputText value="#{basic.loginId}"/>
+				</p:column>
+		      	
+		      	<p:column sortBy="#{basic.dateOfBirth}">
+				<f:facet name="header">DOB</f:facet>
+				<p:calendar  value="#{basic.dateOfBirth}"
+						effect="clip" pattern="dd-MM-yyyy" styleClass="calendar-input" />
+						
+				
+				</p:column>
+		      	
+		      	<p:column sortBy="#{basic.designation}" filterBy="#{basic.designation}">
+				<f:facet name="header">DESIGNATION</f:facet>
+				<p:selectOneMenu  value="#{basic.designation}" >
+					<f:selectItem itemValue="Select" itemLabel="Select" />
+					<f:selectItems value="#{empBasicInfo.designationCategory}" />					
+				</p:selectOneMenu>
+				</p:column>
+				
+				<p:column sortBy="#{basic.joiningDate}">
+				<f:facet name="header">DOJ</f:facet>
+				<p:calendar  value="#{basic.joiningDate}"
+						effect="clip" pattern="dd-MM-yyyy" styleClass="calendar-input" />
+				
+				</p:column>
+				
+				<p:column sortBy="#{basic.secondaryEmpId}" filterBy="#{basic.secondaryEmpId}">
+				<f:facet name="header">FIS E-CODE</f:facet>
+				<h:inputText value="#{basic.secondaryEmpId}"/>
+				</p:column>
+				
+				<p:column sortBy="#{basic.gender}">
+				<f:facet name="header">GENDER</f:facet>
+				<p:selectBooleanButton value="#{basic.gender}"
+					onLabel="Male" offLabel="Female" onIcon="ui-icon-check" offIcon="ui-icon-close" 
+					styleClass="ui-boolean-button" />
+				</p:column>
+				
+				<p:column sortBy="#{basic.startDate}">
+				<f:facet name="header">START DATE</f:facet>
+				<p:calendar  value="#{basic.startDate}"
+						effect="clip" pattern="dd-MM-yyyy" styleClass="calendar-input" />
+				</p:column>
+				
+				<p:column sortBy="#{basic.officialEmailId}" filterBy="#{basic.officialEmailId}">
+				<f:facet name="header">Official Email ID</f:facet>
+				<h:inputTextarea rows="2" cols="10" value="#{basic.officialEmailId}"  />
+				</p:column>
+				
+				<p:column sortBy="#{basic.perosnalEmailId}" filterBy="#{basic.perosnalEmailId}">
+				<f:facet name="header">Personal Email_ID</f:facet>
+				<h:inputTextarea rows="2" cols="10" value="#{basic.perosnalEmailId}"/>
+				</p:column>
+				
+				<p:column sortBy="#{basic.fileNo}" filterBy="#{basic.fileNo}">
+				<f:facet name="header">File no</f:facet>
+				<h:inputText value="#{basic.fileNo}"/>
+				</p:column>
+				
+				<p:column sortBy="#{basic.employeeStatus}" filterBy="#{basic.employeeStatus}">
+				<f:facet name="header">Employment Status</f:facet>
+				<p:selectOneMenu  value="#{basic.employeeStatus}" >
+					<f:selectItem itemValue="N" itemLabel="Select" />
+					<f:selectItem itemValue="A" itemLabel="Active" />
+					<f:selectItem itemValue="I" itemLabel="Inactive" />
+				</p:selectOneMenu>
+				</p:column>
+				
+				<p:column sortBy="#{basic.typeOfEmployment}" filterBy="#{basic.typeOfEmployment}">
+				<f:facet name="header">Type of Employment</f:facet>
+				<p:selectOneMenu  value="#{basic.typeOfEmployment}" >
+					<f:selectItem itemValue="Select" itemLabel="Select" />
+					<f:selectItem itemValue="New Hire" itemLabel="New Hire" />
+					<f:selectItem itemValue="Rehire" itemLabel="Rehire" />
+					<f:selectItem itemValue="Repat" itemLabel="Repat" />
+					<f:selectItem itemValue="Expat" itemLabel="Expat" />
+				</p:selectOneMenu>
+				</p:column>
+				
+				<p:column sortBy="#{basic.hcBpId}" filterBy="#{basic.hcBpId}">
+				<f:facet name="header">HCBP ID</f:facet>
+				<h:inputText value="#{basic.hcBpId}"/>
+				</p:column>
+		      	
+		      	<p:column sortBy="#{basic.project}" filterBy="#{basic.project}">
+				<f:facet name="header">Project</f:facet>
+				<p:selectOneMenu  value="#{basic.project}" >
+					<f:selectItem itemValue="Select" itemLabel="Select" />
+					<f:selectItems value="#{empBasicInfo.projectCategory}" />	
+					
+				</p:selectOneMenu>
+				</p:column>
+				
+				
+				<p:column sortBy="#{basic.billingStatus}">
+				<f:facet name="header">Billing Status</f:facet>
+				<p:selectBooleanButton value="#{basic.billingStatus}"
+					onLabel="Yes" offLabel="No" onIcon="ui-icon-check" offIcon="ui-icon-close" 
+					styleClass="ui-boolean-button" />
+				</p:column>
+				
+				<p:column sortBy="#{basic.contactNumber}" filterBy="#{basic.contactNumber}">
+				<f:facet name="header"> Contact no</f:facet>
+				<h:inputText value="#{basic.contactNumber}"/>
+				</p:column>
+				
+				<p:column sortBy="#{basic.assignedHouse}" filterBy="#{basic.assignedHouse}">
+				<f:facet name="header">	House List</f:facet>
+				<p:selectOneMenu  value="#{basic.assignedHouse}" >
+					<f:selectItem itemValue="Select" itemLabel="Select" />
+					<f:selectItem itemValue="R" itemLabel="Red" /> 
+					<f:selectItem itemValue="G" itemLabel="Green" />
+					<f:selectItem itemValue="B" itemLabel="Blue" />
+					<f:selectItem itemValue="Y" itemLabel="Yellow" />
+				</p:selectOneMenu>
+				
+				</p:column>
+				
+				<p:column sortBy="#{basic.service}" filterBy="#{basic.service}">
+				<f:facet name="header">	Service</f:facet>
+				<p:selectBooleanButton value="#{basic.service}"
+					onLabel="Yes" offLabel="No" onIcon="ui-icon-check" offIcon="ui-icon-close" 
+					styleClass="ui-boolean-button" />
+				</p:column>
+				
+		      	<p:column sortBy="#{basic.fteOrContractor}">
+					<f:facet name="header">	FTE/Contractor</f:facet>
+				<p:selectBooleanButton value="#{basic.fteOrContractor}"
+					onLabel="FTE" offLabel="Contractor"  onIcon="ui-icon-arrowrefresh-1-n" offIcon="ui-icon-arrowrefresh-1-s" 
+					styleClass="ui-boolean-button" />
+				</p:column>
+		      	
+		      	<p:column sortBy="#{basic.atpB}">
+					<f:facet name="header">ATP</f:facet>
+					<p:selectBooleanButton value="#{basic.atpB}"
+					onLabel="Yes" offLabel="No" onIcon="ui-icon-check" offIcon="ui-icon-close" 
+					styleClass="ui-boolean-button" />
+				</p:column>
+		      	
+		    	<p:column>		
+					<f:facet name="header">STATUS</f:facet>
+					<h:outputText value="#{basic.deletedB eq true ? 'DELETED' : ''}"/>
+				</p:column>
+			
+				<!-- <p:column style="width: auto; text-align: center !important;">
+					<f:facet name="header">Click To Load</f:facet>
+					<p:commandButton icon="ui-icon-search" oncomplete="PF('projectConfirm').show()" update="@form" 
+						actionListener="#{projectHistoryInfo.setSelectedProjectHistoryForLoad(pro)}" 
+						styleClass="search-button">
+					</p:commandButton>
+				</p:column> -->
+				
+					<p:column style="width: auto; text-align: center !important;">
+						<f:facet name="header">SAVE</f:facet>
+						<p:commandButton icon="ui-icon-disk" 
+						update="basicinfo_dTab" actionListener="#{empBasicInfo.updateBasicHistory(basic)}" 
+						styleClass="search-button">
+						</p:commandButton>
+					</p:column>
+			
+			
+			<p:column style="width: auto; text-align: center !important;">
+					<f:facet name="header">DELETE</f:facet>
+					<p:commandButton icon="ui-icon-trash"  styleClass="search-button" 
+				 	update="basicinfo_dTab" actionListener="#{empBasicInfo.deleteBasicHistoryRecord(basic)}" >
+ 					</p:commandButton>
+			</p:column>
+			
+			</p:dataTable>
+
+		
+
+
+	</h:form>
+
+</ui:composition>

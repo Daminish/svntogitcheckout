@@ -1,0 +1,509 @@
+<header>
+	<nav>
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-3">
+					<p class="liv-head-back-btm">
+						<i class="fa fa-chevron-left"></i>&nbsp;<a ng-href="/#!/estimatebudget2">Back</a>
+					</p>
+				</div>
+				<div class="col-xs-7">
+					<p class="liv-head-heading">Estimate Budget</p>
+				</div>
+				<div class="col-xs-2">
+					<p class="liv-head-info-icon">
+						<a ng-href="javascript:void(0)" ng-click="budgeting()">Next </a>
+					</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-3"></div>
+				<div class="col-md-6 col-xs-12 liv-head-btm-text">
+					<p class="text-center">Hey Steve ! You have $ 15,00,000 as per
+						approved loan</p>
+				</div>
+				<div class="col-md-3"></div>
+			</div>
+		</div>
+		</div>
+	</nav>
+</header>
+<div class="bgclr" >
+	<div>
+		<center>
+			<h3>
+				Monthly Expenses <i class="fa fa-info-circle" aria-hidden="true"></i>
+			</h3>
+		</center>
+		<center>
+			<h4>
+				<i class="fa fa-usd" aria-hidden="true"></i>{{total()}}
+			</h4>
+		</center>
+	</div>
+
+	<div class="row White_bg">
+		<div class="col-xs-8">
+			<p class="Paragrph-green">DEBIT PAYMENTS</p>
+		</div>
+		<div class="col-xs-4">
+			<p class="Icon-rightarrow" data-toggle="modal" data-target="#myModal">
+				<i class="fa fa-chevron-right " aria-hidden="true"></i>
+			</p>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-xs-8">
+			<p class="Pading20">Credit card</p>
+		</div>
+		<div class="col-xs-4">
+			<p class="Pading20 text-right">${{budget.monthlyExpenses.creadit_card}}</p>
+		</div>
+	</div>
+
+	<div class="row ">
+		<div class="col-xs-8">
+			<p class="Pading20">Loan repayments</p>
+		</div>
+		<div class="col-xs-4">
+			<p class="Pading20 text-right">${{budget.monthlyExpenses.loan_rapayment}}</p>
+		</div>
+	</div>
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content col-xs-12">
+				<div class="modal-header col-xs-12">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">DEBIT PAYMENTS</h4>
+				</div>
+				<div class="modal-body col-xs-12">
+					
+					
+					<div class="col-xs-12 popup-form-box">
+						<div class="col-xs-6 popup-inner">
+							<span>Payment Type</span>
+						</div>
+						<div class="col-xs-6 popup-inner">
+							<select class="form-control" id="sel1">
+							    <option>Credit Card</option>
+							    <option>Loan repayments</option>
+							    
+							  </select>
+						</div>
+					</div>
+					<div class="col-xs-12 popup-form-box">
+						<div class="col-xs-6 popup-inner">
+							<span>Amount</span>
+						</div>
+						<div class="col-xs-6 popup-inner">
+							<input type="text" class="form-control" ng-model="budget.monthlyExpenses.creadit_card" value="800">
+						</div>
+					</div>
+					<div class="col-xs-12 popup-form-box">
+						<div class="col-xs-6 popup-inner">
+							<span>Payment Type</span>
+						</div>
+						<div class="col-xs-6 popup-inner">
+							<select class="form-control" id="sel2">
+							<option>Loan repayments</option>
+							    <option>Credit Card</option>
+							    
+							    
+							  </select>
+						</div>
+					</div>
+					<div class="col-xs-12 popup-form-box">
+						<div class="col-xs-6 popup-inner">
+							<span>Amount</span>
+						</div>
+						<div class="col-xs-6 popup-inner">
+							<input type="text" class="form-control" ng-model="budget.monthlyExpenses.loan_rapayment" value="800">
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					
+					<button type="button" class="btn btn-default" data-dismiss="modal">Add</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+
+	<div class="row White_bg">
+		<div class="col-xs-8">
+			<p class="Paragrph-green">BILL PAYMENTS</p>
+		</div>
+		<div class="col-xs-4">
+			<p class="Icon-rightarrow" data-toggle="modal" data-target="#billModal">
+				<i class="fa fa-chevron-right " aria-hidden="true"></i>
+			</p>
+		</div>
+	</div>
+	<!-- Modal -->
+	<div class="modal fade" id="billModal" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content col-xs-12">
+				<div class="modal-header col-xs-12">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">BILL PAYMENT</h4>
+				</div>
+				<div class="modal-body col-xs-12">
+					
+					
+					<div class="col-xs-12 popup-form-box">
+						<div class="col-xs-6 popup-inner">
+							<span>Type</span>
+						</div>
+						<div class="col-xs-6 popup-inner">
+							<input type="text" class="form-control text-left" value="Electricity" readonly="readonly">
+						</div>
+					</div>
+					<div class="col-xs-12 popup-form-box">
+						<div class="col-xs-6 popup-inner">
+							<span>Amount</span>
+						</div>
+						<div class="col-xs-6 popup-inner">
+							<input type="text" class="form-control" ng-model="budget.monthlyExpenses.electricity_bill" value="8000">
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					
+					<button type="button" class="btn btn-default" data-dismiss="modal">Add</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	
+
+	<div class="row">
+		<div class="col-xs-8">
+			<p class="Pading20">Electricity</p>
+		</div>
+		<div class="col-xs-4">
+			<p class="Pading20 text-right">${{budget.monthlyExpenses.electricity_bill}}</p>
+		</div>
+	</div>
+
+	<div class="row White_bg">
+		<div class="col-xs-8">
+			<p class="Paragrph-green">ENTERTAINMENT</p>
+		</div>
+		<div class="col-xs-4">
+			<p class="Icon-rightarrow" data-toggle="modal" data-target="#ENTERTAINMENTModal">
+				<i class="fa fa-chevron-right " aria-hidden="true"></i>
+			</p>
+		</div>
+	</div>
+
+
+	<!-- Modal -->
+	<div class="modal fade" id="ENTERTAINMENTModal" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content col-xs-12">
+				<div class="modal-header col-xs-12">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">ENTERTAINMENT</h4>
+				</div>
+				<div class="modal-body col-xs-12">
+					
+					
+					<div class="col-xs-12 popup-form-box">
+						<div class="col-xs-6 popup-inner">
+							<span>Type</span>
+						</div>
+						<div class="col-xs-6 popup-inner">
+							<input type="text" class="form-control text-left" value="Cinema" readonly="readonly">
+						</div>
+					</div>
+					<div class="col-xs-12 popup-form-box">
+						<div class="col-xs-6 popup-inner">
+							<span>Amount</span>
+						</div>
+						<div class="col-xs-6 popup-inner">
+							<input type="text" class="form-control" value="10000" ng-model="budget.monthlyExpenses.cinema">
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					
+					<button type="button" class="btn btn-default" data-dismiss="modal">Add</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-xs-8">
+			<p class="Pading20">Cinema</p>
+		</div>
+		<div class="col-xs-4">
+			<p class="Pading20 text-right">${{budget.monthlyExpenses.cinema}}</p>
+		</div>
+	</div>
+
+	<div class="row White_bg">
+		<div class="col-xs-8">
+			<p class="Paragrph-green">HOME</p>
+		</div>
+		<div class="col-xs-4">
+			<p class="Icon-rightarrow" data-toggle="modal" data-target="#HOMEModal">
+				<i class="fa fa-chevron-right " aria-hidden="true"></i>
+			</p>
+		</div>
+	</div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="HOMEModal" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content col-xs-12">
+				<div class="modal-header col-xs-12">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">HOME</h4>
+				</div>
+				<div class="modal-body col-xs-12">
+					
+					
+					<div class="col-xs-12 popup-form-box">
+						<div class="col-xs-6 popup-inner">
+							<span>Type</span>
+						</div>
+						<div class="col-xs-6 popup-inner">
+							<input type="text" class="form-control text-left" value="Maintenance" readonly="readonly">
+						</div>
+					</div>
+					<div class="col-xs-12 popup-form-box">
+						<div class="col-xs-6 popup-inner">
+							<span>Amount</span>
+						</div>
+						<div class="col-xs-6 popup-inner">
+							<input type="text" class="form-control" value="10000" ng-model="budget.monthlyExpenses.maintenance">
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					
+					<button type="button" class="btn btn-default" data-dismiss="modal">Add</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-xs-8">
+			<p class="Pading20">Maintenance</p>
+		</div>
+		<div class="col-xs-4">
+			<p class="Pading20 text-right">${{budget.monthlyExpenses.maintenance}}</p>
+		</div>
+	</div>
+
+	<div class="row White_bg">
+		<div class="col-xs-8">
+			<p class="Paragrph-green">FAMILY</p>
+		</div>
+		<div class="col-xs-4">
+			<p class="Icon-rightarrow" data-toggle="modal" data-target="#FAMILYModal">
+				<i class="fa fa-chevron-right " aria-hidden="true"></i>
+			</p>
+		</div>
+	</div>
+	
+	<!-- Modal -->
+	<div class="modal fade" id="FAMILYModal" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content col-xs-12">
+				<div class="modal-header col-xs-12">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">HOME</h4>
+				</div>
+				<div class="modal-body col-xs-12">
+					
+					
+					<div class="col-xs-12 popup-form-box">
+						<div class="col-xs-6 popup-inner">
+							<span>Type</span>
+						</div>
+						<div class="col-xs-6 popup-inner">
+							<input type="text" class="form-control text-left" value="Child Care" readonly="readonly">
+						</div>
+					</div>
+					<div class="col-xs-12 popup-form-box">
+						<div class="col-xs-6 popup-inner">
+							<span>Amount</span>
+						</div>
+						<div class="col-xs-6 popup-inner">
+							<input type="text" class="form-control" value="1000" ng-model="budget.monthlyExpenses.child_care">
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					
+					<button type="button" class="btn btn-default" data-dismiss="modal">Add</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-xs-8">
+			<p class="Pading20">Child Care</p>
+		</div>
+		<div class="col-xs-4">
+			<p class="Pading20 text-right">${{budget.monthlyExpenses.child_care}}</p>
+		</div>
+	</div>
+
+	<div class="row White_bg">
+		<div class="col-xs-8">
+			<p class="Paragrph-green">PERSONAL</p>
+		</div>
+		<div class="col-xs-4">
+			<p class="Icon-rightarrow" data-toggle="modal" data-target="#PERSONALModal">
+				<i class="fa fa-chevron-right " aria-hidden="true"></i>
+			</p>
+		</div>
+	</div>
+	
+	<!-- Modal -->
+	<div class="modal fade" id="PERSONALModal" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content col-xs-12">
+				<div class="modal-header col-xs-12">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">PERSONAL</h4>
+				</div>
+				<div class="modal-body col-xs-12">
+					
+					
+					<div class="col-xs-12 popup-form-box">
+						<div class="col-xs-6 popup-inner">
+							<span>Type</span>
+						</div>
+						<div class="col-xs-6 popup-inner">
+							<input type="text" class="form-control text-left" value="Fitness" readonly="readonly">
+						</div>
+					</div>
+					<div class="col-xs-12 popup-form-box">
+						<div class="col-xs-6 popup-inner">
+							<span>Amount</span>
+						</div>
+						<div class="col-xs-6 popup-inner">
+							<input type="text" class="form-control" value="10000" ng-model="budget.monthlyExpenses.fitness">
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					
+					<button type="button" class="btn btn-default" data-dismiss="modal">Add</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-xs-8">
+			<p class="Pading20">Fitness</p>
+		</div>
+		<div class="col-xs-4">
+			<p class="Pading20 text-right">${{budget.monthlyExpenses.fitness}}</p>
+		</div>
+	</div>
+
+	<div class="row White_bg">
+		<div class="col-xs-8">
+			<p class="Paragrph-green">TRANSPORT</p>
+		</div>
+		<div class="col-xs-4">
+			<p class="Icon-rightarrow" data-toggle="modal" data-target="#TRANSPORTModal">
+				<i class="fa fa-chevron-right " aria-hidden="true"></i>
+			</p>
+		</div>
+	</div>
+	
+	<!-- Modal -->
+	<div class="modal fade" id="TRANSPORTModal" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content col-xs-12">
+				<div class="modal-header col-xs-12">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">TRANSPORT</h4>
+				</div>
+				<div class="modal-body col-xs-12">
+					
+					
+					<div class="col-xs-12 popup-form-box">
+						<div class="col-xs-6 popup-inner">
+							<span>Type</span>
+						</div>
+						<div class="col-xs-6 popup-inner">
+							<input type="text" class="form-control text-left" value="Fuel" readonly="readonly">
+						</div>
+					</div>
+					<div class="col-xs-12 popup-form-box">
+						<div class="col-xs-6 popup-inner">
+							<span>Amount</span>
+						</div>
+						<div class="col-xs-6 popup-inner">
+							<input type="text" class="form-control" value="10000" ng-model="budget.monthlyExpenses.fuel">
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					
+					<button type="button" class="btn btn-default" data-dismiss="modal">Add</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-xs-8">
+			<p class="Pading20">Fuel</p>
+		</div>
+		<div class="col-xs-4">
+			<p class="Pading20 text-right">${{budget.monthlyExpenses.fuel}}</p>
+		</div>
+	</div>
+
+	<div class="row White_bg">
+		<div class="col-xs-8">
+			<p class="Paragrph-green">OTHER</p>
+		</div>
+		<div class="col-xs-4">
+			<p class="Icon-rightarrow">
+				<i class="fa fa-chevron-right " aria-hidden="true"></i>
+			</p>
+		</div>
+	</div>
+
+
+</div>
+
+
+</div>
+

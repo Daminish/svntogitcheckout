@@ -1,0 +1,64 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:form>
+	<h:panelGrid columns="4" id="empBio_PGrid" styleClass="tab-panel" 
+			style="font: georgia, sans-serif; color: #555753; font-weight: bold; background-color: #c4c2c2; margin:0 0 0 0 !important; 
+						padding:0px !important; width:100% !important;">
+			
+		<h:panelGrid columns="2">
+			<h:outputLabel value="Employee Name" for="empBio_empName"/>
+			<p:panel style="width: 250px !important; border: none !important; background-color: #c4c2c2;">
+				<h:inputText id="empBio_empName" readonly="true" value="#{empSummaryView.bioEmployeeName}" />
+				<p:commandButton icon="ui-icon-search" action="search" title="SEARCH FOR EMPLOYEE" styleClass="search-button"/>
+			</p:panel>
+		
+			<h:outputLabel value="Employment Status" for="empBio_empStatus"/>
+			<p:panel style="width: 250px !important; border: none !important; background-color: #c4c2c2;">
+				<h:inputText id="empBio_empStatus" readonly="true" value="#{empSummaryView.bioStatus eq 'A' ? 'ACTIVE' : 'INACTIVE'}"/>
+			</p:panel>
+		
+			</h:panelGrid>
+
+
+		<h:panelGrid columns="2">
+			<h:outputLabel value="Employee Id (CAPCO)" for="empBio_primEmpId"/>
+			<p:panel style="width: 250px !important; border: none !important; background-color: #c4c2c2;">
+				<h:inputText id="empBio_primEmpId" readonly="true" value="#{empSummaryView.bioPrimaryEmpId}" />
+				<p:commandButton icon="ui-icon-search" action="search" title="SEARCH FOR EMPLOYEE" styleClass="search-button"/>
+			</p:panel>
+	
+			<h:outputLabel value="Employee Designation" for="empBio_empDesgn"/>
+			<p:panel style="width: 250px !important; border: none !important; background-color: #c4c2c2;">
+				<h:inputText id="empBio_empDesgn" readonly="true" value="#{empSummaryView.bioEmpDesignation}"/>
+			</p:panel>
+		</h:panelGrid>
+
+		<h:panelGrid columns="2">
+			<h:outputLabel value="Employee Id (FIS)" for="empBio_secEmpId"/>
+			<p:panel style="width: 250px !important; border: none !important; background-color: #c4c2c2;">
+				<h:inputText id="empBio_secEmpId" readonly="true" value="#{empSummaryView.bioSecondaryEmpId}"/>
+				<p:commandButton icon="ui-icon-search" action="search" title="SEARCH FOR EMPLOYEE" styleClass="search-button"/>
+			</p:panel>
+	
+			<h:outputLabel value="Employee Date of Joining" for="empBio_empDOJ"/>
+			<p:panel style="width: 250px !important; border: none !important; background-color: #c4c2c2;">
+				<h:inputText id="empBio_empDOJ" readonly="true" value="#{empSummaryView.bioJoiningDate}"/>
+			</p:panel>
+		</h:panelGrid>
+
+		<p:panel style="font: georgia, sans-serif; color: #555753; font-weight: bold; background-color: #c6b1b1; 
+					width: 100% !important; text-align:right; float: right; margin: 0 0 0 0 !important;
+							border-style: solid; border-left: thick double #ff0000; display:block;">
+			<p:outputLabel value="#{empSummaryView.currentUserId}"/>
+			<p:commandButton icon=" ui-icon-power" actionListener="#{userLoginView.logout}" title="LOGOUT" styleClass="search-button">
+			<f:ajax />
+			</p:commandButton>
+		</p:panel>
+
+	</h:panelGrid>
+	</h:form> 
+</ui:composition>

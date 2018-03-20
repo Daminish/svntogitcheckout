@@ -1,0 +1,20 @@
+angular.module('myApp')
+.controller("loginCtrl",function ($scope,$location,userAuthentication,jsonTransfer,travelRequest) {
+	$scope.user={};
+	$scope.login=function(){
+		console.log("user ",$scope.user);
+		userAuthentication.loginUser($scope.user).then(function(res){
+			if(res.data.isApprover==true){
+				userAuthentication.level=2;
+				alert(userAuthentication.level)
+			}
+			jsonTransfer.setInfo(res.data)
+			$location.path('/home');
+		});
+			
+	}
+
+	$scope.returnHome = function(){
+		$location.path('/home');
+	}
+})

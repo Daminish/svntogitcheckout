@@ -1,0 +1,397 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+
+	<h:form id="hcmLetter_form">
+	<p:messages showSummary="true" styleClass="ui-errorLabel" />
+	
+		<p:layout
+			style="min-width:400px; min-height:800px; border: none !important; padding:0px !important; margin: 0px !important;">
+			<p:layoutUnit position="north">
+				<h:panelGrid columns="4" styleClass="tab-panel" cellpadding="2"
+					cellspacing="2" id="empBio_PGrid"
+					style="font: georgia, sans-serif; color: #555753; font-weight: bold; background-color: #c4c2c2; margin:0 0 0 0 !important; 
+						padding:0px !important; width:100% !important;">
+
+					<h:panelGrid columns="2">
+						<h:outputLabel value="Employee Name" for="hcm_empName" />
+						<p:panel
+							style="width: 250px !important; border: none !important; background-color: #c4c2c2;">
+							<h:inputText id="hcm_empName" 
+								value="#{letterReqView.letterReqObj.empName}" />
+
+						</p:panel>
+
+						<h:outputLabel value="Employment Status" for="hcm_empStatus" />
+						<p:panel
+							style="width: 250px !important; border: none !important; background-color: #c4c2c2;">
+							<p:selectBooleanButton id="hcm_empStatus" value="#{letterReqView.letterReqObj.status}"
+								onLabel="ACTIVE" offLabel="INACTIVE"  styleClass="ui-boolean-button" />
+							
+						</p:panel>
+					</h:panelGrid>
+
+
+					<h:panelGrid columns="2">
+						<h:outputLabel value="Employee Id (CAPCO)" for="hcm_primEmpId" />
+						<p:panel
+							style="width: 250px !important; border: none !important; background-color: #c4c2c2;">
+							<h:inputText id="hcm_primEmpId"
+								value="#{letterReqView.letterReqObj.empIdCapco}" />
+						</p:panel>
+
+						<h:outputLabel value="Passport Number" for="hcm_passport" />
+						<p:panel
+							style="width: 250px !important; border: none !important; background-color: #c4c2c2;">
+							<h:inputText id="hcm_passport" 
+								value="#{letterReqView.letterReqObj.passportNumber}" />
+						</p:panel>
+					</h:panelGrid>
+
+					<h:panelGrid columns="2">
+						<h:outputLabel value="Employee Id (FIS)" for="hcm_secEmpId" />
+						<p:panel
+							style="width: 250px !important; border: none !important; background-color: #c4c2c2;">
+							<h:inputText id="hcm_secEmpId" 
+								value="#{letterReqView.letterReqObj.fisEid}" />
+						</p:panel>
+
+
+					</h:panelGrid>
+
+
+				</h:panelGrid>
+			</p:layoutUnit>
+
+			<p:layoutUnit position="center" style="min-width:400px; min-height:600px; border: none !important; padding:0px !important; margin: 0px !important;">
+				<h:panelGrid columns="4" id="hcm_PGrid" styleClass="tab-panel" cellpadding="2" cellspacing="2">
+					<h:panelGrid columns="1" style="border: none !important;">
+						<p:outputLabel for="hcmLetReq_typeLetter" value="Letter Type"/>
+						<p:selectOneMenu id="hcmLetReq_typeLetter" required="true" value="#{letterReqView.letterReqObj.typeOfLetter}" immediate="true">
+							<f:selectItem itemLabel="Employment Letter" itemValue="Employment Letter" />
+							<f:selectItem itemLabel="Address Proof" itemValue="Address Proof" />
+							<f:selectItem itemLabel="Invite Letter" itemValue="Invite Letter" />
+							<f:selectItem itemLabel="Cover Letter" itemValue="Cover Letter" />
+							<f:selectItem itemLabel="Other Visa Letter" itemValue="Other Visa Letter" />
+							<f:ajax render="hcm_PGrid_condition" />
+							<f:ajax render="hcm_PGrid_condition_travel" />
+							<f:ajax render="hcm_PGrid_condition_otherVisaLetter" />
+							<f:ajax render="hcm_PGrid_condition_addProof"/>
+							<f:ajax render="hcm_PGrid_condition_address"/>
+						</p:selectOneMenu>
+					</h:panelGrid>
+
+					<h:panelGrid columns="6" id="hcm_PGrid_condition" styleClass="tab-panel" cellpadding="2" cellspacing="2">
+						<h:panelGrid columns="1" style="border: none !important;">
+							<p:outputLabel for="hcmLetReq_letterPurpose" value="Purpose of Letter"
+								rendered="#{letterReqView.letterReqObj.typeOfLetter eq 'Address Proof' ? true : false}" immediate="true"/>
+							<p:selectOneMenu id="hcmLetReq_letterPurpose"  value="#{letterReqView.letterReqObj.letterPurpose}"
+								rendered="#{letterReqView.letterReqObj.typeOfLetter eq 'Address Proof' ? true : false}" immediate="true">
+								<f:selectItem itemLabel="-- SELECT --" itemValue="" />
+								<f:selectItem itemLabel="Bank Account" itemValue="Bank Account" />
+								<f:selectItem itemLabel="Bank Loan" itemValue="Bank Loan" />
+								<f:selectItem itemLabel="Credit card" itemValue="Credit Card" />
+								<f:selectItem itemLabel="New Gas Connection" itemValue="New Gas Connection" />
+								<f:selectItem itemLabel="Passport renewal" itemValue="Passport Renewal" />
+								<f:selectItem itemLabel="Others" itemValue="Others" />
+								<f:ajax render="hcm_PGrid_condition_addLetOther" />
+							</p:selectOneMenu>
+						</h:panelGrid>
+
+						<h:panelGrid columns="4" id="hcm_PGrid_condition_travel" styleClass="tab-panel" cellpadding="2" cellspacing="2">
+							<h:outputLabel for="hcmLetReq_travelCountry" value="Travel Country"
+								rendered="#{letterReqView.letterReqObj.typeOfLetter eq 'Invite Letter' ? true : false}" />
+							<p:inputText id="hcmLetReq_travelCountry" value="#{letterReqView.letterReqObj.travelCountry}" required="true"
+								rendered="#{letterReqView.letterReqObj.typeOfLetter eq 'Invite Letter' ? true : false}">
+									<f:validateLength minimum="3" maximum="25" />
+								</p:inputText>
+
+							<h:outputLabel for="hcmLetReq_fromPassport" value="Passport Valid From"
+								rendered="#{letterReqView.letterReqObj.typeOfLetter eq 'Invite Letter' ? true : false}" />
+							<p:calendar id="hcmLetReq_fromPassport" value="#{letterReqView.letterReqObj.passportFromDate}"
+								effect="clip" pattern="dd-MM-yyyy" required="true" styleClass="calendar-input"
+								rendered="#{letterReqView.letterReqObj.typeOfLetter eq 'Invite Letter' ? true : false}" />
+
+							<h:outputLabel for="hcmLetReq_toPassport" value="Passport Valid To"
+								rendered="#{letterReqView.letterReqObj.typeOfLetter eq 'Invite Letter' ? true : false}" />
+							<p:calendar id="hcmLetReq_toPassport" value="#{letterReqView.letterReqObj.passportEndDate}"
+								effect="clip" pattern="dd-MM-yyyy" required="true" styleClass="calendar-input"
+								rendered="#{letterReqView.letterReqObj.typeOfLetter eq 'Invite Letter' ? true : false}" />
+
+							<h:outputLabel for="hcmLetReq_stayForm" value="Duration of Stay from"
+								rendered="#{letterReqView.letterReqObj.typeOfLetter eq 'Invite Letter' ? true : false}" />
+							<p:calendar id="hcmLetReq_stayForm" value="#{letterReqView.letterReqObj.stayFrom}" effect="clip"
+								pattern="dd-MM-yyyy" required="true" styleClass="calendar-input"
+								rendered="#{letterReqView.letterReqObj.typeOfLetter eq 'Invite Letter' ? true : false}" />
+
+							<h:outputLabel for="hcmLetReq_stayTo" value="Duration of Stay To"
+								rendered="#{letterReqView.letterReqObj.typeOfLetter eq 'Invite Letter' ? true : false}" />
+							<p:calendar id="hcmLetReq_stayTo" value="#{letterReqView.letterReqObj.stayTo}" effect="clip"
+								pattern="dd-MM-yyyy" required="true" styleClass="calendar-input"
+								rendered="#{letterReqView.letterReqObj.typeOfLetter eq 'Invite Letter' ? true : false}" />
+
+							<h:outputLabel for="hcmLetReq_designation" value="Designation"
+								rendered="#{letterReqView.letterReqObj.typeOfLetter eq 'Invite Letter' ? true : false}" />
+							<p:inputText id="hcmLetReq_designation" required="true" value="#{letterReqView.letterReqObj.designation}"
+								rendered="#{letterReqView.letterReqObj.typeOfLetter eq 'Invite Letter' ? true : false}">
+									<f:validateLength minimum="3" maximum="25" />
+								</p:inputText>
+								
+
+							<h:outputLabel for="hcmLetReq_passportName" value="Name as Per Passport"
+								rendered="#{letterReqView.letterReqObj.typeOfLetter eq 'Invite Letter' ? true : false}" />
+							<p:inputText id="hcmLetReq_passportName" required="true" value="#{letterReqView.letterReqObj.passportName}"
+								rendered="#{letterReqView.letterReqObj.typeOfLetter eq 'Invite Letter' ? true : false}">
+									<f:validateLength minimum="3" maximum="25" />
+								</p:inputText>
+
+							<h:outputLabel for="hcmLetReq_gender" value="Gender"
+								rendered="#{letterReqView.letterReqObj.typeOfLetter eq 'Invite Letter' ? true : false}" />
+							<p:selectBooleanButton id="hcmLetReq_gender" value="#{letterReqView.letterReqObj.gender}"
+								rendered="#{letterReqView.letterReqObj.typeOfLetter eq 'Invite Letter' ? true : false}"
+								onLabel="Male" offLabel="Female" offIcon="ui-icon-arrowrefresh-1-n"
+								onIcon="ui-icon-arrowrefresh-1-s" styleClass="ui-boolean-button" />
+						</h:panelGrid>
+
+						<h:panelGrid columns="4" id="hcmLetReq_coverLetterPurpose" styleClass="tab-panel" cellpadding="2" cellspacing="2">
+							<h:outputLabel for="hcmLetReq_travelForm" value="Travel From"
+								rendered="#{letterReqView.letterReqObj.typeOfLetter eq 'Cover Letter' ? true : false}" />
+							<p:calendar id="hcmLetReq_travelForm" value="#{letterReqView.letterReqObj.coverLetterFrom}"
+								effect="clip" pattern="dd-MM-yyyy" required="true" styleClass="calendar-input"
+								rendered="#{letterReqView.letterReqObj.typeOfLetter eq 'Cover Letter' ? true : false}" />
+
+							<h:outputLabel for="hcmLetReq_travelTo" value="Travel To"
+								rendered="#{letterReqView.letterReqObj.typeOfLetter eq 'Cover Letter' ? true : false}" />
+							<p:calendar id="hcmLetReq_travelTo" value="#{letterReqView.letterReqObj.coverLetterTo}"
+								effect="clip" pattern="dd-MM-yyyy" required="true" styleClass="calendar-input"
+								rendered="#{letterReqView.letterReqObj.typeOfLetter eq 'Cover Letter' ? true : false}" />
+						</h:panelGrid>
+						
+						<h:panelGrid columns="4" id="hcm_PGrid_condition_address" styleClass="tab-panel" cellpadding="2" cellspacing="2">
+							<p:outputLabel for="hcm_addProof_add" value="Employee Address"
+								rendered="#{letterReqView.letterReqObj.typeOfLetter eq 'Address Proof'}"/>
+							<h:panelGrid columns="1" style="border: none !important;"> 
+								<p:inputTextarea id="hcm_addProof_add" value="#{letterReqView.letterReqObj.empAddress}"
+									cols="50" rows="3" autoResize="false" required="true" counter="hcm_addProof_add_char" maxlength="256"
+									counterTemplate="{0} characters remaining." rendered="#{letterReqView.letterReqObj.typeOfLetter eq 'Address Proof'}" />
+								<h:outputText id="hcm_addProof_add_char" styleClass="char_remaining_label" />
+						</h:panelGrid>
+								
+							<p:outputLabel for="hcm_addProof_addTo" value="Addressed To"
+								rendered="#{letterReqView.letterReqObj.typeOfLetter eq 'Address Proof'}"/>
+							 <h:panelGrid columns="1" style="border: none !important;"> 
+								<p:inputTextarea id="hcm_addProof_addTo" value="#{letterReqView.letterReqObj.addressedTo}"
+									cols="50" rows="3" autoResize="false" required="true" counter="hcm_addProof_addTo_char" maxlength="256"
+									counterTemplate="{0} characters remaining." rendered="#{letterReqView.letterReqObj.typeOfLetter eq 'Address Proof'}" />
+								<h:outputText id="hcm_addProof_addTo_char" styleClass="char_remaining_label" />
+							 </h:panelGrid>
+							
+					</h:panelGrid>
+
+						<h:panelGrid columns="4" id="hcm_PGrid_condition_otherVisaLetter" styleClass="tab-panel" cellpadding="2" cellspacing="2">
+							<h:outputLabel for="hcm__otherVisaLetter" value="Specify Visa Letter"
+								rendered="#{letterReqView.letterReqObj.typeOfLetter eq 'Other Visa Letter' ? true : false}" />
+							<p:inputText id="hcm__otherVisaLetter" required="true" value="#{letterReqView.letterReqObj.otherVisaLetter}"
+								disabled="#{letterReqView.letterReqObj.purposeOtherReason}"
+								rendered="#{letterReqView.letterReqObj.typeOfLetter eq 'Other Visa Letter' ? true : false}"
+								immediate="true">
+									<f:validateLength minimum="5" maximum="100" />
+								</p:inputText>
+						</h:panelGrid>
+
+			
+				 <h:panelGrid columns="4" id="hcm_PGrid_condition_addLetOther"  cellpadding="2" cellspacing="2">
+							<h:outputLabel for="hcmLetReq_letterOtherReasonLabel"  value="Specify Reason"
+								rendered="#{(letterReqView.letterReqObj.typeOfLetter eq 'Address Proof' and letterReqView.letterReqObj.letterPurpose eq 'Others')}" />
+							<h:panelGrid columns="1" style="border: none !important;">
+							<p:inputTextarea id="hcmLetReq_letterOtherReason" value="#{letterReqView.letterReqObj.purposeOtherReason}"
+								cols="70" rows="3" autoResize="false" counter="hcmLetReq_letterOtherReasonLabel_char" maxlength="256"
+									counterTemplate="{0} characters remaining." required="true"
+								rendered="#{letterReqView.letterReqObj.typeOfLetter eq 'Address Proof'  and letterReqView.letterReqObj.letterPurpose eq 'Others'}" />
+								<h:outputText id="hcmLetReq_letterOtherReasonLabel_char" styleClass="char_remaining_label" />
+							 </h:panelGrid>
+				</h:panelGrid>
+					</h:panelGrid>
+
+						
+					
+				</h:panelGrid>
+				
+				
+
+				<h:panelGrid columns="2" id="hcmSubmit_PGrid" styleClass="button-panel" cellpadding="2" cellspacing="2">
+					<p:commandButton style="align:center" actionListener="#{letterReqView.insertNewLetterReqForEmployee}" value="Save"  update="@form" styleClass="submit-button" />
+					<p:commandButton value="Reset">
+						<p:ajax update="hcm_PGrid" resetValues="true" />
+					</p:commandButton>
+				</h:panelGrid>
+
+			
+				<p:dataTable id="hcmLetReq_dTab"  value="#{letterReqView.pastLetReqList}" var="hlr" scrollable="true"
+				widgetVar="hlrjectTable" filteredValue="#{letterReqView.hcmsearchhistory}" style="width:200%; height:50%; "
+				styleClass="employeeTable" border="1" rowStyleClass="#{(row mod 2) eq 0 ? 'employeeTableEvenRow' : 'employeeTableOddRow'}"
+				rows="5" paginator="true" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} 
+				{PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,15"
+					headerClass="employeeTableHeader" rowIndexVar="rowId" >
+			
+					<f:facet name="header">Past Letter Requests</f:facet>
+					
+					<p:column>
+					<f:facet name="header">Sr. No.</f:facet>
+					<h:outputText value="#{rowId}"/>
+					</p:column>
+					
+					<p:column sortBy="#{hlr.empId}" filterBy="#{hlr.empId}">
+					<f:facet name="header">EMP ID</f:facet>
+					<h:outputText value="#{hlr.empId}"/>
+					</p:column>
+					
+					<p:column sortBy="#{hlr.empIdCapco}" filterBy="#{hlr.empIdCapco}">
+					<f:facet name="header">EMP ID CAPCO</f:facet>
+					<h:outputText value="#{hlr.empIdCapco}"/>
+					</p:column>
+					
+					<p:column sortBy="#{hlr.empName}" filterBy="#{hlr.empName}">
+						<f:facet name="header">Employee Name</f:facet>
+						<h:outputText value="#{hlr.empName}" />
+					</p:column>
+					
+					<p:column sortBy="#{hlr.empAddress}">
+						<f:facet name="header">Employee Address</f:facet>
+						<h:outputText value="#{hlr.empAddress}" />
+					</p:column>
+					
+					<p:column sortBy="#{hlr.addressedTo}">
+						<f:facet name="header">Addresed To</f:facet>
+						<h:outputText value="#{hlr.addressedTo}" />
+					</p:column>
+					
+					<p:column sortBy="#{hlr.fisEid}">
+						<f:facet name="header">FIS EID</f:facet>
+						<h:outputText value="#{hlr.fisEid}" />
+					</p:column>
+					
+					<p:column sortBy="#{hlr.passportNumber}" filterBy="#{hlr.passportNumber}">
+						<f:facet name="header">Passport Number</f:facet>
+						<h:outputText value="#{hlr.passportNumber}" />
+					</p:column>
+			
+					<p:column>
+						<f:facet name="header">STATUS</f:facet>
+						<h:outputText value="#{hlr.status eq true ? 'Active' : 'Inactive'}" />
+						
+					</p:column>
+					
+					<p:column sortBy="#{hlr.typeOfLetter}" filterBy="#{hlr.typeOfLetter}">
+						<f:facet name="header">Type of Letter</f:facet>
+						<h:outputText value="#{hlr.typeOfLetter}" />
+					</p:column>
+					
+					<p:column sortBy="#{hlr.letterPurpose}" filterBy="#{hlr.letterPurpose}">
+						<f:facet name="header">Letter Purpose</f:facet>
+						<h:outputText value="#{hlr.letterPurpose}" />
+					</p:column>
+					
+					<p:column sortBy="#{hlr.purposeOtherReason}" filterBy="#{hlr.purposeOtherReason}">
+						<f:facet name="header">Purpose Other Reason</f:facet>
+						<h:outputText value="#{hlr.purposeOtherReason}" />
+					</p:column>
+					
+					
+					<p:column sortBy="#{hlr.otherVisaLetter}" filterBy="#{hlr.otherVisaLetter}">
+						<f:facet name="header">Other Visa Letter</f:facet>
+						<h:outputText value="#{hlr.otherVisaLetter}" />
+					</p:column>
+					
+					
+					<p:column sortBy="#{hlr.travelCountry}" filterBy="#{hlr.travelCountry}">
+						<f:facet name="header">Travel Country</f:facet>
+						<h:outputText value="#{hlr.travelCountry}" />
+					</p:column>
+					
+					<p:column sortBy="#{hlr.passportFromDate}">
+						<f:facet name="header">Passport From Date</f:facet>
+						<p:calendar value="#{hlr.passportFromDate}"
+             			effect="clip" pattern="dd-MM-yyyy" styleClass="calendar-input"/>
+             			
+            	</p:column>
+            	
+            	<p:column sortBy="#{hlr.passportEndDate}">
+						<f:facet name="header">Passport End Date</f:facet>
+						<p:calendar value="#{hlr.passportEndDate}"
+             			effect="clip" pattern="dd-MM-yyyy" styleClass="calendar-input"/>
+             			
+            	</p:column>
+            	
+            	<p:column sortBy="#{hlr.stayFrom}">
+						<f:facet name="header">Stay From</f:facet>
+						<p:calendar value="#{hlr.stayFrom}"
+             			effect="clip" pattern="dd-MM-yyyy" styleClass="calendar-input"/>
+             			
+            	</p:column>
+            	
+            	
+            		<p:column sortBy="#{hlr.passportName}">
+						<f:facet name="header">Passport Name</f:facet>
+						<h:outputText value="#{hlr.passportName}" />
+					</p:column>
+					
+						<p:column sortBy="#{hlr.designation}">
+						<f:facet name="header">Designation</f:facet>
+						<h:outputText value="#{hlr.designation}" />
+					</p:column>
+            	
+					<p:column>
+						<f:facet name="header">Gender</f:facet>
+						<h:outputText value="#{hlr.gender  eq true ? 'Male' : 'Female' }" />
+					</p:column>
+								
+				
+            	<p:column sortBy="#{hlr.coverLetterFrom}">
+						<f:facet name="header">Cover Letter From</f:facet>
+						<p:calendar value="#{hlr.coverLetterFrom}"
+             			effect="clip" pattern="dd-MM-yyyy" styleClass="calendar-input"/>
+             			
+            	</p:column>
+            	
+            	<p:column sortBy="#{hlr.coverLetterTo}">
+						<f:facet name="header">Cover Letter To</f:facet>
+						<p:calendar value="#{hlr.coverLetterTo}"
+             			effect="clip" pattern="dd-MM-yyyy" styleClass="calendar-input"/>
+             			
+            	</p:column>
+				
+			
+					<p:column sortBy="#{hlr.insertedDate}">
+						<f:facet name="header">Request Date</f:facet>
+						<p:calendar value="#{hlr.insertedDate}" />
+					</p:column>
+			
+			<!-- 		<p:column style="width: auto; text-align: center !important;">
+						<f:facet name="header">Click To Load</f:facet>
+						<p:commandButton icon="ui-icon-search"  oncomplete="PF('hcmletterConfirm').show()" 
+						update="@form" actionListener="#{letterReqView.setSelectedHcmLetterForLoad(hlr)}" styleClass="search-button">
+							<p:ajax update="endorsement_nomDet_PGrid" form="endorsementForm" />
+						</p:commandButton>
+					</p:column>
+			 -->
+				</p:dataTable>
+			</p:layoutUnit>
+		</p:layout>
+		
+				
+		<!-- <p:dialog header="Confirm" widgetVar="hcmletterConfirm" showEffect="fade" hideEffect="fade" resizable="false">
+			<h:outputText value="Are you sure you want to load the HCM Letter?" styleClass="ui-staticLabel"/>
+			<h:panelGrid columns="2" styleClass="button-panel" cellpadding="2" cellspacing="2" style="margin-top: 15px;">
+				<p:commandButton value="Load" update="@form" action="#{letterReqView.loadSelectedHcmInfo}"/>
+				<p:commandButton value="Cancel" update="@form" oncomplete="PF('hcmletterConfirm').hide()"/>
+			</h:panelGrid>
+		</p:dialog>  -->
+		
+	</h:form>
+</ui:composition>

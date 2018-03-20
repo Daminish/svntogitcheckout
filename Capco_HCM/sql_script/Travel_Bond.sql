@@ -1,0 +1,14 @@
+use capco_hcm;
+CREATE TABLE TRAVEL_BOND_TRACKER (
+	Emp_Id INT, 
+	Type_Of_Travel VARCHAR(30),
+	Travel_Country VARCHAR(100),
+	Claw_Back_Month VARCHAR(30),
+	Number_Of_Month VARCHAR(30),
+	Deleted BOOLEAN,
+	Insertion_Date TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 
+	Inserted_By VARCHAR(100),
+	FOREIGN KEY (Emp_Id)
+		REFERENCES EMP_INFO(Emp_Id)
+		ON UPDATE CASCADE ON DELETE RESTRICT	
+);

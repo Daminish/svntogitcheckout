@@ -1,0 +1,338 @@
+{
+    "validations": {
+        "employeeName": {
+            "pattern": "Invalid employee name",
+            "minlength": "Employee Name is too short",
+            "maxlength": "Employee Name is too long",
+            "required": "Employee Name is required"
+        },
+
+        "employeeContact": {
+            "pattern": "Invalid contact number",
+            "minlength": "Employee Contact is too short",
+            "maxlength": "Employee Contact is too long",
+            "required": "Employee Contact is required"
+        },
+
+        "employeeLocation": {
+            "required": "Please select employee location"
+        },
+
+        "approverName": {
+            "required": "Please select approvers name"
+        },
+
+        "projectName": {
+            "required": "Please enter project name"
+        },
+
+        "projectCode": {
+            "required": "Please enter project code"
+        },
+
+        "country": {
+            "required": "Please enter country name"
+        },
+
+        "city": {
+            "required": "Please enter city name"
+        },
+
+        "checkInDate": {
+            "required": "Please select check-in date"
+        },
+
+        "checkInTime": {
+            "required": "Please select check-out time"
+        },
+
+        "checkOutDate": {
+            "required": "Please select check-out date"
+        },
+
+        "checkOutTime": {
+            "required": "Please select check-out time"
+        },
+
+        "budgetPerDay": {
+            "pattern": "Invalid budget entered",
+            "required": "Please enter budget per day"
+        },
+
+        "currency": {
+            "required": "Please select currency"
+        },
+
+        "typeOfRoom": {
+            "required": "Please select type of room"
+        },
+
+        "nearestFacility": {
+            "required": "Please select nearest facility"
+        },
+
+        "carRequestType": {
+            "required": "Please select car request type"
+        },
+
+        "pickUpPoint": {
+            "required": "Pick up point is required "
+        },
+
+        "emailAddress": {
+            "required": "Employee email address is required",
+            "email": "Invalid email address"
+        },
+
+        "dropPoint": {
+            "required": "Drop point is required"
+        },
+
+        "fromDate": {
+            "required": "From date is required"
+        },
+
+        "toDate": {
+            "required": "To date is required"
+        },
+
+        "pickUpTime": {
+            "required": "Pick up time is required"
+        },
+
+        "typeOfCar": {
+            "required": "Please select type of car"
+        },
+
+        "numberOfPerson": {
+            "required": "Number of person is required",
+            "pattern": "Invalid entry"
+        },
+
+        "businessPurpose": {
+            "required": "Please select business purpose"
+        },
+
+        "fromLocation": {
+            "required": "From location is required"
+        },
+
+        "toLocation": {
+            "required": "To location is required"
+        },
+
+        "departureDate": {
+            "required": "Departure date is required"
+        },
+
+        "departureTime": {
+            "required": "Please select departure time"
+        },
+
+        "bookingType": {
+            "required": "Please select booking type"
+        },
+
+        "originCountry": {
+            "required": "Please enter origin country"
+        },
+
+        "destinationCountry": {
+            "required": "Please enter destination country"
+        },
+
+        "fromCity": {
+            "required": "Please enter from city"
+        },
+
+        "toCity": {
+            "required": "Please enter to city"
+        },
+
+        "preferredClass": {
+            "required": "Please select preferred class"
+        },
+
+        "mealPreferences": {
+            "required": "Please select meal preferences"
+        },
+
+        "returnDate": {
+            "required": "Return date is required"
+        },
+
+        "returnTime": {
+            "required": "Return time is required"
+        },
+
+        "passportNumber": {
+            "required": "Passport number is required"
+        },
+
+        "surname": {
+            "required": "Surname is required",
+            "pattern": "Invalid surname"
+        },
+
+        "givenName": {
+            "required": "Name is required"
+        },
+
+        "dob": {
+            "required": "Date of birth is required"
+        },
+
+        "passportIssueDate": {
+            "required": "Passport issue date is required"
+        },
+
+        "passportExpiryDate": {
+            "required": "Passport expiry date is required"
+        },
+
+        "nationality": {
+            "required": "Nationality is required"
+        },
+
+        "bankdesk": {
+            "required": "Bankdesk is required"
+        },
+
+        "travellingDays": {
+            "required": "Travelling days is required"
+        },
+
+        "amountOfForeignExchange": {
+            "required": "Foreign exchnage amount is required"
+        },
+
+        "collectionCenter": {
+            "required": "Collection center is required"
+        },
+        "travelDestination": {
+            "required": "Travel Destination is required"
+        },
+        "visaType": {
+            "required": "Visa Type is required"
+        },
+        "typeOfVisit":{
+            "required": "Type of Visit is required"
+        }
+        
+    },
+
+    
+
+    "timeIntervals": ["12:00 am","12:30 am","01:00 am","01:30 am","02:00 am","02:30 am","03:00 am","03:30 am","04:00 am","04:30 am","05:00 am","05:30 am",
+                    "06:00 am","06:30 am","07:00 am","07:30 am","08:00 am","08:30 am","09:00 am","09:30 am","10:00 am","10:30 am","11:00 am","11:30 am",
+                    "12:00 pm","12:30 pm","01:00 pm","01:30 pm","02:00 pm","02:30 pm","03:00 pm","03:30 pm","04:00 pm","04:30 pm","05:00 pm","05:30 pm",
+                    "06:00 pm","06:30 pm","07:00 pm","07:30 pm","08:00 pm","08:30 pm","09:00 pm","09:30 pm","10:00 pm","10:30 pm","11:00 pm","11:30 pm"],
+
+    "personalDetails": {
+
+        "employeeLocation": [
+           "Pune",
+            "Banglore"
+        ],
+        "approverName": [
+            "Rajnish",
+            "Manager ABC",
+            "Manager XYZ"
+
+       ],
+       "businessPurpose" : [
+       		"Project",
+       		"BD",
+       		"Training"
+       ]
+
+
+    },
+    "requestDetails": {
+        "accomodation": {
+       
+            "currency": [
+                "INR",
+                "USD",
+                "EUR"
+            ],
+            "typeOfRoom": [
+                "Service Appartment",
+                "Hotel"
+            ],
+            "nearestFacility": [
+                "Hospitals",
+                "Bus Stops",
+                "Restaurants"
+            ]
+        },
+        "taxi": {
+            "carRequestType": [
+                 "Outstation",
+              "One Day",
+               "Airport Taxi"
+            ],
+           
+            "typeOfCar": [
+                "Sedan",
+                "SUV",
+                "Luxury"
+            ]
+        },
+        "flight": {
+            "preferredClass": [
+                "Economy",
+                "Business"
+            ],
+            "mealPreferance": [
+                "Vegeterian",
+                "Non-Vegeterian"
+            ]
+        },
+        "forex": {
+            "country": [
+                "India",
+                "USA",
+                "Thailand"
+            ],
+            "currency": [
+                 "INR",
+                 "USD",
+                 "EUR"
+            ],
+            "bankdesk": [
+                 "Pune",
+                 "Banglore"
+            ],
+            "collectionCenter": [
+                "Pune",
+                "Banglore"
+            ]
+           
+        },
+        "visa":{
+        
+         "visaTypes":[
+            "Buisness Visit",
+            "Work Permit"
+            ],
+         "typeOfVisits":[
+            "Project Requirement",
+            "Training",
+            "BD"
+            ]
+        
+        }
+    },
+
+"daySessions":  ["Morning" , "Afternoon" , "Evening" , "Night"]
+
+
+
+
+
+
+
+
+
+}

@@ -1,0 +1,192 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+	<h:form id="financial_form">
+	<p:messages showSummary="true" styleClass="ui-errorLabel" />
+	
+		<h:panelGrid columns="4" id="induction_PGrid_Audit" styleClass="tab-panel" style="width: 40% !important; float: right;">
+			<h:outputLabel for="financial_insertedDate" value="Inserted Date" styleClass="ui-auditLabel" />
+			<p:outputLabel id="financial_insertedDate" value="#{finDetTrkrView.finDetTrkrObj.insertedDate}" styleClass="ui-auditValue" />
+
+			<h:outputLabel for="financial_updatedDate" value="Inserted By" styleClass="ui-auditLabel" />
+			<p:outputLabel id="financial_updatedDate" value="#{finDetTrkrView.finDetTrkrObj.insertedBy}" styleClass="ui-auditValue" />
+		</h:panelGrid>
+
+	
+		<h:panelGrid columns="4" id="financialInfo_PGrid" styleClass="tab-panel" cellpadding="2" cellspacing="2">
+		
+			<h:outputLabel for="financial_pfDocsReceivedDate" value="PF Document Recieved Date" />
+			<p:calendar value="#{finDetTrkrView.finDetTrkrObj.pfDocsReceivedDate}"  id="financial_pfDocsReceivedDate" 
+				effect="clip" pattern="dd-MM-yyyy" style="padding-right:50px;" styleClass="calendar-input" />
+
+			<h:outputLabel for="financial_sentToPfOfficeDate" value="Sent to PF office" />
+			<p:calendar value="#{finDetTrkrView.finDetTrkrObj.sentToPfOfficeDate}"  id="financial_sentToPfOfficeDate" 
+				effect="clip" pattern="dd-MM-yyyy" styleClass="calendar-input" />
+			
+			<h:outputLabel for="financial_uanNumber" value="UAN Number" />
+			<h:inputText id="financial_uanNumber" value="#{finDetTrkrView.finDetTrkrObj.uanNumber}" >
+			<!-- <f:validateLength minimum="8" maximum="15" /> -->
+			</h:inputText>
+			
+			<h:outputLabel for="financial_bankName" value="Bank Name" />
+			<h:inputText id="financial_bankName" value="#{finDetTrkrView.finDetTrkrObj.bankName}" >
+			<!-- <f:validateLength minimum="5" maximum="30" /> -->
+			</h:inputText>
+			
+			<h:outputLabel for="financial_bankBranchName" value="Bank Branch Name" />
+			<h:inputText id="financial_bankBranchName" value="#{finDetTrkrView.finDetTrkrObj.bankBranchName}" >
+			<!-- <f:validateLength minimum="8" maximum="40" /> -->
+			</h:inputText>
+			
+			<h:outputLabel for="financial_bankIifscCode" value="Bank Ifsc Code" />
+			<h:inputText id="financial_bankIifscCode" value="#{finDetTrkrView.finDetTrkrObj.bankIifscCode}" >
+			<!-- <f:validateLength minimum="7" maximum="15" /> -->
+			</h:inputText>
+			
+			<h:outputLabel for="financial_bankAccountNumber" value="Bank Account Number" />
+			<h:inputText id="financial_bankAccountNumber" value="#{finDetTrkrView.finDetTrkrObj.bankAccountNumber}" >
+			<!-- <f:validateLength minimum="10" maximum="20" /> -->
+			</h:inputText>
+			
+			<h:outputLabel for="financial_nameOfAccountHolder" value="Name of Account Holder" />
+			<h:inputText id="financial_nameOfAccountHolder" value="#{finDetTrkrView.finDetTrkrObj.nameOfAccountHolder}" >
+			<!-- <f:validateLength minimum="5" maximum="25" /> -->
+			</h:inputText>
+			
+		</h:panelGrid>
+
+		<h:panelGrid columns="2" id="financialSubmit_PGrid"
+			styleClass="button-panel" cellpadding="2" cellspacing="2">
+
+			<p:commandButton style="align:center" value="Save" update="@form" styleClass="submit-button" 
+			actionListener="#{finDetTrkrView.insertFinancialDetailsInfo}" />
+
+			<p:commandButton value="Reset">
+				<p:ajax update="financialInfo_PGrid" resetValues="true" />
+			</p:commandButton>
+		</h:panelGrid>
+		
+			<p:dataTable id="finance_dTab" value="#{finDetTrkrView.financeHistory}" 
+			widgetVar="projectTable" filteredValue="#{finDetTrkrView.financesearchhistory}" lazy="false"
+			rows="3" paginator="true" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} 
+			{NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,15"
+				var="pro"  styleClass="employeeTable" border="1" rowStyleClass="#{(row mod 2) eq 0 ? 'employeeTableEvenRow' : 'employeeTableOddRow'}"  
+				 style="width: 230%; height: 150%; "
+				headerClass="employeeTableHeader" rowIndexVar="rowId">
+				<f:facet name="header">
+					Finance History List
+		      	</f:facet>
+		      	<p:column>
+				<f:facet name="header">Sr. No.</f:facet>
+				<h:outputText value="#{rowId}"/>
+				</p:column>
+				
+				<p:column sortBy="#{pro.employeeId}" filterBy="#{pro.employeeId}">
+				<f:facet name="header">Emp ID</f:facet>
+				<h:outputText value="#{pro.employeeId}"/>
+				</p:column>
+				
+				<p:column sortBy="#{pro.pfDocsReceivedDate}">
+					<f:facet name="header">PF Document Recieved Date</f:facet>
+					<p:calendar  value="#{pro.pfDocsReceivedDate}"
+						effect="clip" pattern="dd-MM-yyyy" styleClass="calendar-input">
+					<p:ajax event="dateSelect"  listener="#{finDetTrkrView.onDateSelect}" />
+						</p:calendar>
+				</p:column>
+				
+				<p:column sortBy="#{pro.sentToPfOfficeDate}">
+					<f:facet name="header">	Sent to PF office</f:facet>
+						<p:calendar  value="#{pro.sentToPfOfficeDate}"
+						effect="clip" pattern="dd-MM-yyyy" styleClass="calendar-input">
+						<p:ajax event="dateSelect"  listener="#{finDetTrkrView.onDateSelect}" />
+						</p:calendar>
+				</p:column>
+				
+		      	<p:column sortBy="#{pro.uanNumber}" filterBy="#{pro.uanNumber}">
+					<f:facet name="header">UAN Number</f:facet>
+					<h:inputText value="#{pro.uanNumber}">
+						<p:ajax event="blur"></p:ajax>
+					</h:inputText>
+				</p:column>
+				
+				<p:column sortBy="#{pro.bankName}" filterBy="#{pro.bankName}">
+					<f:facet name="header">Bank Name</f:facet>
+					<h:inputText value="#{pro.bankName}">
+						<p:ajax event="blur"></p:ajax>
+					</h:inputText>
+				</p:column>
+				
+				<p:column sortBy="#{pro.nameOfAccountHolder}" filterBy="#{pro.nameOfAccountHolder}">
+					<f:facet name="header">Name of Account Holder</f:facet>
+					<h:inputText value="#{pro.nameOfAccountHolder}">
+						<p:ajax event="blur"></p:ajax>
+					</h:inputText>
+				</p:column>
+				
+				<p:column sortBy="#{pro.bankBranchName}" filterBy="#{pro.bankBranchName}">
+				<f:facet name="header">Bank Branch Name</f:facet>
+				<h:inputText value="#{pro.bankBranchName}">
+					<p:ajax event="blur"></p:ajax>
+				</h:inputText>
+				</p:column>
+		      	
+		      	<p:column sortBy="#{pro.bankAccountNumber}" filterBy="#{pro.bankAccountNumber}">
+					<f:facet name="header">Bank Account no.</f:facet>
+					<h:inputText value="#{pro.bankAccountNumber}">
+						<p:ajax event="blur"></p:ajax>
+					</h:inputText>
+				</p:column>
+			
+				<p:column sortBy="#{pro.bankIifscCode}" filterBy="#{pro.bankIifscCode}">
+					<f:facet name="header">Bank IFSC Code</f:facet>
+					<h:inputText value="#{pro.bankIifscCode}">
+						<p:ajax event="blur"></p:ajax>
+					</h:inputText>
+				</p:column>
+				
+				<p:column>		
+					<f:facet name="header">STATUS</f:facet>
+					<h:outputText value="#{pro.deletedB eq true ? 'DELETED' : ''}"/>
+				</p:column> 
+				
+			<!-- 	<p:column style="width: auto; text-align: center !important;">
+					<f:facet name="header">Click To Load</f:facet>
+					<p:commandButton icon="ui-icon-search" oncomplete="PF('financialConfirm').show()"  
+						actionListener="#{finDetTrkrView.setSelectedFinanceHistoryForLoad(pro)}" 
+						styleClass="search-button">
+					</p:commandButton>
+				</p:column>
+				 -->
+				
+				<p:column style="width: auto; text-align: center !important;">
+						<f:facet name="header">SAVE</f:facet>
+						<p:commandButton icon="ui-icon-disk"  immediate="true" disabled="#{pro.deletedB eq true}"
+						update="finance_dTab" actionListener="#{finDetTrkrView.updateFinanceHistory(pro)}" 
+						styleClass="search-button">
+						</p:commandButton>
+				</p:column>
+			
+			
+				<p:column style="width: auto; text-align: center !important;">
+					<f:facet name="header">DELETE</f:facet>
+					<p:commandButton icon="ui-icon-trash"  styleClass="search-button" immediate="true" disabled="#{pro.deletedB eq true}"
+				 	update="finance_dTab" actionListener="#{finDetTrkrView.deleteFinanceHistoryRecord(pro)}" >
+ 					</p:commandButton>
+				</p:column>
+			
+			</p:dataTable>
+		 
+		<!--  <p:dialog header="Confirm" widgetVar="financialConfirm"  showEffect="fade" hideEffect="fade" resizable="false">
+			<h:outputText value="Are you sure you want to load the selected Employee?" styleClass="ui-staticLabel"/>
+			<h:panelGrid columns="2" styleClass="button-panel" cellpadding="2" cellspacing="2" style="margin-top: 15px;">
+				<p:commandButton value="Load" update="@form"  action="#{finDetTrkrView.loadSelectedProjectInfo}"/>
+				<p:commandButton value="Cancel" update="@form" oncomplete="PF('financialConfirm').hide()"/>
+			</h:panelGrid>
+		</p:dialog>  -->
+
+	</h:form>
+</ui:composition>

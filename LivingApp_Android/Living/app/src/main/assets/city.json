@@ -1,0 +1,68 @@
+[
+   {
+    "city": 22,
+    "cityname": "Ahmedabad",
+    "lat": 23.1378156,
+    "lng": 72.7026413
+  },
+  {
+    "city": 5,
+    "cityname": "Bangalore",
+    "lat": 13.173706,
+    "lng": 77.8826809
+  },
+  {
+    "city": 1,
+    "cityname": "Delhi / NCR",
+    "lat": 28.8822535,
+    "lng": 77.3416993
+  },
+  {
+    "city": 12,
+    "cityname": "Hyderabad",
+    "lat": 17.579448,
+    "lng": 78.6913581
+  },
+  {
+    "city": 3,
+    "cityname": "Kolkata",
+    "lat": 22.7715918,
+    "lng": 88.5443116
+  },
+  {
+    "city": 2,
+    "cityname": "Mumbai",
+    "lat": 19.2695224,
+    "lng": 72.9800523
+  },
+  {
+    "city": 39,
+    "cityname": "Goa",
+    "lat": 15.799917,
+    "lng": 74.3405329
+  },
+  {
+    "city": 40,
+    "cityname": "Chennai",
+    "lat": 13.2340852,
+    "lng": 80.3322912
+  },
+  {
+    "city": 49,
+    "cityname": "Pune",
+    "lat": 18.6346965,
+    "lng": 73.9753461
+  },
+  {
+    "city": 91,
+    "cityname": "Chandigarh",
+    "lat": 30.7782711,
+    "lng": 76.851039
+  },
+  {
+    "city": 92,
+    "cityname": "Jaipur",
+    "lat": 27.0206722,
+    "lng": 75.9411907
+  }
+]

@@ -1,0 +1,17 @@
+use capco_hcm;
+CREATE TABLE SKILL_SET_TRACKER (
+	Emp_Id INT, 
+	Primary_Skills VARCHAR(1024),
+	Current_Skill VARCHAR(1024),
+	Capco_Certification VARCHAR(1024),
+	Other_Trainings VARCHAR(1024),
+	Prior_Exp  VARCHAR(25),
+	Total_Exp VARCHAR(25),
+	Capco_Exp VARCHAR(25),
+	Deleted BOOLEAN,
+	Insertion_Date TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 
+	Inserted_By VARCHAR(100),
+	FOREIGN KEY (Emp_Id)
+		REFERENCES EMP_INFO(Emp_Id)
+		ON UPDATE CASCADE ON DELETE RESTRICT	
+);

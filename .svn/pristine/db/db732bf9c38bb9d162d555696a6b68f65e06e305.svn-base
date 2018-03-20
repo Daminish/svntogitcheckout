@@ -1,0 +1,171 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	
+	<h:form id="projectHistory_form">
+	<p:messages showSummary="true" styleClass="ui-errorLabel" />
+	
+		<h:panelGrid columns="4" id="project_PGrid_Audit" styleClass="tab-panel" style="width: 40% !important; float: right;">
+			<h:outputLabel for="project_insertedDate" value="Inserted Date" styleClass="ui-auditLabel" />
+			<p:outputLabel id="project_insertedDate" value="#{projectHistoryInfo.projectHistoryObj.insertedDate}" styleClass="ui-auditValue" />
+
+			<h:outputLabel for="project_updatedDate" value="Inserted By" styleClass="ui-auditLabel" />
+			<p:outputLabel id="project_updatedDate" value="#{projectHistoryInfo.projectHistoryObj.insertedBy}" styleClass="ui-auditValue" />
+		</h:panelGrid>
+
+		
+		<h:panelGrid columns="1" id="projectInfo_PGrid" styleClass="tab-panel" 
+			cellpadding="2" cellspacing="2">
+			
+	
+		<h:panelGrid columns="4" id="projectInfo_PGrid_sum" styleClass="tab-panel" cellpadding="2" cellspacing="2">
+		
+			<h:outputLabel for="project_fromDate" value="From Date" />
+			<p:calendar value="#{projectHistoryInfo.projectHistoryObj.fromDate}"  id="project_fromDate" 
+				effect="clip" pattern="dd-MM-yyyy" style="padding-right:50px;" styleClass="calendar-input" />
+
+			<h:outputLabel for="project_toDate" value="To Date" />
+			<p:calendar value="#{projectHistoryInfo.projectHistoryObj.toDate}"  id="project_toDate" 
+				effect="clip" pattern="dd-MM-yyyy" styleClass="calendar-input" />
+			
+			<h:outputLabel for="project_projectList" value="List of Project" />
+				<p:selectOneMenu id="project_projectList"  value="#{projectHistoryInfo.projectHistoryObj.projectList}" >
+					<f:selectItem itemValue="Select" itemLabel="Select" />
+					<f:selectItems value="#{projectHistoryInfo.projectHistoryCategory}" />	
+			</p:selectOneMenu>
+			
+			<h:outputLabel for="project_reportingTo" value="Reporting To" />
+			<p:inputText value="#{projectHistoryInfo.projectHistoryObj.reportingTo}" id="project_reportingTo"  >
+					<!-- <f:validateLength minimum="5" maximum="25" /> -->
+			</p:inputText>
+			
+			<h:outputLabel for="project_managedBy" value="Managed By" />
+			<p:inputText value="#{projectHistoryInfo.projectHistoryObj.managedBy}" id="project_managedBy"  >
+					<!-- <f:validateLength minimum="5" maximum="25" /> -->
+			</p:inputText>
+				 
+		</h:panelGrid>
+
+		<h:panelGrid columns="2" id="projectSubmit_PGrid"
+			styleClass="button-panel" cellpadding="2" cellspacing="2">
+
+			<p:commandButton style="align:center" value="Save" update="@form" styleClass="submit-button"
+			  actionListener="#{projectHistoryInfo.insertProjectHistoryStatus}" />
+
+			<p:commandButton value="Reset">
+				<p:ajax update="projectInfo_PGrid" resetValues="true" />
+			</p:commandButton>
+		</h:panelGrid>
+		
+		
+		
+			<p:dataTable id="project_dTab" value="#{projectHistoryInfo.projhistory}" 
+			widgetVar="projectTable" filteredValue="#{projectHistoryInfo.projectsearchhistory}" lazy="false"
+			rows="5" paginator="true" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks}
+			 {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,15"
+				style="width: 120%; height: 100%; "
+				var="pro"  styleClass="employeeTable" border="1" rowStyleClass="#{(row mod 2) eq 0 ? 'employeeTableEvenRow' : 'employeeTableOddRow'}"  
+				headerClass="employeeTableHeader" rowIndexVar="rowId">
+				<f:facet name="header">
+					Project History List
+		      	</f:facet>
+		
+		      	<p:column>
+				<f:facet name="header">Sr. No.</f:facet>
+				<h:outputText value="#{rowId}"/>
+				</p:column>
+		
+		      	<p:column sortBy="#{pro.employeeId}" filterBy="#{pro.employeeId}">
+				<f:facet name="header">EMP ID</f:facet>
+				<h:outputText value="#{pro.employeeId}"/>
+				</p:column>
+		      	
+		      	<p:column sortBy="#{pro.fromDate}" filterBy="#{pro.fromDate}">
+					<f:facet name="header">Start Date</f:facet>
+					<p:calendar  value="#{pro.fromDate}" 
+						effect="clip" pattern="dd-MM-yyyy" styleClass="calendar-input">
+						<p:ajax event="dateSelect"  listener="#{projectHistoryInfo.onDateSelect}"  update="project_dTab"/>
+						</p:calendar>
+				
+				</p:column>
+		
+		      	<p:column sortBy="#{pro.toDate}" filterBy="#{pro.toDate}" >
+					<f:facet name="header">Closing Date</f:facet>
+					<p:calendar  value="#{pro.toDate}" 
+						effect="clip" pattern="dd-MM-yyyy" styleClass="calendar-input">
+						<p:ajax event="dateSelect"  listener="#{projectHistoryInfo.onDateSelect}"   update="project_dTab"/>
+						</p:calendar>
+				</p:column>
+		      	
+		      	<p:column sortBy="#{pro.projectList}" filterBy="#{pro.projectList}">
+				<f:facet name="header">Project Assigned</f:facet>
+				<p:selectOneMenu  value="#{pro.projectList}" >
+					<f:selectItem itemValue="Select" itemLabel="Select" />
+					<f:selectItems value="#{projectHistoryInfo.projectHistoryCategory}" />
+					<p:ajax update="project_dTab" />
+				</p:selectOneMenu>
+				</p:column>
+		    
+		      	<p:column sortBy="#{pro.reportingTo}" filterBy="#{pro.reportingTo}">
+					<f:facet name="header">Reporting To</f:facet>
+					<h:inputText value="#{pro.reportingTo}">
+					<p:ajax event="blur"></p:ajax>
+					</h:inputText>
+				</p:column>
+			
+				<p:column sortBy="#{pro.managedBy}" filterBy="#{pro.managedBy}">
+					<f:facet name="header">Managed By</f:facet>
+					<h:inputText value="#{pro.managedBy}">
+					<p:ajax event="blur"></p:ajax>
+					</h:inputText>
+				</p:column>
+				
+				<p:column>		
+					<f:facet name="header">STATUS</f:facet>
+					<h:outputText value="#{pro.deletedB eq true ? 'DELETED' : ''}"/>
+				</p:column>
+				
+				
+				<!-- <p:column style="width: auto; text-align: center !important;">
+					<f:facet name="header">Click To Load</f:facet>
+					<p:commandButton icon="ui-icon-search" oncomplete="PF('projectConfirm').show()"  
+						actionListener="#{projectHistoryInfo.setSelectedProjectHistoryForLoad(pro)}" 
+						styleClass="search-button">
+					</p:commandButton>
+				</p:column> -->
+				
+					<p:column style="width: auto; text-align: center !important;">
+						<f:facet name="header">SAVE</f:facet>
+						<p:commandButton icon="ui-icon-disk" immediate="true" disabled="#{pro.deletedB eq true}"
+						update="project_dTab" actionListener="#{projectHistoryInfo.updatePrjojectHistory(pro)}" 
+						styleClass="search-button">
+						</p:commandButton>
+					</p:column>
+			
+			
+				<p:column style="width: auto; text-align: center !important;">
+					<f:facet name="header">DELETE</f:facet>
+					<p:commandButton icon="ui-icon-trash"  styleClass="search-button" immediate="true"  disabled="#{pro.deletedB eq true}"
+				 	update="project_dTab" actionListener="#{projectHistoryInfo.deleteProjectHistoryRecord(pro)}" >
+ 					</p:commandButton>
+			</p:column>
+			
+			</p:dataTable>
+
+<!-- 
+		<p:dialog header="Confirm" widgetVar="projectConfirm"  showEffect="fade" hideEffect="fade" resizable="false">
+			<h:outputText value="Are you sure you want to load the selected Employee?" styleClass="ui-staticLabel"/>
+			<h:panelGrid columns="2" styleClass="button-panel" cellpadding="2" cellspacing="2" style="margin-top: 15px;">
+				<p:commandButton value="Load" update="@form" action="#{projectHistoryInfo.loadSelectedProjectInfo}"/>
+				<p:commandButton value="Cancel" update="@form" oncomplete="PF('projectConfirm').hide()"/>
+			</h:panelGrid>
+		</p:dialog> 
+	 -->
+	
+		</h:panelGrid>
+	
+		</h:form>	
+</ui:composition>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>CAPCO HCM</title>
+	<h:outputStylesheet library="css" name="framework.css" />
+	<h:outputStylesheet library="css" name="TableStyles.css" />
+</h:head>
+
+<h:body>
+
+	<p:layout
+		style="min-width:400px;min-height:200px; border: none !important;" fullPage="true">
+		<p:layoutUnit position="north" style="width: 100%; height: auto;" collapsible="true" gutter="0">
+			<ui:include src="employeeBio.xhtml" />
+		</p:layoutUnit>
+
+		<p:layoutUnit position="south" styleClass="app-footer" gutter="0">
+			<h:panelGrid columns="5" style="border: none !important; width:100% !important; margin: 0 0 0 0 !important; 
+							padding: 0 0 0 0 !important; color: white; background-color: #14ad40;">
+				<p:panel style="border: none !important; width:100% !important; margin: 0 0 0 0 !important; 
+					padding: 0 0 0 0 !important; color: white !important; background-color: #14ad40;">
+					<img src="/Capco_HCM/resources/images/Capco_Logo.png" height="20" width="20" />
+					<p:outputLabel value="Capco HCM Portal" styleClass="app-footer"/>
+				</p:panel>
+				<h:button rendered="false" />
+				<h:button rendered="false" />
+				<h:button rendered="false" />
+				<p:outputLabel value="Developed for internal CAPCO use"	styleClass="app-footer" />
+			</h:panelGrid>
+		</p:layoutUnit>
+
+		<p:layoutUnit position="center" gutter="0">
+			<p:tabView scrollable="true" style="margin: 0 0 0 0 !important; border: 0px !important;">
+				<p:tab title="HCM"  style="margin: 0 0 0 0 !important; border: 0px !important;">
+					<p:tabView scrollable="true" scrollWidth="30%" scrollHeight="75" style="margin: 0 0 0 0 !important; border: 0px !important;" >
+						<p:tab title="Basic Info" titleStyleClass="tab-header">
+							<ui:include src="basicInfo.xhtml" />
+						</p:tab>
+						<p:tab title="Promotion Tracker"  titleStyleClass="tab-header">
+							<ui:include src="promotionTracker.xhtml"  />
+						</p:tab>
+						<p:tab title="Probation Tracker" titleStyleClass="tab-header">
+							<ui:include src="probationTracker.xhtml" />
+						</p:tab>
+						<p:tab title="Background &amp; Doc" titleStyleClass="tab-header">
+							<ui:include src="backgroundVerify.xhtml" />
+						</p:tab>
+						<p:tab title="Benefits, Skills &amp; Bonds" titleStyleClass="tab-header" >
+							<ui:include src="trainingBond.xhtml" />
+						</p:tab>
+						<p:tab title="Endorsement" titleStyleClass="tab-header">
+							<ui:include src="endorsement.xhtml" />
+						</p:tab>
+						<p:tab title="Project History" titleStyleClass="tab-header">
+							<ui:include src="projectHistory.xhtml" />
+						</p:tab>
+						<p:tab title="Financial &amp; Induction" titleStyleClass="tab-header">
+							<ui:include src="miscInfo.xhtml" />
+						</p:tab>
+						<p:tab title="Exit Formality" titleStyleClass="tab-header">
+							<ui:include src="exitFormality.xhtml" />
+						</p:tab>
+						<p:tab title="Report Generate" titleStyleClass="tab-header">
+							<ui:include src="reportGenerate.xhtml"/>
+						</p:tab>
+						
+					</p:tabView>
+				</p:tab>
+	
+				<p:tab title="Admin" style="margin: 0 0 0 0 !important; border: 0px !important;">
+					<p:tabView scrollable="true" scrollWidth="30%" scrollHeight="75"  style="margin: 0 0 0 0 !important; border: 0px !important;">
+						<p:tab title="Static" titleStyleClass="tab-header" style="margin: 0 0 0 0 !important; border: 0px !important;">
+							<ui:include src="static.xhtml" />
+						</p:tab>
+						<p:tab title="User" titleStyleClass="tab-header" style="margin: 0 0 0 0 !important; border: 0px !important;">
+							<ui:include src="userManagement.xhtml" />
+						</p:tab>
+					</p:tabView>
+				</p:tab>
+				
+				<p:tab title="HCM Letter" titleStyleClass="tab-header" >
+					<ui:include src="hcmLetterRequest.xhtml" />
+				</p:tab>
+			
+			</p:tabView>
+
+		</p:layoutUnit>
+	</p:layout>
+	
+</h:body>
+</html>

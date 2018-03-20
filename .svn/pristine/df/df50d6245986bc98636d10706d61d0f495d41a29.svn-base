@@ -1,0 +1,29 @@
+<div ng-controller="loginController">
+    <div class="loginpage">
+        <div class="login-icon ">
+            <img src="assets/images/logo.png" ng-click="toLogin()"/>
+        </div>
+        
+        <div class="poc-alignment">
+            <form class="form col-md-12 col-sm-12 login-form poc-form-margin" name="myForm">
+                <div class="form-group inp-box borB2">
+                    <img src="assets/images/password.png " class="poc-icon"/>
+                    <input class="form-control" type="password" name="password" ng-model="password" placeholder="Password">
+                    <!-- <span ng-if="myForm.password.$error">Please enter correct password</span> -->
+                </div>
+
+                <div class="form-group inp-box borB2 mar0" style="margin-bottom:20px;">
+                       <img src="assets/images/password.png " class="poc-icon"/>
+                    <input class="form-control" type="password" name="repassword" ng-model="repassword" placeholder="Repeat Password">
+                    <!-- <span ng-if="myForm.repassword.$error">Please enter correct password</span> -->
+                </div>
+
+                
+
+                <div class="form-group inp-box">
+                    <button type="button" class=" col-sm-12 cp-btn" ng-click="resetPassword(password)">Change Password</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

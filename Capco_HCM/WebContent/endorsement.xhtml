@@ -1,0 +1,318 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<h:outputStylesheet library="css" name="TableStyles.css" />
+	
+	<h:form id="endorsementForm">
+	<p:messages showSummary="true" styleClass="ui-errorLabel" />
+
+		<p:separator> 
+			<h:outputLabel value="Insurance Amounts" styleClass="ui-staticLabel" style="color:blue;"/>
+		</p:separator>
+		
+		<h:panelGrid columns="4" id="project_PGrid_Audit" styleClass="tab-panel" style="width: 40% !important; float: right;">
+			<h:outputLabel for="project_insertedDate" value="Inserted Date" styleClass="ui-auditLabel" />
+			<p:outputLabel id="project_insertedDate" value="#{endorsementTrkrView.endorsementObj.insertedDate}" styleClass="ui-auditValue" />
+
+			<h:outputLabel for="project_updatedDate" value="Inserted By" styleClass="ui-auditLabel" />
+			<p:outputLabel id="project_updatedDate" value="#{endorsementTrkrView.endorsementObj.insertedBy}" styleClass="ui-auditValue" />
+		</h:panelGrid>
+		
+		
+		<h:panelGrid columns="8" id="endorsement_insureAmt_PGrid"
+			styleClass="tab-panel" cellpadding="2" cellspacing="2">
+		
+			<h:outputLabel for="endorsement_gpaSumAssured" value="GPA SUM ASSURED" />
+			<h:inputText id="endorsement_gpaSumAssured"  value="#{endorsementTrkrView.endorsementObj.gpaSumAssured}">
+				<!-- <f:validateLength minimum="3" maximum="15" /> -->
+			</h:inputText>
+
+			<h:outputLabel for="endorsement_gtlSumAssured" value="GTL SUM ASSURED" />
+			<h:inputText id="endorsement_gtlSumAssured"  value="#{endorsementTrkrView.endorsementObj.gtlSumInsured}">
+				<!-- <f:validateLength minimum="3" maximum="15" /> -->
+			</h:inputText>
+
+			<h:outputLabel for="endorsement_gmcSumInsured" value="GMC SUM INSURED" />
+			<h:inputText id="endorsement_gmcSumInsured"  value="#{endorsementTrkrView.endorsementObj.gmcSumInsured}">
+				<!-- <f:validateLength minimum="3" maximum="15" /> -->
+			</h:inputText>
+
+			<h:outputLabel for="endorsement_annualCtc" value="ANNUAL CTC" />
+			<h:inputText id="endorsement_annualCtc" value="#{endorsementTrkrView.endorsementObj.annualCtc}" >
+				<!-- <f:validateLength minimum="3" maximum="15" /> -->
+			</h:inputText>
+			
+		</h:panelGrid>
+
+		<h:panelGrid columns="2" id="endorsement_insButtonPanel" styleClass="button-panel" cellpadding="2" cellspacing="2" width="50%">
+			<p:commandButton value="Save / Update" update="@form" action="#{endorsementTrkrView.saveInsuranceDetails}" styleClass="ui-button" />
+			<p:commandButton value="Reset">
+				<p:ajax update="endorsementForm" resetValues="true" />
+			</p:commandButton>
+		</h:panelGrid>
+		
+		
+			<p:dataTable id="endorsement_dTab" value="#{endorsementTrkrView.endorsementlist}"
+			widgetVar="projectTable" filteredValue="#{endorsementTrkrView.endorsementsearchhistory}" lazy="false"
+			rows="5" paginator="true" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} 
+			{NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,15"
+				var="en"  styleClass="employeeTable" border="1" rowClasses="employeeTableEvenRow, employeeTableOddRow" 
+				headerClass="employeeTableHeader" rowIndexVar="rowId">
+				<f:facet name="header">
+					Endorsement List
+		      	</f:facet>
+				
+				<p:column>
+				<f:facet name="header">Sr. No.</f:facet>
+				<h:outputText value="#{rowId}"/>
+				</p:column>
+				
+				<p:column sortBy="#{en.empid}" filterBy="#{en.empid}">
+				<f:facet name="header">EMP ID</f:facet>
+				<h:outputText value="#{en.empid}"/>
+				</p:column>
+				
+				<p:column sortBy="#{en.gpaSumAssured}" >
+				<f:facet name="header">GPA SUM ASSURED</f:facet>
+				<h:inputText value="#{en.gpaSumAssured}">
+					<p:ajax event="blur"></p:ajax>
+				</h:inputText>
+				</p:column>
+				
+				<p:column sortBy="#{en.gtlSumInsured}" >
+					<f:facet name="header">	GTL SUM ASSURED</f:facet>
+					<h:inputText value="#{en.gtlSumInsured}">
+						<p:ajax event="blur"></p:ajax>
+					</h:inputText>
+				</p:column>
+				
+				<p:column sortBy="#{en.gmcSumInsured}">
+					<f:facet name="header">GMC SUM INSURED</f:facet>
+					<h:inputText value="#{en.gmcSumInsured}">
+						<p:ajax event="blur"></p:ajax>
+					</h:inputText>
+				</p:column>
+				
+				<p:column sortBy="#{en.annualCtc}" >
+					<f:facet name="header">ANNUAL CTC</f:facet>
+					<h:inputText value="#{en.annualCtc}">
+						<p:ajax event="blur"></p:ajax>
+					</h:inputText>
+				</p:column>
+				
+				<p:column>		
+					<f:facet name="header">STATUS</f:facet>
+					<h:outputText value="#{en.deletedB eq true ? 'DELETED' : ''}"/>
+				</p:column>
+				
+				
+				<!-- <p:column style="width: auto; text-align: center !important;">
+					<f:facet name="header">Click To Load</f:facet>
+					<p:commandButton icon="ui-icon-search" oncomplete="PF('endorsementConfirm').show()"  
+						actionListener="#{endorsementTrkrView.setSelectedEndorsementForLoad(en)}" 
+						styleClass="search-button">
+					</p:commandButton>
+				</p:column>
+				 -->
+				 
+				<p:column style="width: auto; text-align: center !important;">
+						<f:facet name="header">SAVE</f:facet>
+						<p:commandButton icon="ui-icon-disk"  immediate="true" disabled="#{en.deletedB eq true}"
+						update="endorsement_dTab" actionListener="#{endorsementTrkrView.updateEndorsementHistory(en)}" 
+						styleClass="search-button">
+						</p:commandButton>
+					</p:column>
+			 
+			
+			<p:column style="width: auto; text-align: center !important;">
+					<f:facet name="header">DELETE</f:facet>
+					<p:commandButton icon="ui-icon-trash"  styleClass="search-button"  immediate="true" disabled="#{en.deletedB eq true}"
+				 	update="endorsement_dTab" actionListener="#{endorsementTrkrView.deleteEndorsementRecord(en)}" >
+ 					</p:commandButton>
+			</p:column> 
+			
+			</p:dataTable>
+			
+	<!-- 	<p:dialog header="Confirm" widgetVar="endorsementConfirm"  showEffect="fade" hideEffect="fade" resizable="false">
+			<h:outputText value="Are you sure you want to load the selected Employee?" styleClass="ui-staticLabel"/>
+			<h:panelGrid columns="2" styleClass="button-panel" cellpadding="2" cellspacing="2" style="margin-top: 15px;">
+				<p:commandButton value="Load" update="@form"  action="#{endorsementTrkrView.loadSelectedEndorsementInfo}"/>
+				<p:commandButton value="Cancel" update="@form" oncomplete="PF('endorsementConfirm').hide()"/>
+			</h:panelGrid>
+		</p:dialog> 
+		 -->
+		</h:form>
+<br/>
+		
+	<h:form id="endorsementForm_nominee">
+	<p:messages showSummary="true" styleClass="ui-errorLabel" />
+
+		<p:separator> 
+			<h:outputLabel value="Nomination Details" styleClass="ui-staticLabel" style="color:blue;"/>
+		</p:separator>
+		
+		<h:panelGrid columns="4" id="project_PGrid_Audit" styleClass="tab-panel" style="width: 40% !important; float: right;">
+			<h:outputLabel for="project_insertedDate" value="Inserted Date" styleClass="ui-auditLabel" />
+			<p:outputLabel id="project_insertedDate" value="#{endorsementTrkrView.nomineetracker.insertedDate}" styleClass="ui-auditValue" />
+
+			<h:outputLabel for="project_updatedDate" value="Inserted By" styleClass="ui-auditLabel" />
+			<p:outputLabel id="project_updatedDate" value="#{endorsementTrkrView.nomineetracker.insertedBy}" styleClass="ui-auditValue" />
+		</h:panelGrid>
+			 
+			<h:panelGrid columns="4"  id="endorsement_nomDet_PGrid" styleClass="tab-panel" cellpadding="2" cellspacing="2">
+				
+				
+					<h:outputLabel for="endorsement_dependentsName" value="Dependent's Name" />
+					<h:inputText id="endorsement_dependentsName" value="#{endorsementTrkrView.nomineetracker.dependentsName}">
+					</h:inputText>
+				
+					<h:outputLabel for="endorsement_relation"
+						value="Relation to Employee" />
+					<h:inputText value="#{endorsementTrkrView.nomineetracker.relation}"
+						id="endorsement_relation" >
+						<!-- <f:validateLength minimum="5" maximum="100" /> -->
+						</h:inputText>
+		
+					<h:outputLabel for="endorsement_gender" value="Gender of Nominee" />
+					<p:selectBooleanButton
+						value="#{endorsementTrkrView.nomineetracker.gender}"
+						id="endorsement_gender" onLabel="Male" offLabel="Female"
+						onIcon="ui-icon-arrowrefresh-1-s" offIcon="ui-icon-arrowrefresh-1-n"
+						styleClass="ui-boolean-button" />
+		
+					<h:outputLabel for="endorsement_dateOfBirthOfNominee"
+						value="Nominee Date Of Birth" />
+					<p:calendar id="endorsement_dateOfBirthOfNominee" 
+						value="#{endorsementTrkrView.nomineetracker.dateOfBirthOfNominee}"  styleClass="calendar-input"/>
+		
+					<h:outputLabel for="endorsement_ageOfNominee" value="Nominee Age" />
+					<h:inputText
+						value="#{endorsementTrkrView.nomineetracker.ageOfNominee}"
+						id="endorsement_ageOfNominee" >
+						<!-- <f:validateLength minimum="1" maximum="5" /> -->
+						</h:inputText>
+		
+					<h:outputLabel for="endorsement_emailId" value="Nominee Email Id" />
+					<h:inputText value="#{endorsementTrkrView.nomineetracker.emailId}" 
+						id="endorsement_emailId">
+						<f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+					<!-- <f:validateLength maximum="100" /> -->
+					</h:inputText>
+		</h:panelGrid>
+		
+				<h:panelGrid columns="4" id="endorsement_buttonPanel"
+					styleClass="button-panel" cellpadding="2" cellspacing="2">
+					<p:commandButton value="Save Nominee" update="@form"  
+						actionListener="#{endorsementTrkrView.insertNomineeStatus}" styleClass="ui-button" />
+					
+					<p:commandButton value="NEW Nominee" update="endorsementForm_nominee"  
+						 styleClass="ui-button" />
+				
+					<p:commandButton value="Reset" styleClass="ui-button">
+						<p:ajax update="endorsement_nomDet_PGrid" resetValues="true" />
+					</p:commandButton>
+				</h:panelGrid>
+			
+			
+			
+
+			<p:dataTable id="endorsement_nominee_dTab" value="#{endorsementTrkrView.nominee}"
+			widgetVar="projectTable" filteredValue="#{endorsementTrkrView.nomineesearchhistory}" lazy="false"
+			rows="5" paginator="true" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} 
+			{NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,15"
+			style="width: 150%; height: 70%; "
+				var="nd"  styleClass="employeeTable" border="1" rowClasses="employeeTableEvenRow, employeeTableOddRow" 
+				headerClass="employeeTableHeader" rowIndexVar="rowId">
+				<f:facet name="header">
+					Nominee List
+		      	</f:facet>
+				
+				<p:column>
+				<f:facet name="header">Sr. No.</f:facet>
+				<h:outputText value="#{rowId}"/>
+				</p:column>
+				
+				<p:column sortBy="#{nd.empid}" filterBy="#{nd.empid}">
+				<f:facet name="header">EMP ID</f:facet>
+				<h:outputText value="#{nd.empid}"/>
+				</p:column>
+				
+				<p:column sortBy="#{nd.dependentsName}" filterBy="#{nd.dependentsName}">
+					<f:facet name="header">Dependents Name</f:facet>
+					<h:inputText value="#{nd.dependentsName}">
+					<p:ajax event="blur"></p:ajax>
+					</h:inputText>
+				</p:column>
+				
+				<p:column sortBy="#{nd.relation}" filterBy="#{nd.relation}">
+					<f:facet name="header">Relation</f:facet>
+					<h:inputText value="#{nd.relation}">
+					<p:ajax event="blur"></p:ajax>
+					</h:inputText>
+				</p:column>
+				
+				<p:column>
+					<f:facet name="header">Gender</f:facet>
+					<p:selectBooleanButton
+						value="#{nd.gender}"
+						id="endorsement_gender" onLabel="Male" offLabel="Female"
+						onIcon="ui-icon-arrowrefresh-1-s" offIcon="ui-icon-arrowrefresh-1-n"
+						styleClass="ui-boolean-button">
+						<p:ajax event="blur"></p:ajax>
+						</p:selectBooleanButton>
+				</p:column>
+				
+				<p:column sortBy="#{nd.emailId}" filterBy="#{nd.emailId}">
+					<f:facet name="header">Nominee Email ID</f:facet>
+					<h:outputText value="#{nd.emailId}" />
+				</p:column>
+				
+				<p:column sortBy="#{nd.ageOfNominee}" filterBy="#{nd.ageOfNominee}">
+					<f:facet name="header">AGE</f:facet>
+					<h:inputText  value="#{nd.ageOfNominee}">
+						<p:ajax event="blur"></p:ajax>
+					</h:inputText>
+				</p:column>
+				
+				<p:column sortBy="#{nd.dateOfBirthOfNominee}">
+					<f:facet name="header">Nominee DOB</f:facet>
+					<p:calendar  value="#{nd.dateOfBirthOfNominee}"
+						effect="clip" pattern="dd-MM-yyyy" styleClass="calendar-input">
+					<p:ajax event="dateSelect"  listener="#{endorsementTrkrView.onDateSelect}" />
+						</p:calendar>
+				</p:column>
+				
+				<p:column>		
+					<f:facet name="header">STATUS</f:facet>
+					<h:outputText value="#{nd.deletedB eq true ? 'DELETED' : ''}"/>
+				</p:column>
+				
+				<!-- <p:column style="width: auto; text-align: center !important;">
+					<f:facet name="header">Click To Load</f:facet>
+					<p:commandButton icon="ui-icon-search" actionListener="#{endorsementTrkrView.loadNomineeDetailsToForm(nd)}" styleClass="search-button">
+					</p:commandButton>
+				</p:column> -->
+				
+				<p:column style="width: auto; text-align: center !important;">
+						<f:facet name="header">SAVE</f:facet>
+						<p:commandButton icon="ui-icon-disk"  immediate="true" disabled="#{nd.deletedB eq true}"
+						update="endorsement_nominee_dTab" actionListener="#{endorsementTrkrView.updateNomineeHistory(nd)}" 
+						styleClass="search-button">
+						</p:commandButton>
+					</p:column>
+			
+			
+				<p:column style="width: auto; text-align: center !important;">
+					<f:facet name="header">DELETE</f:facet>
+					<p:commandButton icon="ui-icon-trash"  styleClass="search-button" immediate="true" disabled="#{nd.deletedB eq true}"
+				 	update="endorsement_nominee_dTab" actionListener="#{endorsementTrkrView.deleteNomineeRecord(nd)}" >
+ 					</p:commandButton>
+			</p:column>
+			
+			</p:dataTable>
+		
+	</h:form>
+</ui:composition>

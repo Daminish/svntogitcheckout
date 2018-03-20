@@ -1,0 +1,503 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<h:form id="exitformality_form">
+		<p:messages showSummary="true" styleClass="ui-errorLabel" />
+
+		<h:panelGrid columns="4" id="basicInfo_PGrid_Audit" styleClass="tab-panel" style="width: 40% !important; float: right;">
+			<h:outputLabel for="exit_insertedDate" value="Inserted Date" styleClass="ui-auditLabel" />
+			<p:outputLabel id="exit_insertedDate" value="#{exitFormTrkr.exitFormTrkrObj.insertedDate}" styleClass="ui-auditValue" />
+
+			<h:outputLabel for="exit_insertedBy" value="Inserted By" styleClass="ui-auditLabel" />
+			<p:outputLabel id="exit_insertedBy" value="#{exitFormTrkr.exitFormTrkrObj.insertedBy}" styleClass="ui-auditValue" />
+		</h:panelGrid>
+
+		<h:panelGrid columns="1"  id="exitInfo_PGrid" styleClass="tab-panel" 
+			cellpadding="2" cellspacing="2">
+
+		<p:separator> 
+			<h:outputLabel value="Exit Formality Summary" styleClass="ui-staticLabel" style="color:blue;"/>
+		</p:separator>
+		
+		<h:panelGrid columns="6" id="exitFormality_PGrid" styleClass="tab-panel" cellpadding="2" cellspacing="2">
+			<h:outputLabel for="exit_resignationDate" value="Resignation date" />
+			<p:calendar id="exit_resignationDate" value="#{exitFormTrkr.exitFormTrkrObj.resignationDate}" 
+				effect="clip" pattern="dd-MM-yyyy" styleClass="calendar-input" />
+			
+			<h:outputLabel for="exit_noticePeriod" value="Notice Period" />
+			<h:inputText id="exit_noticePeriod"   value="#{exitFormTrkr.exitFormTrkrObj.noticePeriod}">
+				<!-- <f:validateLength  minimum="2" /> -->
+			</h:inputText>
+			
+			<h:outputLabel for="exit_lastWorkingDate" value="Last Working Day" />
+			<p:calendar id="exit_lastWorkingDate" value="#{exitFormTrkr.exitFormTrkrObj.lastWorkingDate}"
+				effect="clip" pattern="dd-MM-yyyy"   styleClass="calendar-input" />
+		</h:panelGrid>
+		
+		<h:panelGrid columns="4" id="basicInfo_PGrid_Comm" styleClass="tab-panel" cellpadding="2" cellspacing="2">
+			<h:outputLabel for="exit_reasonForResignation" value="Resignation reason" />
+			
+			<h:panelGrid columns="1" style="border: none !important;">
+				<p:inputTextarea id="exit_reasonForResignation" value="#{exitFormTrkr.exitFormTrkrObj.reasonForResignation}" rows="5" cols="50" 
+					autoResize="false" counter="exit_reasonForResignation_char"  maxlength="256" counterTemplate="{0} characters remaining."/>
+				<h:outputText id="exit_reasonForResignation_char" styleClass="char_remaining_label"/>
+			</h:panelGrid>
+
+			<h:outputLabel for="exit_comments" value="Comments" />
+			<h:panelGrid columns="1" style="border: none !important;">
+				<p:inputTextarea id="exit_comments" value="#{exitFormTrkr.exitFormTrkrObj.comments}" rows="5" cols="50"
+					autoResize="false" counter="exit_comments_char" maxlength="256" counterTemplate="{0} characters remaining."/>
+				<h:outputText id="exit_comments_char" styleClass="char_remaining_label"/>
+			</h:panelGrid>
+
+		</h:panelGrid>
+		
+		<p:separator> 
+			<h:outputLabel value="Exit Formaility Details" styleClass="ui-staticLabel" style="color:blue;"/>
+		</p:separator>
+		
+		 
+		<h:panelGrid columns="4" id="exitFormality_PGrid_rest" styleClass="tab-panel" cellpadding="2" cellspacing="2">
+			
+			<h:outputLabel for="exit_fnfCompleted" value="FNF Completed Date" />
+			<p:calendar id="exit_fnfCompleted" value="#{exitFormTrkr.exitFormTrkrObj.fnfCompleted}" 
+				effect="clip" pattern="dd-MM-yyyy" styleClass="calendar-input" />
+
+			<h:outputLabel for="exit_libraryBooksCollected" value="Library Books Collected" />
+			<p:selectOneMenu id="exit_libraryBooksCollected" value="#{exitFormTrkr.exitFormTrkrObj.libraryBooksCollected}" >
+				<f:selectItem itemValue="Yes" itemLabel="Yes" />
+				<f:selectItem itemValue="No" itemLabel="No" />
+				<f:selectItem itemValue="NA" itemLabel="NA" />
+			</p:selectOneMenu>
+
+			<h:outputLabel for="exit_idAndEmailTerminated" value="ID and Email Terminated" styleClass="boolean-date-id" />
+				<p:panel style="border: none !important;">
+				<p:selectBooleanButton
+					value="#{exitFormTrkr.exitFormTrkrObj.idAndEmailTerminated}"
+					id="exit_idAndEmailTerminated" onLabel="Yes" offLabel="No"
+					onIcon="ui-icon-check" offIcon="ui-icon-close"
+					 styleClass="ui-boolean-button">
+					<f:ajax render="idAndEmailTerminated"/>
+				</p:selectBooleanButton>
+				
+			<p:panel id="idAndEmailTerminated" style="border: 1px !important;" >
+				<p:calendar id="exit_idAndEmailTerminatedDate" value="#{exitFormTrkr.exitFormTrkrObj.idAndEmailTerminatedDate}"
+					effect="clip" pattern="dd-MM-yyyy"  rendered="#{exitFormTrkr.exitFormTrkrObj.idAndEmailTerminated != 'No'}" styleClass="calendar-input" style="margin-right: 0px;" />
+			</p:panel>
+		</p:panel>
+		
+			
+			<h:outputLabel for="exit_releivingLetterIssued" value="Releaving Letter Issued" styleClass="boolean-date-exit" />
+			<p:panel style="border: none !important;" id="exForm_RelLet_P">
+				<p:selectBooleanButton id="exit_releivingLetterIssued" value="#{exitFormTrkr.exitFormTrkrObj.releivingLetterIssued}"
+					onLabel="Yes" offLabel="No" onIcon="ui-icon-check" offIcon="ui-icon-close"
+					styleClass="ui-boolean-button">
+					<f:ajax render="releivingLetterIssued"/>
+				</p:selectBooleanButton>
+				
+				<p:panel id="releivingLetterIssued" style="border: 1px !important;">
+				<p:calendar id="exit_releivingLetterDate" value="#{exitFormTrkr.exitFormTrkrObj.releivingLetterDate}" 
+					effect="clip" pattern="dd-MM-yyyy"  rendered="#{exitFormTrkr.exitFormTrkrObj.releivingLetterIssued != 'No'}" styleClass="calendar-input" style="margin-right: 0px;"/>
+			</p:panel>
+			</p:panel>
+
+			<h:outputLabel for="exit_serviceLetterIssued" value="Service Letter Issued" styleClass="boolean-date-id" />
+			<p:panel style="border: none !important;">
+				<p:selectBooleanButton id="exit_serviceLetterIssued" value="#{exitFormTrkr.exitFormTrkrObj.serviceLetterIssued}"
+					onLabel="Yes" offLabel="No" onIcon="ui-icon-check" offIcon="ui-icon-close"
+					styleClass="ui-boolean-button">
+					<f:ajax render="serviceLetterIssued"/>
+				</p:selectBooleanButton>
+				
+				<p:panel id="serviceLetterIssued" style="border: 1px !important;">
+				<p:calendar id="exit_serviceLetterDate" value="#{exitFormTrkr.exitFormTrkrObj.serviceLetterDate}"
+					effect="clip" pattern="dd-MM-yyyy"  rendered="#{exitFormTrkr.exitFormTrkrObj.serviceLetterIssued != 'No'}" styleClass="calendar-input" style="margin-right: 0px;"/>
+				</p:panel>
+			</p:panel>
+
+			<h:outputLabel for="exit_buyoutLetterIssued" value="Notice Buyout Letter" />
+			<p:panel style="border: none !important;">
+				<p:selectBooleanButton id="exit_buyoutLetterIssued" value="#{exitFormTrkr.exitFormTrkrObj.buyoutLetterIssued}"
+					onLabel="Yes" offLabel="No" onIcon="ui-icon-check" offIcon="ui-icon-close"
+					styleClass="ui-boolean-button" >
+					<f:ajax render="buyoutLetterIssued"/>
+				</p:selectBooleanButton>
+
+			<p:panel id="buyoutLetterIssued" style="border: 1px !important;" >
+				<p:calendar id="exit_noticeBuyoutDate" value="#{exitFormTrkr.exitFormTrkrObj.buyoutLetterDate}"
+					effect="clip" pattern="dd-MM-yyyy"  rendered="#{exitFormTrkr.exitFormTrkrObj.buyoutLetterIssued != 'No'}" styleClass="calendar-input" style="margin-right: 0px;"/>
+			</p:panel>
+			</p:panel>
+			
+			<h:outputLabel for="exit_buyoutLetterAmount" value="Notice Buyout Amount" />
+			<p:panel style="border: none !important;">
+				<p:selectBooleanButton id="exit_buyoutLetterAmount" value="#{exitFormTrkr.exitFormTrkrObj.buyoutAmountPaid}"
+					onLabel="Yes" offLabel="No" onIcon="ui-icon-check" offIcon="ui-icon-close"
+					styleClass="ui-boolean-button">
+					<f:ajax render="buyoutLetterAmount"/>
+				</p:selectBooleanButton>
+				
+				<p:panel id="buyoutLetterAmount" style="border: 1px !important;">
+				<p:inputText id="exit_noticeBuyoutAmountVal" rendered="#{exitFormTrkr.exitFormTrkrObj.buyoutAmountPaid != 'No'}" value="#{exitFormTrkr.exitFormTrkrObj.buyoutAmount}"  style="margin-right: 0px;">
+						<!-- <f:validateLength  minimum="2" maximum="10" /> -->
+				</p:inputText>
+				
+				<p:spinner id="exit_noticeBuyoutDays" value="#{exitFormTrkr.exitFormTrkrObj.buyoutNoOfDays}" min="0" max="90" stepFactor="1"
+					placeholder="Number of Days" rendered="#{exitFormTrkr.exitFormTrkrObj.buyoutAmountPaid != 'Yes'}"  style="margin-left: 10px;" title="Number of days bought out"/>
+			</p:panel>
+			</p:panel>
+			
+			<h:outputLabel for="exit_buyoutWaiver" value="Notice Buyout Waiver (No. of Days)" />
+			<p:panel style="border: none !important;">
+				<p:selectBooleanButton id="exit_buyoutWaiver" value="#{exitFormTrkr.exitFormTrkrObj.buyoutWaived}"
+					onLabel="Yes" offLabel="No" onIcon="ui-icon-check" offIcon="ui-icon-close"
+					styleClass="ui-boolean-button" >
+					<f:ajax render="buyoutWaiver" />
+				</p:selectBooleanButton>
+				
+				<p:panel id="buyoutWaiver" style="border: 1px !important;">
+				<p:spinner id="exit_buyoutWaiverDays"  rendered="#{exitFormTrkr.exitFormTrkrObj.buyoutWaived != 'No'}" value="#{exitFormTrkr.exitFormTrkrObj.buyoutWaivedDays}" min="0" max="90" stepFactor="1"
+					placeholder="Number of Days" style="margin-right: 0px;"/>
+			</p:panel>
+			</p:panel>
+		</h:panelGrid>
+		
+		<p:separator> 
+			<h:outputLabel value="Exit Formaility Checklist" styleClass="ui-staticLabel" style="color:blue;"/>
+		</p:separator>
+		
+		<h:panelGrid columns="10" id="exitFormality_PGrid_flags" styleClass="tab-panel" cellpadding="2" cellspacing="2">
+			<h:outputLabel for="exit_exitInterviewCompleted" value="Exit Interview Completed"/>
+			<p:selectBooleanButton id="exit_exitInterviewCompleted" value="#{exitFormTrkr.exitFormTrkrObj.exitInterviewCompleted}"
+				onLabel="Yes" offLabel="No" onIcon="ui-icon-check" offIcon="ui-icon-close"
+				styleClass="ui-boolean-button" />
+				
+			<h:outputLabel for="exit_salaryHold" value="Salary Hold" />
+			<p:selectBooleanButton id="exit_salaryHold" value="#{exitFormTrkr.exitFormTrkrObj.salaryHold}"
+				onLabel="Yes" offLabel="No" onIcon="ui-icon-check" offIcon="ui-icon-close"
+				styleClass="ui-boolean-button"/>
+				
+			<h:outputLabel for="exit_birthdayAppDeletion" value="Birthday App Deletion" />
+			<p:selectBooleanButton id="exit_birthdayAppDeletion" value="#{exitFormTrkr.exitFormTrkrObj.birthdayAppDeletion}"
+				onLabel="Yes" offLabel="No" onIcon="ui-icon-check" offIcon="ui-icon-close"
+				styleClass="ui-boolean-button" />
+				
+			<h:outputLabel for="exit_timesheetSubmitted" value="Time Sheet Submitted" />
+			<p:selectBooleanButton id="exit_timesheetSubmitted" value="#{exitFormTrkr.exitFormTrkrObj.timesheetSubmitted}"
+				onLabel="Yes" offLabel="No" onIcon="ui-icon-check" offIcon="ui-icon-close"
+				styleClass="ui-boolean-button" />
+				
+			<h:outputLabel for="exit_medicalInsuranceNotified" value="Medical Insurance Notified" />
+			<p:selectBooleanButton id="exit_medicalInsuranceNotified" value="#{exitFormTrkr.exitFormTrkrObj.medicalInsuranceNotified}"
+				onLabel="Yes" offLabel="No" onIcon="ui-icon-check" offIcon="ui-icon-close"
+				styleClass="ui-boolean-button" />
+		</h:panelGrid>
+		
+		<h:panelGrid columns="2" id="exitSubmit_PGrid" styleClass="button-panel" cellpadding="2" cellspacing="2">
+			<p:commandButton style="align:center" value="Save" update="@form" resetValues="true" styleClass="submit-button"
+			actionListener="#{exitFormTrkr.insertExitFormalityInfo}" />
+			<p:commandButton value="Reset" styleClass="submit-button">
+				<p:ajax update="exitformality_form" resetValues="true" />
+			</p:commandButton>
+		</h:panelGrid>
+
+		
+			
+			<p:dataTable id="exit_dTab" value="#{exitFormTrkr.exithistory}" 
+			widgetVar="projectTable" filteredValue="#{exitFormTrkr.exitsearchhistory}" lazy="false"
+			rows="5" paginator="true" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} 
+			{NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,15"
+				 style="width: 250%; height: 100%; "
+				var="exit"  styleClass="employeeTable" border="1" rowStyleClass="#{(row mod 2) eq 0 ? 'employeeTableEvenRow' : 'employeeTableOddRow'}"  
+				headerClass="employeeTableHeader"  rowIndexVar="rowId">
+				
+						
+		<f:facet name="header">
+   		 <p:outputPanel>
+       		 <h:outputText value="Search all fields:" />
+       		 <h:inputText id="globalFilter" onkeyup="PF('projectTable').filter()" />
+   		 </p:outputPanel>
+		</f:facet>
+				
+				<f:facet name="header">
+					Probation List
+		      	</f:facet>
+		      	
+		      	<p:column>
+				<f:facet name="header">Sr. No.</f:facet>
+				<h:outputText value="#{rowId}"/>
+				</p:column>
+				
+				<p:column sortBy="#{exit.employeeId}" filterBy="#{exit.employeeId}">
+				<f:facet name="header">Emp ID</f:facet>
+				<h:outputText value="#{exit.employeeId}"/>
+				</p:column>
+				
+				<p:column sortBy="#{exit.reasonForResignation}">
+					<f:facet name="header">Resignation reason</f:facet>
+					<h:inputText  value="#{exit.reasonForResignation}" >
+					<p:ajax event="blur"></p:ajax>
+					</h:inputText>
+				</p:column>
+				
+				 <p:column sortBy="#{exit.noticePeriod}" filterBy="#{exit.noticePeriod}">
+					<f:facet name="header">Notice Period</f:facet>
+					<h:inputText value="#{exit.noticePeriod}" >
+						<p:ajax event="blur"></p:ajax>
+					</h:inputText>
+				</p:column>
+				
+					
+		      	<p:column sortBy="#{exit.lastWorkingDate}">
+				<f:facet name="header">Last Working Day</f:facet>
+				<p:calendar  value="#{exit.lastWorkingDate}"
+						effect="clip" pattern="dd-MM-yyyy" styleClass="calendar-input" >
+						<p:ajax event="dateSelect"  listener="#{exitFormTrkr.onDateSelect}" />
+						</p:calendar>
+				</p:column>
+		      	
+				
+				<p:column sortBy="#{exit.resignationDate}">
+					<f:facet name="header">Resignation Date</f:facet>
+					<p:calendar  value="#{exit.resignationDate}" 
+					 	effect="clip" pattern="dd-MM-yyyy"  styleClass="calendar-input">
+						<p:ajax event="dateSelect"  listener="#{exitFormTrkr.onDateSelect}" />
+				</p:calendar>
+				</p:column>
+		     
+				<p:column sortBy="#{exit.comments}">
+					<f:facet name="header">Comments</f:facet>
+					<h:inputText value="#{exit.comments}" >
+					<p:ajax event="blur"></p:ajax>
+					</h:inputText>
+				</p:column>
+				
+				<p:column sortBy="#{exit.fnfCompleted}">
+					<f:facet name="header">FNF Completed Date</f:facet>
+						<p:calendar value="#{exit.fnfCompleted}" 
+						effect="clip" pattern="dd-MM-yyyy" styleClass="calendar-input">
+								<p:ajax event="dateSelect"  listener="#{exitFormTrkr.onDateSelect}" />
+		
+					</p:calendar>
+				</p:column>
+				
+				<p:column sortBy="#{exit.libraryBooksCollected}">
+					<f:facet name="header">Library Books Collected</f:facet>
+					<p:selectOneMenu value="#{exit.libraryBooksCollected}">
+						<f:selectItem itemValue="Yes" itemLabel="Yes" />
+						<f:selectItem itemValue="No" itemLabel="No" />
+						<f:selectItem itemValue="NA" itemLabel="NA" />
+					<p:ajax update="exit_dTab"/>
+					</p:selectOneMenu>
+				</p:column>
+			
+				<p:column sortBy="#{exit.idAndEmailTerminated}">
+					<f:facet name="header">ID and Email Terminated</f:facet>
+					<p:selectBooleanButton value="#{exit.idAndEmailTerminated}"
+					onLabel="Yes" offLabel="No" onIcon="ui-icon-check" offIcon="ui-icon-close"
+					styleClass="ui-boolean-button" >
+					<p:ajax update="exit_dTab" />
+					</p:selectBooleanButton>
+				</p:column>
+			
+				<p:column sortBy="#{exit.idAndEmailTerminatedDate}">
+					<f:facet name="header">ID and Email Terminated Date</f:facet>
+						<p:calendar value="#{exit.idAndEmailTerminatedDate}" 
+						effect="clip" pattern="dd-MM-yyyy" styleClass="calendar-input">
+								<p:ajax event="dateSelect"  listener="#{exitFormTrkr.onDateSelect}" />
+		
+					</p:calendar>
+				</p:column>
+				
+				
+				<p:column sortBy="#{exit.releivingLetterIssued}">
+					<f:facet name="header">Releaving Letter Issued</f:facet>
+					<p:selectBooleanButton value="#{exit.releivingLetterIssued}"
+					onLabel="Yes" offLabel="No" onIcon="ui-icon-check" offIcon="ui-icon-close"
+					styleClass="ui-boolean-button" >
+					<p:ajax update="exit_dTab" />
+					</p:selectBooleanButton>
+				</p:column>
+			
+				<p:column sortBy="#{exit.releivingLetterDate}">
+					<f:facet name="header">Releaving Letter Issued Date</f:facet>
+						<p:calendar value="#{exit.releivingLetterDate}" 
+						effect="clip" pattern="dd-MM-yyyy" styleClass="calendar-input">
+								<p:ajax event="dateSelect"  listener="#{exitFormTrkr.onDateSelect}" />
+		
+					</p:calendar>
+				</p:column>
+			
+				<p:column sortBy="#{exit.serviceLetterIssued}">
+					<f:facet name="header">Service Letter Issued</f:facet>
+					<p:selectBooleanButton value="#{exit.serviceLetterIssued}"
+					onLabel="Yes" offLabel="No" onIcon="ui-icon-check" offIcon="ui-icon-close"
+					styleClass="ui-boolean-button" >
+					<p:ajax update="exit_dTab" />
+					</p:selectBooleanButton>
+				</p:column>
+			
+				<p:column sortBy="#{exit.serviceLetterDate}">
+					<f:facet name="header">Service Letter Issued Date</f:facet>
+						<p:calendar value="#{exit.serviceLetterDate}" 
+						effect="clip" pattern="dd-MM-yyyy" styleClass="calendar-input">
+								<p:ajax event="dateSelect"  listener="#{exitFormTrkr.onDateSelect}" />
+		
+					</p:calendar>
+				</p:column>
+			
+			
+				<p:column sortBy="#{exit.buyoutLetterIssued}">
+					<f:facet name="header">Notice Buyout Letter</f:facet>
+					<p:selectBooleanButton value="#{exit.buyoutLetterIssued}"
+					onLabel="Yes" offLabel="No" onIcon="ui-icon-check" offIcon="ui-icon-close"
+					styleClass="ui-boolean-button" >
+					<p:ajax update="exit_dTab" />
+					</p:selectBooleanButton>
+				</p:column>
+			
+				<p:column sortBy="#{exit.buyoutLetterDate}">
+					<f:facet name="header">Notice Buyout Letter	Date</f:facet>
+						<p:calendar value="#{exit.buyoutLetterDate}" 
+						effect="clip" pattern="dd-MM-yyyy" styleClass="calendar-input">
+								<p:ajax event="dateSelect"  listener="#{exitFormTrkr.onDateSelect}" />
+		
+					</p:calendar>
+				</p:column>
+			
+				<p:column sortBy="#{exit.buyoutAmountPaid}">
+					<f:facet name="header">Notice Buyout Paid</f:facet>
+					<p:selectBooleanButton value="#{exit.buyoutAmountPaid}"
+					onLabel="Yes" offLabel="No" onIcon="ui-icon-check" offIcon="ui-icon-close"
+					styleClass="ui-boolean-button" >
+					<p:ajax update="exit_dTab" />
+					</p:selectBooleanButton>
+				</p:column>
+			
+			 <p:column sortBy="#{exit.buyoutAmount}" filterBy="#{exit.buyoutAmount}">
+					<f:facet name="header">Buyout Amount</f:facet>
+					<h:inputText value="#{exit.buyoutAmount}" >
+						<p:ajax event="blur"></p:ajax>
+					</h:inputText>
+				</p:column>
+			
+			 <p:column sortBy="#{exit.buyoutNoOfDays}" filterBy="#{exit.buyoutNoOfDays}">
+					<f:facet name="header">Buyout Days</f:facet>
+					<h:inputText value="#{exit.buyoutNoOfDays}" >
+						<p:ajax event="blur"></p:ajax>
+					</h:inputText>
+				</p:column>
+			
+			<p:column sortBy="#{exit.buyoutWaived}">
+					<f:facet name="header">Notice Buyout Waiver</f:facet>
+					<p:selectBooleanButton value="#{exit.buyoutWaived}"
+					onLabel="Yes" offLabel="No" onIcon="ui-icon-check" offIcon="ui-icon-close"
+					styleClass="ui-boolean-button" >
+					<p:ajax update="exit_dTab" />
+					</p:selectBooleanButton>
+				</p:column>
+			
+			 <p:column sortBy="#{exit.buyoutWaivedDays}" filterBy="#{exit.buyoutWaivedDays}">
+					<f:facet name="header">Notice Buyout Waiver (No. of Days)</f:facet>
+					<h:inputText value="#{exit.buyoutWaivedDays}" >
+						<p:ajax event="blur"></p:ajax>
+					</h:inputText>
+				</p:column>
+			
+				<p:column sortBy="#{exit.exitInterviewCompleted}">
+					<f:facet name="header">Exit Interview Completed</f:facet>
+					<p:selectBooleanButton value="#{exit.exitInterviewCompleted}"
+					onLabel="Yes" offLabel="No" onIcon="ui-icon-check" offIcon="ui-icon-close"
+					styleClass="ui-boolean-button" >
+					<p:ajax update="exit_dTab" />
+					</p:selectBooleanButton>
+				</p:column>
+			
+				<p:column sortBy="#{exit.salaryHold}">
+					<f:facet name="header">Salary Hold</f:facet>
+					<p:selectBooleanButton value="#{exit.salaryHold}"
+					onLabel="Yes" offLabel="No" onIcon="ui-icon-check" offIcon="ui-icon-close"
+					styleClass="ui-boolean-button" >
+					<p:ajax update="exit_dTab" />
+					</p:selectBooleanButton>
+				</p:column>
+			
+			
+				<p:column sortBy="#{exit.birthdayAppDeletion}">
+					<f:facet name="header">Birthday App Deletion</f:facet>
+					<p:selectBooleanButton value="#{exit.birthdayAppDeletion}"
+					onLabel="Yes" offLabel="No" onIcon="ui-icon-check" offIcon="ui-icon-close"
+					styleClass="ui-boolean-button" >
+					<p:ajax update="exit_dTab" />
+					</p:selectBooleanButton>
+				</p:column>
+			
+			
+				<p:column sortBy="#{exit.timesheetSubmitted}">
+					<f:facet name="header">Time Sheet Submitted</f:facet>
+					<p:selectBooleanButton value="#{exit.timesheetSubmitted}"
+					onLabel="Yes" offLabel="No" onIcon="ui-icon-check" offIcon="ui-icon-close"
+					styleClass="ui-boolean-button" >
+					<p:ajax update="exit_dTab" />
+					</p:selectBooleanButton>
+				</p:column>
+			
+				<p:column sortBy="#{exit.medicalInsuranceNotified}">
+					<f:facet name="header">Medical Insurance Notified</f:facet>
+					<p:selectBooleanButton value="#{exit.medicalInsuranceNotified}"
+					onLabel="Yes" offLabel="No" onIcon="ui-icon-check" offIcon="ui-icon-close"
+					styleClass="ui-boolean-button" >
+					<p:ajax update="exit_dTab" />
+					</p:selectBooleanButton>
+				</p:column>
+			
+			
+				<p:column>		
+					<f:facet name="header">STATUS</f:facet>
+					<h:outputText value="#{exit.deletedB eq true ? 'DELETED' : ''}"/>
+				</p:column>	
+				
+				<!-- <p:column style="width: auto; text-align: center !important;">
+					<f:facet name="header" style="width:auto;text-align: center;">Click To Load</f:facet>
+					<p:commandButton icon="ui-icon-search" oncomplete="PF('exitConfirm').show()" styleClass="search-button"
+					 actionListener="#{exitFormTrkr.setSelectedExitInfoForLoad(exit)}" >
+					
+					</p:commandButton>
+				</p:column> -->
+				
+				<p:column style="width: auto; text-align: center !important; ">
+						<f:facet name="header">SAVE</f:facet>
+						<p:commandButton icon="ui-icon-disk"  immediate="true" disabled="#{exit.deletedB eq true}"
+						 update="exit_dTab"  actionListener="#{exitFormTrkr.updateProbationTracker(exit)}"
+						styleClass="search-button">
+						</p:commandButton>
+				</p:column>
+				
+				
+				
+				<p:column style="width: auto; text-align: center !important;">
+				<f:facet name="header">DELETE</f:facet>
+				<p:commandButton icon="ui-icon-trash"  styleClass="search-button"  immediate="true" disabled="#{exit.deletedB eq true}"
+				  update="exit_dTab" actionListener="#{exitFormTrkr.deleteExitTracker(exit)}" >
+				</p:commandButton>
+			</p:column>
+				
+			</p:dataTable>
+			
+			
+	<!-- 	 <p:dialog header="Confirm" widgetVar="exitConfirm" showEffect="fade" hideEffect="fade" resizable="false">
+			<h:outputText value="Are you sure you want to load the selected Employee?" styleClass="ui-staticLabel"/>
+			<h:panelGrid columns="2" styleClass="button-panel" cellpadding="2" cellspacing="2" style="margin-top: 15px;">
+				<p:commandButton value="Load" update="@form" action="#{exitFormTrkr.loadSelectedExitInfo}"/>
+				<p:commandButton value="Cancel" update="@form" oncomplete="PF('exitConfirm').hide()"/>
+			</h:panelGrid>
+		</p:dialog>  -->
+			
+	</h:panelGrid>
+
+
+	</h:form>
+</ui:composition>

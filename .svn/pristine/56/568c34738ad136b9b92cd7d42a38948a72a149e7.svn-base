@@ -1,0 +1,22 @@
+<div ng-controller="loginController">
+    <div class="loginpage">
+        <div class="login-icon ">
+            <img src="assets/images/logo.png" ng-click="toLogin()"/>
+        </div>
+        
+        <div class="poc-alignment">
+            <form class="form col-md-12 col-sm-12 login-form poc-form-margin" name="forgotForm">
+                <div class="form-group inp-box borB2">
+                    <img src="assets/images/user.png " class="poc-icon" />
+                    <input class="form-control" type="text" name="token" ng-model="token" placeholder="Enter token">
+                    <!-- <span ng-if="forgotForm.emailForgot.$error.pattern">Please enter a valid username</span> -->
+                </div>
+
+
+                <div class="form-group inp-box" style="margin-top:25px;">
+                    <button type="button" class=" col-sm-12 cp-btn" ng-click="validateToken(token)">Validate</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

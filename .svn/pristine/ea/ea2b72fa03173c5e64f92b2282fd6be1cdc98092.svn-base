@@ -1,0 +1,76 @@
+<header>
+        <nav>
+          <div class="container">
+            <div class="row">
+              <div class="col-xs-3">
+                <p class="liv-head-back-btm"><i class="fa fa-chevron-left"></i>&nbsp;<a ng-href="#!/budget">Back</a></p>
+              </div>
+              <div class="col-xs-7">
+                <p class="liv-head-heading">Your Deposite</p>
+              </div>
+              <div class="col-xs-2">
+               <p class="liv-head-info-icon"><a ng-href="#!/costs">Next </a></p>
+              
+              </div>
+            </div>
+           <div class="row">
+              <div class="col-xs-3">
+      
+              </div>
+              <div class=" col-xs-6 liv-head-btm-text">
+                <p class="text-center">Hey Steve ! You have $ 15,00,000 as per approved loan</p>
+              </div>
+              <div class="col-xs-3">
+      
+              </div>
+            </div>
+      
+        </nav>
+      </header>
+      <div class="bgclr">
+        <div>
+          <center>
+            <h3>COSTS <i class="fa fa-info-circle" aria-hidden="true"></i> </h3>
+          </center>
+          <center>
+            <h5><b><i class="fa fa-usd" aria-hidden="true"></i>1,10,100</b></h5>
+          </center>
+        </div>
+        <form>
+        <div>
+            <label class="yourdeposite-orangefont">Value of property</label>
+            <input type="text" name="vop" class="yourdeposite-border form-control" value="$8,00,000" required="true"></>  
+        </div>
+
+        <div>
+                <label class="yourdeposite-orangefont">Stamp Duty to pay (automatically calculated)</label>
+                <input type="text" name="st" class="yourdeposite-border form-control" value="$15,000" required="true" ><span><i class="fa fa-info-circle yourdeposite-icon " aria-hidden="true"></i></span>  
+        </div>
+
+        <div>
+                <label class="yourdeposite-orangefont">Valuation Fee</label>
+                <input type="text" name="vf" class="yourdeposite-border form-control" value="$500" required="true"/>  
+        </div>
+
+        <div>
+                <label class="yourdeposite-orangefont">Surveyor's Fee</label>
+                <input type="text" name="sf" class="yourdeposite-border form-control" value="$400" required="true"/>  
+        </div>
+
+        <div>
+                <label class="yourdeposite-orangefont">Legal Fee</label>
+                <input type="text" name="lf" class="yourdeposite-border form-control" value="$600" required="true"/>  
+        </div>
+
+        <div>
+                <label class="yourdeposite-orangefont">Building Insurance</label>
+                <input type="text" name="bi" class="yourdeposite-border form-control" value="$300" required="true"/>  
+        </div>
+        <div>
+                <label class="yourdeposite-orangefont">Removal cost</label>
+                <input type="text" name="rc" class="yourdeposite-border form-control" value="$" required="true"/>  
+        </div>
+    
+    </div>
+    
+</form>

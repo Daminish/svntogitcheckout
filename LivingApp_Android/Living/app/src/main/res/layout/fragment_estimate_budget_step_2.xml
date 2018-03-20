@@ -1,0 +1,101 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/smart_bg"
+    android:clickable="true"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/text.page.heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="@string/estimate_budget_2_fragment" />
+
+        <ImageView
+            style="@style/icon"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_margin="5dp"
+            app:srcCompat="@drawable/ic_info" />
+    </LinearLayout>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <TextView
+                style="@style/text.budget.form.label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Your Gross Annual Salary" />
+
+            <EditText
+                android:id="@+id/et_annual_salary"
+                style="@style/text.budget.form.field"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_money"
+                android:hint="Annual Salary"
+                android:inputType="numberDecimal" />
+
+
+            <TextView
+                style="@style/text.budget.form.label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Other yearly income" />
+
+            <EditText
+                android:id="@+id/et_yearly_income"
+                style="@style/text.budget.form.field"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_money"
+                android:hint="Yearly Income"
+                android:inputType="numberDecimal" />
+
+
+            <TextView
+                style="@style/text.budget.form.label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:text="Estimated Monthly Income" />
+
+            <EditText
+                android:id="@+id/et_monthly_income"
+                style="@style/text.budget.form.field"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_money"
+                android:enabled="false"
+                android:hint="0.00"
+                android:inputType="numberDecimal" />
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

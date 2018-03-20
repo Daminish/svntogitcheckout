@@ -1,0 +1,700 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+	<h:form id="background_form">
+	<p:messages showSummary="true" styleClass="ui-errorLabel" />
+
+		<h:panelGrid columns="1" id="backgroundInfo_PGrid" styleClass="tab-panel" cellpadding="2" cellspacing="2">
+			<h:panelGrid columns="4" id="backgroundInfo_PGrid_Audit" styleClass="tab-panel" style="width: 40% !important; float: right;">
+				<h:outputLabel for="backgroundInfo_insertedDate" value="Inserted Date" styleClass="ui-auditLabel" />
+				<p:outputLabel id="backgroundInfo_insertedDate" value="#{empDocBgvBean.docBgvObj.insertedDate}" styleClass="ui-auditValue">
+					<f:convertDateTime pattern="dd-MMM-yyyy HH:mm " />
+				</p:outputLabel>
+
+				<h:outputLabel for="backgroundInfo_updatedDate" value="Inserted By" styleClass="ui-auditLabel" />
+				<p:outputLabel id="backgroundInfo_updatedDate" value="#{empDocBgvBean.docBgvObj.insertedBy}" styleClass="ui-auditValue" />
+			</h:panelGrid>
+			
+			<p:separator>
+				<h:outputLabel value="New Hire Provision" styleClass="ui-staticLabel" style="color: blue;"/>
+			</p:separator>
+		
+			<h:panelGrid columns="8" id="backgroundInfo_PGrid_intro" styleClass="tab-panel" cellpadding="2" cellspacing="2">
+		
+				<h:outputLabel for="docbgv_preOnboarding" value="Pre-onboarding"/>
+				<p:selectBooleanButton value="#{empDocBgvBean.docBgvObj.preOnboarding}" id="docbgv_preOnboarding"  
+					onLabel="Initiated" offLabel="Not Initiated" onIcon="ui-icon-check" offIcon="ui-icon-close" 
+					styleClass="ui-boolean-differ-button"/>
+
+				<h:outputLabel for="owner" value="Owner"/>
+				<h:inputText value="#{empDocBgvBean.docBgvObj.owner}" id="owner" >
+				<!-- <f:validateLength minimum="5" maximum="15" /> -->
+				</h:inputText>
+				
+				<h:outputLabel for="docbgv_newHireProvisionCreationDate" value="New Hire Provision" />
+				<p:calendar value="#{empDocBgvBean.docBgvObj.newHireProvisionCreationDate}"   id="docbgv_newHireProvisionCreationDate" 
+					effect="clip" pattern="dd-MM-yyyy" styleClass="calendar-input"/>
+					
+				<h:outputLabel for="docbgv_welcomeEmailSentDate" value="Welcome Email"/>
+				<p:calendar value="#{empDocBgvBean.docBgvObj.welcomeEmailSentDate}"   id="docbgv_welcomeEmailSentDate"
+			  		effect="clip" pattern="dd-MM-yyyy" styleClass="calendar-input"/>	
+			</h:panelGrid>
+				
+			<p:separator>
+				<h:outputLabel value="Recieved Document Dates" styleClass="ui-staticLabel" style="color: blue;"/>
+			</p:separator>
+				
+			<h:panelGrid columns="10" id="backgroundInfo_PGrid_Chaser" styleClass="tab-panel" cellpadding="2" cellspacing="2">
+				<h:outputLabel for="docbgv_firstChaserDate" value="1st Chaser" />
+				<p:calendar value="#{empDocBgvBean.docBgvObj.firstChaserDate}"  id="docbgv_firstChaserDate" 
+					pattern="dd-MM-yyyy" effect="clip" styleClass="calendar-input"/>
+
+				<h:outputLabel for="docbgv_secondChaserDate" value="2nd Chaser" />
+				<p:calendar value="#{empDocBgvBean.docBgvObj.secondChaserDate}"   id="docbgv_secondChaserDate"
+			 		effect="clip" pattern="dd-MM-yyyy" styleClass="calendar-input"/>
+
+				<h:outputLabel for="docbgv_thirdChaserDate" value="3rd Chaser" />
+				<p:calendar  value="#{empDocBgvBean.docBgvObj.thirdChaserDate}"  id="docbgv_thirdChaserDate" 
+					pattern="dd-MM-yyyy" effect="clip" styleClass="calendar-input"/>
+				
+				<h:outputLabel for="docbgv_docReceivedOnDate" value="Document Recieved" />
+				<p:calendar value="#{empDocBgvBean.docBgvObj.docReceivedOnDate}"  id="docbgv_docReceivedOnDate" 
+					effect="clip" pattern="dd-MM-yyyy" styleClass="calendar-input"/>
+					 
+				<h:outputLabel for="docbgv_escalationDate" value="Escalated on Date" />
+				<p:calendar value="#{empDocBgvBean.docBgvObj.escalationDate}"  id="docbgv_escalationDate" 
+					effect="clip" pattern="dd-MM-yyyy" styleClass="calendar-input"/>
+			</h:panelGrid>
+				
+			<p:separator>
+				<h:outputLabel value="Background Verification" styleClass="ui-staticLabel" style="color: blue;"/>
+			</p:separator>
+				
+			<h:panelGrid columns="6" id="backgroundInfo_PGrid_Bgv" styleClass="tab-panel" cellpadding="2" cellspacing="2">
+			 
+			 
+				<h:outputLabel for="docbgv_bgvInitiatedDate" value="BGV Initiated Date" />
+				<p:calendar value="#{empDocBgvBean.docBgvObj.bgvInitiatedDate}"  id="docbgv_bgvInitiatedDate" 
+					effect="clip" pattern="dd-MM-yyyy" styleClass="calendar-input"/>
+									
+				<h:outputLabel for="docbgv_bgvRefNo" value="BGV reference no" />
+				<h:inputText value="#{empDocBgvBean.docBgvObj.bgvRefNo}" id="docbgv_bgvRefNo" >
+				<!-- <f:validateLength minimum="4" maximum="20" /> -->
+				</h:inputText>
+				 
+				<h:outputLabel for="docbgv_bgvReportColorCode" value="Final Report Status"/>
+				<p:selectOneMenu value="#{empDocBgvBean.docBgvObj.bgvReportColorCode}" id="docbgv_bgvReportColorCode" >
+					<f:selectItem itemValue="Select" itemLabel="Select"/>
+					<f:selectItem itemValue="Clear" itemLabel="Clear"/>
+					<f:selectItem itemValue="Partially Verified" itemLabel="Partially Verified" />
+					<f:selectItem itemValue="Minor Discripency" itemLabel="Minor Discrepancy" />
+					<f:selectItem itemValue="Insufficiency/Inaccessible/Unable to verify" itemLabel="Insufficiency/Inaccessible/Unable to verify" />
+				</p:selectOneMenu>
+
+				<h:outputLabel for="docbgv_bgvInterimReportDate" value="BGV Interim Report Recieved" />
+				<p:calendar value="#{empDocBgvBean.docBgvObj.bgvInterimReportDate}"  id="docbgv_bgvInterimReportDate" 
+					effect="clip" pattern="dd-MM-yyyy" styleClass="calendar-input"/>
+
+				<h:outputLabel for="docbgv_bgvFinalReportDate" value="Final Report Recieved" />
+				<p:calendar value="#{empDocBgvBean.docBgvObj.bgvFinalReportDate}"   id="docbgv_bgvFinalReportDate" 
+					effect="clip" pattern="dd-MM-yyyy" styleClass="calendar-input"/>
+				
+				<h:outputLabel/><h:outputLabel/>
+				
+				<h:outputLabel for="docbgv_bgvSignOffBy" value="BGV Sign Off By" />
+				<h:inputText value="#{empDocBgvBean.docBgvObj.bgvSignOffBy}" id="docbgv_bgvSignOffBy" >
+				<!-- <f:validateLength minimum="5" maximum="20" /> -->
+				</h:inputText>
+				
+				<h:outputLabel for="docbgv_bgvSignOffDate" value="BGV Sign Off Date "/>
+				<p:calendar value="#{empDocBgvBean.docBgvObj.bgvSignOffDate}"  id="docbgv_bgvSignOffDate" 
+					effect="clip" pattern="dd-MM-yyyy" styleClass="calendar-input"/>
+
+				<h:outputLabel for="docbgv_bgvClosureDate" value="Closure Date" />
+				<p:calendar value="#{empDocBgvBean.docBgvObj.bgvClosureDate}"   id="docbgv_bgvClosureDate"  
+					effect="clip" pattern="dd-MM-yyyy" styleClass="calendar-input"/>
+					
+				<h:outputLabel for="docbgv_packageInitiated" value="Package Initiated"/>
+				<h:inputText value="#{empDocBgvBean.docBgvObj.packageInitiated}" id="docbgv_packageInitiated" >
+				<!-- <f:validateLength minimum="5" maximum="50" /> -->
+				</h:inputText>
+				
+				<h:outputLabel for="docbgv_employment" value="Employment"/>
+				<p:selectOneMenu value="#{empDocBgvBean.docBgvObj.employment}" id="docbgv_employment" >
+					<f:selectItem itemValue="Select" itemLabel="Select" />
+					<f:selectItem itemValue="Clear" itemLabel="Clear"/>
+					<f:selectItem itemValue="Not Clear" itemLabel="Not Clear" />
+					<f:selectItem itemValue="NA" itemLabel="NA" />
+				</p:selectOneMenu>
+				
+				<h:outputLabel for="docbgv_courtCheck" value="Court Check"/>
+				<p:selectOneMenu value="#{empDocBgvBean.docBgvObj.courtCheck}" id="docbgv_courtCheck" >
+					<f:selectItem itemValue="Select" itemLabel="Select"/>
+					<f:selectItem itemValue="Clear" itemLabel="Clear"/>
+					<f:selectItem itemValue="Not Clear" itemLabel="Not Clear" />
+					<f:selectItem itemValue="NA" itemLabel="NA" />
+				</p:selectOneMenu>
+				
+				<h:outputLabel for="docbgv_identityCheck" value="Identity Check"/>
+				<p:selectOneMenu value="#{empDocBgvBean.docBgvObj.identityCheck}" id="docbgv_identityCheck" >
+					<f:selectItem itemValue="Select" itemLabel="Select"/>
+					<f:selectItem itemValue="Clear" itemLabel="Clear"/>
+					<f:selectItem itemValue="Not Clear" itemLabel="Not Clear" />
+					<f:selectItem itemValue="NA" itemLabel="NA" />
+				</p:selectOneMenu>
+				
+				<h:outputLabel for="docbgv_countryCheck" value="Country Check"/>
+				<p:selectOneMenu value="#{empDocBgvBean.docBgvObj.countryCheck}" id="docbgv_countryCheck" >
+					<f:selectItem itemValue="Select" itemLabel="Select"/>
+					<f:selectItem itemValue="Clear" itemLabel="Clear"/>
+					<f:selectItem itemValue="Not Clear" itemLabel="Not Clear" />
+					<f:selectItem itemValue="NA" itemLabel="NA" />
+				</p:selectOneMenu>
+				
+				<h:outputLabel for="docbgv_referenceCheck" value="Reference Check"/>
+				<p:selectOneMenu value="#{empDocBgvBean.docBgvObj.referenceCheck}" id="docbgv_referenceCheck" >
+					<f:selectItem itemValue="Select" itemLabel="Select"/>
+					<f:selectItem itemValue="Clear" itemLabel="Clear"/>
+					<f:selectItem itemValue="Not Clear" itemLabel="Not Clear" />
+					<f:selectItem itemValue="NA" itemLabel="NA" />
+				</p:selectOneMenu>
+				
+				<h:outputLabel for="docbgv_cvCheck" value="Cv Check"/>
+				<p:selectOneMenu value="#{empDocBgvBean.docBgvObj.cvCheck}" id="docbgv_cvCheck" >
+					<f:selectItem itemValue="Select" itemLabel="Select"/>
+					<f:selectItem itemValue="Clear" itemLabel="Clear"/>
+					<f:selectItem itemValue="Not Clear" itemLabel="Not Clear" />
+					<f:selectItem itemValue="NA" itemLabel="NA" />
+				</p:selectOneMenu>
+					
+				
+			</h:panelGrid>
+
+			<p:separator>
+				<h:outputLabel value="Checklist" styleClass="ui-staticLabel" style="color: blue;"/>
+			</p:separator>
+				
+			<h:panelGrid columns="12" id="backgroundInfo_PGrid_Flags" styleClass="tab-panel" cellpadding="2" cellspacing="2">
+				<h:outputLabel for="docbgv_signedOfferLetterReceived" value="Signed Offer letter"/>
+				<p:selectBooleanButton id="docbgv_signedOfferLetterReceived" value="#{empDocBgvBean.docBgvObj.signedOfferLetterReceived}"  
+					onLabel="Yes" offLabel="No" onIcon="ui-icon-check" offIcon="ui-icon-close" styleClass="ui-boolean-button"/>
+
+				<h:outputLabel for="docbgv_cvReceived" value="CV Recieved"/>
+				<p:selectBooleanButton value="#{empDocBgvBean.docBgvObj.cvReceived}"  id="docbgv_cvReceived" 
+					onLabel="Yes" offLabel="No" onIcon="ui-icon-check" offIcon="ui-icon-close" styleClass="ui-boolean-button"/>
+				
+				<h:outputLabel for="docbgv_personalDetailsFormReceived" value="Personal Details Form"/>
+				<p:selectBooleanButton id="docbgv_personalDetailsFormReceived" value="#{empDocBgvBean.docBgvObj.personalDetailsFormReceived}" 
+			  		onLabel="Yes" offLabel="No" onIcon="ui-icon-check" offIcon="ui-icon-close" styleClass="ui-boolean-button"/>
+
+				<h:outputLabel for="docbgv_medicliamNominationReceived" value="Mediclaim Nomination Form"/>
+				<p:selectBooleanButton id="docbgv_medicliamNominationReceived" value="#{empDocBgvBean.docBgvObj.medicliamNominationReceived}"  
+					onLabel="Yes" offLabel="No" onIcon="ui-icon-check" offIcon="ui-icon-close" styleClass="ui-boolean-button"/>
+
+				<h:outputLabel for="docbgv_pfNominationReceived" value="PF Nomination Recieved"/>
+				<p:selectBooleanButton id="docbgv_pfNominationReceived" value="#{empDocBgvBean.docBgvObj.pfNominationReceived}" 
+					onLabel="Yes" offLabel="No" onIcon="ui-icon-check" offIcon="ui-icon-close" styleClass="ui-boolean-button"/>
+				
+				<h:outputLabel for="docbgv_passportSizePhotoReceived" value="Passport Size Photograph"/>
+				<p:selectBooleanButton id="docbgv_passportSizePhotoReceived" value="#{empDocBgvBean.docBgvObj.passportSizePhotoReceived}"  
+					onLabel="Yes" offLabel="No" onIcon="ui-icon-check" offIcon="ui-icon-close" styleClass="ui-boolean-button"/>
+				
+				<h:outputLabel for="docbgv_ndaReceived" value="Signed NDA"/>
+				<p:selectBooleanButton id="docbgv_ndaReceived" value="#{empDocBgvBean.docBgvObj.ndaReceived}" 
+					onLabel="Yes" offLabel="No" onIcon="ui-icon-check" offIcon="ui-icon-close" styleClass="ui-boolean-button"/>
+
+				<h:outputLabel for="docbgv_signedCodeOfConductReceived" value=" Signed Code of Conduct"/>
+				<p:selectBooleanButton id="docbgv_signedCodeOfConductReceived" value="#{empDocBgvBean.docBgvObj.signedCodeOfConductReceived}"  
+					onLabel="Yes" offLabel="No" onIcon="ui-icon-check" offIcon="ui-icon-close" styleClass="ui-boolean-button"/>
+
+				<h:outputLabel for="docbgv_releivingLetterReceived" value="Releiving Letter"/>
+				<p:selectBooleanButton id="docbgv_releivingLetterReceived" value="#{empDocBgvBean.docBgvObj.releivingLetterReceived}" 
+					onLabel="Yes" offLabel="No" onIcon="ui-icon-check" offIcon="ui-icon-close" styleClass="ui-boolean-button"/>
+			
+				<h:outputLabel for="docbgv_experienceLetterReceived" value="Experience Letter"/>
+				<p:selectBooleanButton id="docbgv_experienceLetterReceived" value="#{empDocBgvBean.docBgvObj.experienceLetterReceived}"  
+					onLabel="Yes" offLabel="No" onIcon="ui-icon-check" offIcon="ui-icon-close" styleClass="ui-boolean-button"/>
+
+				<h:outputLabel for="docbgv_lastPayslipsReceived" value="Last Payslips"/>
+				<p:selectBooleanButton id="docbgv_lastPayslipsReceived" value="#{empDocBgvBean.docBgvObj.lastPayslipsReceived}"
+					onLabel="Yes" offLabel="No" onIcon="ui-icon-check" offIcon="ui-icon-close" styleClass="ui-boolean-button"/>
+
+				<h:outputLabel for="docbgv_marksheetsReceived" value="Marksheets" />
+				<p:selectBooleanButton id="docbgv_marksheetsReceived" value="#{empDocBgvBean.docBgvObj.marksheetsReceived}"
+					onLabel="Yes" offLabel="No" onIcon="ui-icon-check" offIcon="ui-icon-close" styleClass="ui-boolean-button"/>
+				
+			</h:panelGrid>
+				
+			<p:separator>
+				<h:outputLabel value="Identification Document &amp; Misc. Info" styleClass="ui-staticLabel" style="color: blue;"/>
+			</p:separator>
+			
+			<h:panelGrid columns="6" id="backgroundInfo_PGrid_Docs" styleClass="tab-panel" cellpadding="2" cellspacing="2">
+				
+				<h:outputLabel for="docbgv_panCardReceived" value="PAN card no" />
+				<h:inputText value="#{empDocBgvBean.docBgvObj.panCardReceived}" id="docbgv_panCardReceived" >
+				<!-- <f:validateLength minimum="8" maximum="10" /> -->
+				</h:inputText>
+				
+				<h:outputLabel for="docbgv_passportNumberReceived" value="Passport no" />
+				<h:inputText value="#{empDocBgvBean.docBgvObj.passportNumberReceived}" id="docbgv_passportNumberReceived" >
+				<!-- <f:validateLength minimum="8"  maximum="10" /> -->
+				</h:inputText>
+				
+
+				<h:outputLabel for="docbgv_passportExpiry" value="Passport Expiry Date" />
+				<p:calendar id="docbgv_passportExpiry" value="#{empDocBgvBean.docBgvObj.passportExpiry}"   
+					effect="clip" pattern="dd-MM-yyyy" styleClass="calendar-input"/>
+			</h:panelGrid>
+
+			<h:panelGrid columns="4" id="backgroundInfo_PGrid_Visa" styleClass="tab-panel" cellpadding="2" cellspacing="2">
+				<h:outputLabel for="docbgv_visaType" value="Types of VISA" />
+				<h:panelGrid columns="1" style="border: none !important;">
+					<p:inputTextarea id="docbgv_visaType" value="#{empDocBgvBean.docBgvObj.visaType}"  rows="5" cols="50" autoResize="false" 
+						counter="docbgv_visaType_char" maxlength="256" counterTemplate="{0} characters remaining."/>
+					<h:outputText id="docbgv_visaType_char" styleClass="char_remaining_label"/>
+				</h:panelGrid>
+
+				<h:outputLabel for="docbgv_country" value="Country" />
+				<h:panelGrid columns="1" style="border: none !important;">
+					<p:inputTextarea id="docbgv_country" value="#{empDocBgvBean.docBgvObj.country}"  rows="5" cols="50" autoResize="false" 
+						counter="docbgv_country_char" maxlength="256" counterTemplate="{0} characters remaining."/>
+					<h:outputText id="docbgv_country_char" styleClass="char_remaining_label"/>
+				</h:panelGrid>
+				
+			</h:panelGrid>
+
+		</h:panelGrid>
+
+		<h:panelGrid columns="2" id="backgroundInfo" styleClass="button-panel">
+			<p:commandButton style="align:center;" value="Save" update="@form" styleClass="submit-button" 
+			  actionListener="#{empDocBgvBean.insertEmpBgvAndDocStatus}" />
+			<p:commandButton value="Reset">
+				<p:ajax update="backgroundInfo_PGrid" resetValues="true" />
+			</p:commandButton>
+		</h:panelGrid>
+
+
+			<p:dataTable id="backgroundinfo_dTab" value="#{empDocBgvBean.backgroundHistory}" 
+					rows="5"  paginator="true"
+					widgetVar="projectTable" filteredValue="#{empDocBgvBean.backgroundsearchhistory}" lazy="false"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15"
+				var="basic"  style="width: 500%; height: 150%; " styleClass="employeeTable" border="1" rowStyleClass="#{(row mod 2) eq 0 ? 'employeeTableEvenRow' : 'employeeTableOddRow'}"  
+				headerClass="employeeTableHeader" rowIndexVar="rowId">
+				
+			<f:facet name="header">
+   				 <p:outputPanel>
+       		 		<h:outputText value="Search all fields:" />
+       		 		<h:inputText id="globalFilter" onkeyup="PF('projectTable').filter()" />
+   				 </p:outputPanel>
+			</f:facet>
+		
+				<f:facet name="header">
+					Background Info History List
+		      	</f:facet>
+		      	<p:column>
+				<f:facet name="header" >Sr. No.</f:facet>
+				<h:outputText value="#{rowId}"/>
+				</p:column>
+				
+				<p:column sortBy="#{basic.employeeId}" filterBy="#{basic.employeeId}">
+				<f:facet name="header">EMP ID </f:facet>
+				<h:outputText value="#{basic.employeeId}"/>
+				</p:column>
+				
+				<p:column sortBy="#{basic.preOnboarding}">
+				<f:facet name="header">Pre-onboarding</f:facet>
+				<p:selectBooleanButton value="#{basic.preOnboarding}"
+					onLabel="Initiated" offLabel="Not Initiated" onIcon="ui-icon-check" offIcon="ui-icon-close" 
+					styleClass="ui-boolean-differ-button">
+					<p:ajax event="blur"></p:ajax>
+					</p:selectBooleanButton>
+				</p:column>
+				
+				<p:column sortBy="#{basic.owner}" filterBy="#{basic.owner}">
+				<f:facet name="header">Owner</f:facet>
+				<h:inputText value="#{basic.owner}">
+					<p:ajax event="blur"></p:ajax>
+				</h:inputText>
+				</p:column>
+				
+				<p:column sortBy="#{basic.newHireProvisionCreationDate}">
+				<f:facet name="header">New Hire Provision Date</f:facet>
+				<p:calendar  value="#{basic.newHireProvisionCreationDate}"
+						effect="clip" pattern="dd-MM-yyyy" styleClass="calendar-input">
+				<p:ajax event="dateSelect"  listener="#{empDocBgvBean.onDateSelect}" />
+						</p:calendar>
+				
+				</p:column>
+		      	
+		      	<p:column sortBy="#{basic.welcomeEmailSentDate}">
+				<f:facet name="header">Welcome Email Date</f:facet>
+				<p:calendar  value="#{basic.welcomeEmailSentDate}"
+						effect="clip" pattern="dd-MM-yyyy" styleClass="calendar-input">
+					<p:ajax event="dateSelect"  listener="#{empDocBgvBean.onDateSelect}" />
+				</p:calendar>
+				
+				</p:column>
+		      	
+		      	<p:column sortBy="#{basic.firstChaserDate}">
+				<f:facet name="header">1st Chaser Date</f:facet>
+				<p:calendar  value="#{basic.firstChaserDate}"
+						effect="clip" pattern="dd-MM-yyyy" styleClass="calendar-input">
+					<p:ajax event="dateSelect"  listener="#{empDocBgvBean.onDateSelect}" />
+						</p:calendar>
+			
+				</p:column>
+				
+				<p:column sortBy="#{basic.secondChaserDate}">
+				<f:facet name="header">2nd Chaser Date</f:facet>
+				<p:calendar  value="#{basic.secondChaserDate}"
+						effect="clip" pattern="dd-MM-yyyy" styleClass="calendar-input">
+				<p:ajax event="dateSelect"  listener="#{empDocBgvBean.onDateSelect}" />
+						</p:calendar>
+				
+				</p:column>
+				
+				<p:column sortBy="#{basic.thirdChaserDate}">
+				<f:facet name="header">3rd Chaser Date</f:facet>
+				<p:calendar  value="#{basic.thirdChaserDate}"
+						effect="clip" pattern="dd-MM-yyyy" styleClass="calendar-input">
+				<p:ajax event="dateSelect"  listener="#{empDocBgvBean.onDateSelect}" />
+						</p:calendar>
+				</p:column>
+				
+				<p:column sortBy="#{basic.docReceivedOnDate}">
+				<f:facet name="header">Document Recieved Date</f:facet>
+				<p:calendar  value="#{basic.docReceivedOnDate}"
+						effect="clip" pattern="dd-MM-yyyy" styleClass="calendar-input">
+					<p:ajax event="dateSelect"  listener="#{empDocBgvBean.onDateSelect}" />
+				</p:calendar>
+				</p:column>
+				
+				<p:column sortBy="#{basic.escalationDate}">
+				<f:facet name="header">Escalated on DATE</f:facet>
+				<p:calendar  value="#{basic.escalationDate}"
+						effect="clip" pattern="dd-MM-yyyy" styleClass="calendar-input">
+				<p:ajax event="dateSelect"  listener="#{empDocBgvBean.onDateSelect}" />
+						</p:calendar>
+				</p:column>
+				
+				<p:column sortBy="#{basic.bgvInitiatedDate}">
+				<f:facet name="header">BGV Initiated Date</f:facet>
+				<p:calendar  value="#{basic.bgvInitiatedDate}"
+						effect="clip" pattern="dd-MM-yyyy" styleClass="calendar-input">
+					<p:ajax event="dateSelect"  listener="#{empDocBgvBean.onDateSelect}" />
+						</p:calendar>
+				</p:column>
+				
+				<p:column sortBy="#{basic.bgvRefNo}" filterBy="#{basic.bgvRefNo}">
+				<f:facet name="header">	BGV reference no</f:facet>
+				<h:inputText value="#{basic.bgvRefNo}">
+					<p:ajax event="blur"></p:ajax>
+				</h:inputText>
+				</p:column>
+				
+				<p:column sortBy="#{basic.bgvReportColorCode}" filterBy="#{basic.bgvReportColorCode}">
+				<f:facet name="header">Final Report Status</f:facet>
+				<p:selectOneMenu value="#{basic.bgvReportColorCode}">
+					<f:selectItem itemValue="Select" itemLabel="Select"/>
+					<f:selectItem itemValue="Clear" itemLabel="Clear"/>
+					<f:selectItem itemValue="Partially Verified" itemLabel="Partially Verified" />
+					<f:selectItem itemValue="Minor Discripency" itemLabel="Minor Discrepancy" />
+					<f:selectItem itemValue="Insufficiency/Inaccessible/Unable to verify" itemLabel="Insufficiency/Inaccessible/Unable to verify" />
+					<p:ajax update="backgroundinfo_dTab"/>
+				</p:selectOneMenu>
+				</p:column>
+				
+				<p:column sortBy="#{basic.bgvInterimReportDate}">
+				<f:facet name="header">BGV Interim Report Recieved Date</f:facet>
+				<p:calendar  value="#{basic.bgvInterimReportDate}"
+						effect="clip" pattern="dd-MM-yyyy" styleClass="calendar-input">
+					<p:ajax event="dateSelect"  listener="#{empDocBgvBean.onDateSelect}" />
+						</p:calendar>
+				
+			
+				</p:column>
+				
+				<p:column sortBy="#{basic.bgvFinalReportDate}">
+				<f:facet name="header">Final Report Recieved Date</f:facet>
+				<p:calendar  value="#{basic.bgvFinalReportDate}"
+						effect="clip" pattern="dd-MM-yyyy" styleClass="calendar-input">
+				<p:ajax event="dateSelect"  listener="#{empDocBgvBean.onDateSelect}" />
+						</p:calendar>
+			
+				</p:column>
+				
+				<p:column sortBy="#{basic.bgvSignOffBy}" filterBy="#{basic.bgvSignOffBy}">
+				<f:facet name="header">BGV Sign Off By</f:facet>
+				<h:inputText value="#{basic.bgvSignOffBy}">
+					<p:ajax event="blur"></p:ajax>
+				</h:inputText>
+				</p:column>
+		      	
+		      	<p:column sortBy="#{basic.bgvSignOffDate}">
+				<f:facet name="header">	BGV Sign Off Date</f:facet>
+				<p:calendar  value="#{basic.bgvSignOffDate}"
+						effect="clip" pattern="dd-MM-yyyy" styleClass="calendar-input">
+					<p:ajax event="dateSelect"  listener="#{empDocBgvBean.onDateSelect}" />
+					</p:calendar>
+				
+				</p:column>
+				
+				
+				<p:column sortBy="#{basic.bgvClosureDate}">
+				<f:facet name="header">	Closure Date</f:facet>
+				<p:calendar  value="#{basic.bgvClosureDate}"
+						effect="clip" pattern="dd-MM-yyyy" styleClass="calendar-input">
+					<p:ajax event="dateSelect"  listener="#{empDocBgvBean.onDateSelect}" />
+						</p:calendar>
+				</p:column>
+				
+				<p:column sortBy="#{basic.packageInitiated}" filterBy="#{basic.packageInitiated}">
+				<f:facet name="header">Package Initiated</f:facet>
+				<h:inputText value="#{basic.packageInitiated}">
+					<p:ajax event="blur"></p:ajax>
+				</h:inputText>
+				</p:column>
+				
+				<p:column sortBy="#{basic.employment}" filterBy="#{basic.employment}">
+				<f:facet name="header">Employment</f:facet>
+				<p:selectOneMenu value="#{basic.employment}">
+					<f:selectItem itemValue="Select" itemLabel="Select" />
+					<f:selectItem itemValue="Clear" itemLabel="Clear"/>
+					<f:selectItem itemValue="Not Clear" itemLabel="Not Clear" />
+					<f:selectItem itemValue="NA" itemLabel="NA" />
+					<p:ajax update="backgroundinfo_dTab"/>
+				</p:selectOneMenu>
+				
+				
+				</p:column>
+				
+				<p:column sortBy="#{basic.courtCheck}" filterBy="#{basic.courtCheck}">
+				<f:facet name="header">Court Check</f:facet>
+				<p:selectOneMenu value="#{basic.courtCheck}">
+					<f:selectItem itemValue="Select" itemLabel="Select" />
+					<f:selectItem itemValue="Clear" itemLabel="Clear"/>
+					<f:selectItem itemValue="Not Clear" itemLabel="Not Clear" />
+					<f:selectItem itemValue="NA" itemLabel="NA" />
+					<p:ajax update="backgroundinfo_dTab"/>
+				</p:selectOneMenu>
+				</p:column>
+				
+		      	<p:column sortBy="#{basic.identityCheck}" filterBy="#{basic.identityCheck}">
+					<f:facet name="header">Identity Check</f:facet>
+				<p:selectOneMenu value="#{basic.identityCheck}">
+					<f:selectItem itemValue="Select" itemLabel="Select" />
+					<f:selectItem itemValue="Clear" itemLabel="Clear"/>
+					<f:selectItem itemValue="Not Clear" itemLabel="Not Clear" />
+					<f:selectItem itemValue="NA" itemLabel="NA" />
+					<p:ajax update="backgroundinfo_dTab"/>
+				</p:selectOneMenu>
+				</p:column>
+		      	
+		      	<p:column sortBy="#{basic.countryCheck}" filterBy="#{basic.countryCheck}">
+					<f:facet name="header">Country Check</f:facet>
+				<p:selectOneMenu value="#{basic.countryCheck}">
+					<f:selectItem itemValue="Select" itemLabel="Select" />
+					<f:selectItem itemValue="Clear" itemLabel="Clear"/>
+					<f:selectItem itemValue="Not Clear" itemLabel="Not Clear" />
+					<f:selectItem itemValue="NA" itemLabel="NA" />
+					<p:ajax update="backgroundinfo_dTab"/>
+				</p:selectOneMenu>	
+				</p:column>
+		      	
+		      	<p:column sortBy="#{basic.referenceCheck}" filterBy="#{basic.referenceCheck}">
+					<f:facet name="header">Reference Check</f:facet>
+				<p:selectOneMenu value="#{basic.referenceCheck}">
+					<f:selectItem itemValue="Select" itemLabel="Select" />
+					<f:selectItem itemValue="Clear" itemLabel="Clear"/>
+					<f:selectItem itemValue="Not Clear" itemLabel="Not Clear" />
+					<f:selectItem itemValue="NA" itemLabel="NA" />
+					<p:ajax update="backgroundinfo_dTab"/>
+				</p:selectOneMenu>
+				</p:column>
+				
+				<p:column sortBy="#{basic.cvCheck}" filterBy="#{basic.cvCheck}">
+					<f:facet name="header">Cv Check</f:facet>
+				<p:selectOneMenu value="#{basic.cvCheck}">
+					<f:selectItem itemValue="Select" itemLabel="Select" />
+					<f:selectItem itemValue="Clear" itemLabel="Clear"/>
+					<f:selectItem itemValue="Not Clear" itemLabel="Not Clear" />
+					<f:selectItem itemValue="NA" itemLabel="NA" />
+					<p:ajax update="backgroundinfo_dTab"/>
+				</p:selectOneMenu>
+				</p:column>
+				
+				<p:column sortBy="#{basic.signedOfferLetterReceived}">
+					<f:facet name="header">Signed Offer letter</f:facet>
+					<p:selectBooleanButton  value="#{basic.signedOfferLetterReceived}"
+					onLabel="Yes" offLabel="No" onIcon="ui-icon-check" offIcon="ui-icon-close" styleClass="ui-boolean-button">
+						<p:ajax event="blur"></p:ajax>
+					</p:selectBooleanButton>
+				</p:column>
+				
+				<p:column sortBy="#{basic.cvReceived}">
+					<f:facet name="header">CV Recieved</f:facet>
+					<p:selectBooleanButton  value="#{basic.cvReceived}"
+					onLabel="Yes" offLabel="No" onIcon="ui-icon-check" offIcon="ui-icon-close" styleClass="ui-boolean-button">
+					<p:ajax event="blur"></p:ajax>
+					</p:selectBooleanButton>
+				</p:column>
+				
+				<p:column sortBy="#{basic.personalDetailsFormReceived}">
+					<f:facet name="header">Personal Details Form</f:facet>
+					<p:selectBooleanButton value="#{basic.personalDetailsFormReceived}"
+					onLabel="Yes" offLabel="No" onIcon="ui-icon-check" offIcon="ui-icon-close" styleClass="ui-boolean-button">
+						<p:ajax event="blur"></p:ajax>
+					</p:selectBooleanButton>
+				</p:column>
+				
+				<p:column sortBy="#{basic.pfNominationReceived}">
+					<f:facet name="header">PF Nomination Recieved</f:facet>
+					<p:selectBooleanButton value="#{basic.pfNominationReceived}"
+					onLabel="Yes" offLabel="No" onIcon="ui-icon-check" offIcon="ui-icon-close" styleClass="ui-boolean-button">
+						<p:ajax event="blur"></p:ajax>
+					</p:selectBooleanButton>
+				</p:column>
+				
+		    	<p:column sortBy="#{basic.passportSizePhotoReceived}">
+					<f:facet name="header">	Passport Size Photograph</f:facet>
+					<p:selectBooleanButton  value="#{basic.passportSizePhotoReceived}"
+					onLabel="Yes" offLabel="No" onIcon="ui-icon-check" offIcon="ui-icon-close" styleClass="ui-boolean-button">
+						<p:ajax event="blur"></p:ajax>
+					</p:selectBooleanButton>
+				
+				</p:column>
+				
+				<p:column sortBy="#{basic.ndaReceived}">
+					<f:facet name="header">Signed NDA</f:facet>
+					<p:selectBooleanButton  value="#{basic.ndaReceived}"
+					onLabel="Yes" offLabel="No" onIcon="ui-icon-check" offIcon="ui-icon-close" styleClass="ui-boolean-button">
+						<p:ajax event="blur"></p:ajax>
+					</p:selectBooleanButton>
+				</p:column>
+				
+				<p:column sortBy="#{basic.signedCodeOfConductReceived}">
+					<f:facet name="header">Signed Code of Conduct</f:facet>
+					<p:selectBooleanButton value="#{basic.signedCodeOfConductReceived}"
+					onLabel="Yes" offLabel="No" onIcon="ui-icon-check" offIcon="ui-icon-close" styleClass="ui-boolean-button">
+						<p:ajax event="blur"></p:ajax>
+					</p:selectBooleanButton>
+				</p:column>
+			
+				<p:column sortBy="#{basic.releivingLetterReceived}">
+					<f:facet name="header">Releiving Letter</f:facet>
+					<p:selectBooleanButton value="#{basic.releivingLetterReceived}"
+					onLabel="Yes" offLabel="No" onIcon="ui-icon-check" offIcon="ui-icon-close" styleClass="ui-boolean-button">
+						<p:ajax event="blur"></p:ajax>
+					</p:selectBooleanButton>
+				</p:column>
+				
+				<p:column sortBy="#{basic.experienceLetterReceived}">
+					<f:facet name="header">Experience Letter</f:facet>
+					<p:selectBooleanButton  value="#{basic.experienceLetterReceived}"
+					onLabel="Yes" offLabel="No" onIcon="ui-icon-check" offIcon="ui-icon-close" styleClass="ui-boolean-button">
+						<p:ajax event="blur"></p:ajax>
+					</p:selectBooleanButton>
+				</p:column>
+				
+				<p:column sortBy="#{basic.lastPayslipsReceived}">
+					<f:facet name="header">Last Payslips</f:facet>
+					<p:selectBooleanButton value="#{basic.lastPayslipsReceived}"
+					onLabel="Yes" offLabel="No" onIcon="ui-icon-check" offIcon="ui-icon-close" styleClass="ui-boolean-button">
+						<p:ajax event="blur"></p:ajax>
+					</p:selectBooleanButton>
+				</p:column>
+				
+				<p:column sortBy="#{basic.marksheetsReceived}">
+					<f:facet name="header">Marksheets</f:facet>
+					<p:selectBooleanButton  value="#{basic.marksheetsReceived}"
+					onLabel="Yes" offLabel="No" onIcon="ui-icon-check" offIcon="ui-icon-close" styleClass="ui-boolean-button">
+					<p:ajax event="blur"></p:ajax>
+					</p:selectBooleanButton>
+				</p:column>
+				
+				<p:column sortBy="#{basic.panCardReceived}" filterBy="#{basic.panCardReceived}">
+					<f:facet name="header">PAN card no</f:facet>
+				<h:inputText value="#{basic.panCardReceived}">
+					<p:ajax event="blur"></p:ajax>
+				</h:inputText>
+				</p:column>
+				
+				<p:column sortBy="#{basic.passportNumberReceived}" filterBy="#{basic.passportNumberReceived}">
+					<f:facet name="header">Passport no</f:facet>
+				<h:inputText value="#{basic.passportNumberReceived}">
+					<p:ajax event="blur"></p:ajax>
+				</h:inputText>
+				</p:column>
+				
+				<p:column sortBy="#{basic.passportExpiry}">
+					<f:facet name="header">	Passport Expiry Date</f:facet>
+					<p:calendar  value="#{basic.passportExpiry}"
+						effect="clip" pattern="dd-MM-yyyy" styleClass="calendar-input">
+				<p:ajax event="dateSelect"  listener="#{empDocBgvBean.onDateSelect}" />
+						</p:calendar>
+				</p:column>
+				
+				<p:column sortBy="#{basic.visaType}" filterBy="#{basic.visaType}">
+					<f:facet name="header">Types of VISA</f:facet>
+				<h:inputText value="#{basic.visaType}" >
+					<p:ajax event="blur"></p:ajax>
+				</h:inputText>
+				</p:column>
+				
+				<p:column sortBy="#{basic.country}" filterBy="#{basic.country}">
+					<f:facet name="header">Country</f:facet>
+				<h:inputText value="#{basic.country}">
+					<p:ajax event="blur"></p:ajax>
+				</h:inputText>
+				</p:column>
+			
+				 <p:column>		
+					<f:facet name="header">STATUS</f:facet>
+					<h:outputText value="#{basic.deletedB eq true ? 'DELETED' : ''}"/>
+				</p:column>
+				
+				
+			<!-- 	
+				<p:column style="width: auto; text-align: center !important;">
+					<f:facet name="header">Click To Load</f:facet>
+					<p:commandButton icon="ui-icon-search" oncomplete="PF('backgroundConfirm').show()"  
+						actionListener="#{empDocBgvBean.setSelectedBackgroundHistoryForLoad(basic)}" 
+						styleClass="search-button">
+					</p:commandButton>
+				</p:column> -->
+				 
+					<p:column style="width: auto; text-align: center !important;">
+						<f:facet name="header">SAVE</f:facet>
+						<p:commandButton icon="ui-icon-disk"  immediate="true" disabled="#{basic.deletedB eq true}"
+						update="backgroundinfo_dTab" actionListener="#{empDocBgvBean.updateBackgroundHistory(basic)}" 
+						styleClass="search-button">
+						</p:commandButton>
+					</p:column>
+			
+			
+				<p:column style="width: auto; text-align: center !important;">
+					<f:facet name="header">DELETE</f:facet>
+					<p:commandButton icon="ui-icon-trash"  styleClass="search-button" immediate="true" disabled="#{basic.deletedB eq true}" 
+				 	update="backgroundinfo_dTab" actionListener="#{empDocBgvBean.deleteBackgroundHistoryRecord(basic)}" >
+ 					</p:commandButton>
+			</p:column> 
+			
+			</p:dataTable>
+<!-- 
+			<p:dialog header="Confirm" widgetVar="backgroundConfirm"  showEffect="fade" hideEffect="fade" resizable="false">
+			<h:outputText value="Are you sure you want to load the selected Employee?" styleClass="ui-staticLabel"/>
+			<h:panelGrid columns="2" styleClass="button-panel" cellpadding="2" cellspacing="2" style="margin-top: 15px;">
+				<p:commandButton value="Load" update="@form" action="#{empDocBgvBean.loadSelectedBackgroundInfo}"/>
+				<p:commandButton value="Cancel" update="@form" oncomplete="PF('backgroundConfirm').hide()"/>
+			</h:panelGrid>
+		</p:dialog> 
+ -->
+
+	</h:form>
+</ui:composition>

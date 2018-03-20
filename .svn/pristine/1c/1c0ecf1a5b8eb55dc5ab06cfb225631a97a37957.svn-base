@@ -1,0 +1,140 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+	<h:form id="promotion_form">
+	<p:messages showSummary="true" styleClass="ui-errorLabel" />
+
+	
+		<h:panelGrid columns="4" id="promotion_PGrid"
+			title="Promotion Tracker" styleClass="tab-panel" cellpadding="2"
+			cellspacing="2">
+			 
+
+			<h:outputLabel for="promotion_hiredAtBand" value="Hired At Band" />
+			<p:selectOneMenu
+				value="#{promotionTrackerView.promoTrkrObj.hiredAtBand}" required="true"
+				id="promotion_hiredAtBand">
+					<f:selectItem itemValue="Select" itemLabel="Select" />
+					<f:selectItem itemValue="M0" itemLabel="M0" />
+					<f:selectItem itemValue="M1" itemLabel="M1" />
+					<f:selectItem itemValue="M2" itemLabel="M2" />
+					<f:selectItem itemValue="M3" itemLabel="M3" />
+					<f:selectItem itemValue="M4" itemLabel="M4" />
+					<f:selectItem itemValue="M5" itemLabel="M5" />
+					<f:selectItem itemValue="M6" itemLabel="M6" />
+					<f:selectItem itemValue="M7" itemLabel="M7" />
+					
+			</p:selectOneMenu>
+			
+			
+
+			<h:outputLabel for="promotion_managerCit" value="Manager CIT" />
+			<h:inputText value="#{promotionTrackerView.promoTrkrObj.managerCit}" required="true"
+				id="promotion_managerCit" >
+				<f:validateLength minimum="5" maximum="25" />
+				</h:inputText>
+			
+
+			<h:outputLabel for="promotion_perfMngrPsOrCoach"
+				value="Performance Manager" />
+			<p:inputText
+				value="#{promotionTrackerView.promoTrkrObj.perfMngrPsOrCoach}" required="true"
+				id="promotion_perfMngrPsOrCoach">
+				<f:validateLength minimum="5" maximum="25" />
+				</p:inputText>
+				
+
+			<h:outputLabel for="promotion_teamLeadPs"
+				value="Team Lead in PeopleSoft" />
+			<h:inputText value="#{promotionTrackerView.promoTrkrObj.teamLeadPs}" required="true"
+				id="promotion_teamLeadPs">
+				<f:validateLength minimum="5" maximum="25" />
+				</h:inputText>
+				
+
+
+		</h:panelGrid>
+
+		<h:panelGrid columns="2" id="promotion_button_PGrid"
+			styleClass="button-panel" cellpadding="2" cellspacing="2">
+			<p:commandButton style="align:center" value="Save" update="promotion_list" styleClass="submit-button" 
+			actionListener="#{promotionTrackerView.insertEmployeeReviewCycleStatus}" />
+
+			<p:commandButton value="Reset">
+				<p:ajax update="promotion_PGrid" resetValues="true" />
+			</p:commandButton>
+		</h:panelGrid>
+
+		<p:separator>
+			<h:outputText value="Employee Review History" styleClass="ui-staticLabel" style="color: blue;text-align: center; width: 100% !important;"/>
+		</p:separator>
+
+		<p:dataTable id="promotion_list" value="#{promotionTrackerView.bandTracker}" 
+		widgetVar="projectTable" filteredValue="#{promotionTrackerView.promotionsearchhistory}" lazy="false"
+		
+		rows="5" paginator="true" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks}
+			 {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,15"
+		var="bt" styleClass="employeeTable" headerClass="employeeTableHeader" border="1" 
+			rowClasses="employeeTableEvenRow, employeeTableOddRow" rowIndexVar="rowId">
+
+						
+		<f:facet name="header">
+   		 <p:outputPanel>
+       		 <h:outputText value="Search all fields:" />
+       		 <h:inputText id="globalFilter" onkeyup="PF('projectTable').filter()" />
+   		 </p:outputPanel>
+		</f:facet>
+
+
+			<p:column>
+				<f:facet name="header">Sr. No.</f:facet>
+				<h:outputText value="#{rowId}"/>
+			</p:column>
+			
+			<p:column sortBy="#{bt.empId}" filterBy="#{bt.empId}" >
+				<f:facet name="header">Emp ID</f:facet>
+				<h:outputText value="#{bt.empId}"/>
+			</p:column>
+			
+			<p:column sortBy="#{bt.reviewDate}" >
+				<f:facet name="header">Review Cycle</f:facet>
+					<h:outputLabel value="#{bt.reviewDate}"/>
+			</p:column>
+			
+			<p:column sortBy="#{bt.reviewBand}" >
+				<f:facet name="header">Review Band</f:facet>
+				<p:selectOneMenu
+				value="#{bt.reviewBand}" required="true"
+				>
+					<f:selectItem itemValue="Select" itemLabel="Select" />
+					<f:selectItem itemValue="M0" itemLabel="M0" />
+					<f:selectItem itemValue="M1" itemLabel="M1" />
+					<f:selectItem itemValue="M2" itemLabel="M2" />
+					<f:selectItem itemValue="M3" itemLabel="M3" />
+					<f:selectItem itemValue="M4" itemLabel="M4" />
+					<f:selectItem itemValue="M5" itemLabel="M5" />
+					<f:selectItem itemValue="M6" itemLabel="M6" />
+					<f:selectItem itemValue="M7" itemLabel="M7" />
+					<p:ajax update="promotion_list"/>	
+			</p:selectOneMenu>
+					
+	 		</p:column>
+			
+			
+           <p:column>
+				<f:facet name="header">SAVE</f:facet>
+				<p:commandButton icon="ui-icon-disk" styleClass="search-button" immediate="true"
+				actionListener="#{promotionTrackerView.updateReviewCycleStatus(bt.reviewBand,bt.empId)}"
+				 update="promotion_list" >
+				</p:commandButton>
+			</p:column>
+			
+			
+		</p:dataTable>
+
+	</h:form>
+</ui:composition>

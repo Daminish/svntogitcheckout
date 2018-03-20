@@ -1,0 +1,11 @@
+ <!------------------------- Start of header------------------------------- -->
+
+        <header class="hdr-h f-box p">
+            <section>
+                <article class="pull-left">
+                    <img class="tp-logo img-responsive" src="/capco-travel-portal-webApp/assets/images/logo_white.png">
+                </article>
+            </section>
+        </header>
+
+        <!------------------------- End of header------------------------------- -->

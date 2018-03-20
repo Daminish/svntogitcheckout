@@ -1,0 +1,285 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	<h:form id="probation_form">
+	<p:messages showSummary="true" styleClass="ui-errorLabel" />
+	
+		<h:panelGrid columns="4" id="probation_PGrid_Audit"
+			styleClass="tab-panel"  style="width: 40% !important; float: right;">
+			<h:outputLabel for="probation_insertedDate" value="Inserted Date" styleClass="ui-auditLabel" />
+			<p:outputLabel id="probation_insertedDate" value="#{probationTrkrView.probationTrkrObj.insertedDate}" styleClass="ui-auditValue">
+				<f:convertDateTime pattern="dd-MMM-yyyy HH:mm " />
+			</p:outputLabel>
+
+			<h:outputLabel for="probation_updatedDate" value="Inserted By" styleClass="ui-auditLabel" />
+			<p:outputLabel id="probation_updatedDate" value="#{probationTrkrView.probationTrkrObj.insertedBy}" styleClass="ui-auditValue" />
+		</h:panelGrid>
+		
+		
+		<h:panelGrid columns="1"  id="probationInfo_PGrid" styleClass="tab-panel" 
+			cellpadding="2" cellspacing="2">
+			
+			<p:separator> 
+				<h:outputLabel value="Summary" styleClass="ui-staticLabel" style="color:blue;"/>
+			</p:separator>
+					
+			<h:panelGrid columns="4" id="probationInfo_PGrid_Summ" styleClass="tab-panel" cellpadding="2" cellspacing="2">
+				<h:outputLabel for="probation_status" value="Confirmation Status" />
+				<p:selectBooleanButton id="probation_status" value="#{probationTrkrView.probationTrkrObj.confirmationStatus}"
+					onLabel="Confirmed" offLabel="Pending" onIcon="ui-icon-check" offIcon="ui-icon-close"
+					styleClass="ui-boolean-button" immediate="true" style="width:120px !important;">
+					<f:ajax render="probation_extendedPanel"/>
+					<f:ajax render="probation_confirmedPanel"/>
+				</p:selectBooleanButton>
+	
+				<h:panelGrid columns="2" id="probation_extendedPanel" style="border:0;" cellpadding="2" cellspacing="2">
+					<h:outputLabel for="probation_summExtendedDate" value="Probation Extended Date" rendered="#{not probationTrkrView.probationTrkrObj.confirmationStatus}"/>
+					<p:calendar id="probation_summExtendedDate"  value="#{probationTrkrView.probationTrkrObj.extendedToDate}"
+						effect="clip" pattern="dd-MM-yyyy" styleClass="calendar-input" rendered="#{not probationTrkrView.probationTrkrObj.confirmationStatus}"/>
+				</h:panelGrid>
+				
+				<h:panelGrid columns="4" id="probation_confirmedPanel" style="border:0;" cellpadding="2" cellspacing="2">
+					<h:outputLabel for="probation_probationConfirmationDate" value="Probation Confirmed date" rendered="#{probationTrkrView.probationTrkrObj.confirmationStatus}"/>
+					<p:calendar id="probation_probationConfirmationDate"  value="#{probationTrkrView.probationTrkrObj.probationConfirmationDate}"
+						effect="clip" pattern="dd-MM-yyyy" styleClass="calendar-input" rendered="#{probationTrkrView.probationTrkrObj.confirmationStatus}"/>
+									
+					<h:outputLabel for="probation_summLetterSentDate" value="Letter Sent Date" rendered="#{probationTrkrView.probationTrkrObj.confirmationStatus}"/>
+					<p:calendar id="probation_summLetterSentDate"  value="#{probationTrkrView.probationTrkrObj.letterSentDate}"
+						effect="clip" pattern="dd-MM-yyyy" styleClass="calendar-input" rendered="#{probationTrkrView.probationTrkrObj.confirmationStatus}"/>
+				</h:panelGrid>	
+			</h:panelGrid>
+
+			<p:separator> 
+				<h:outputLabel value="Probation Cycle" styleClass="ui-staticLabel" style="color:blue;"/>
+			</p:separator>
+			
+			<h:panelGrid id="probationInfo_PGrid_Cyc" columns="8" cellspacing="2" cellpadding="2" styleClass="tab-panel">
+				<h:outputLabel for="probation_firstChaserDate" value="1st Chaser Date" />
+				<p:calendar id="probation_firstChaserDate"  value="#{probationTrkrView.probationTrkrObj.firstChaserDate}"
+					effect="clip" pattern="dd-MM-yyyy" styleClass="calendar-input" />
+	
+				<h:outputLabel for="probation_secondChaserDate" value="2nd Chaser Date" />
+				<p:calendar id="probation_secondChaserDate"  value="#{probationTrkrView.probationTrkrObj.secondChaserDate}"
+					effect="clip" pattern="dd-MM-yyyy" styleClass="calendar-input" />
+	
+				<h:outputLabel for="probation_thirdChaserDate" value="3rd Chaser Date" />
+				<p:calendar id="probation_thirdChaserDate"  value="#{probationTrkrView.probationTrkrObj.thirdChaserDate}"
+					effect="clip" pattern="dd-MM-yyyy" styleClass="calendar-input" />
+	
+				<h:outputLabel for="probation_escalatedToHcbpOnDate" value="Escalated to HCBP" />
+				<p:calendar id="probation_escalatedToHcbpOnDate"  value="#{probationTrkrView.probationTrkrObj.escalatedToHcbpOnDate}"
+					effect="clip" pattern="dd-MM-yyyy" styleClass="calendar-input" />
+	
+				<h:outputLabel for="probation_feedbackFormReceived" value="Feedback Form Recieved" />
+				<p:selectBooleanButton id="probation_feedbackFormReceived" value="#{probationTrkrView.probationTrkrObj.feedbackFormReceived}"
+					onLabel="Yes" offLabel="No" onIcon="ui-icon-check" offIcon="ui-icon-close"
+					styleClass="ui-boolean-button" />
+					
+				<h:outputLabel for="probation_confirmationDate" value="Confirmation Date" />
+				<p:calendar id="probation_confirmationDate"  value="#{probationTrkrView.probationTrkrObj.confirmationDate}"
+					effect="clip" pattern="dd-MM-yyyy" styleClass="calendar-input" />
+					
+				<h:outputLabel for="probation_letterSentDate" value="Letter Sent Date" />
+				<p:calendar id="probation_letterSentDate"  value="#{probationTrkrView.probationTrkrObj.letterSentDate}"
+					effect="clip" pattern="dd-MM-yyyy" styleClass="calendar-input" />
+				
+				<h:outputLabel/><h:outputLabel/>
+			</h:panelGrid>
+			
+			<h:panelGrid columns="4" id="probationInfo_PGrid_extRea" styleClass="tab-panel" cellpadding="2" cellspacing="2">
+				<h:outputLabel for="probation_extendedDate" value="Probation Extended Date" />
+				<p:calendar id="probation_extendedDate"  value="#{probationTrkrView.probationTrkrObj.extendedToDate}"
+					effect="clip" pattern="dd-MM-yyyy" styleClass="calendar-input" />
+				
+				<h:outputLabel for="probation_extensionReason" value="Probation Extension Reason" />
+				<h:panelGrid columns="1" style="border: none !important;">
+					<p:inputTextarea id="probation_extensionReason"  value="#{probationTrkrView.probationTrkrObj.extensionReason}" rows="5" cols="50" 
+						autoResize="true" counter="probation_extensionReason_char" maxlength="1024" counterTemplate="{0} characters remaining."/>
+					<h:outputText id="probation_extensionReason_char" styleClass="char_remaining_label"/>
+				</h:panelGrid>
+			</h:panelGrid>
+				
+			<h:panelGrid id="probationSubmit_PGrid" styleClass="button-panel" 
+				columns="2" cellpadding="2" cellspacing="2">
+				<p:commandButton style="align:center" value="Save" update="@form" styleClass="submit-button"
+				 actionListener="#{probationTrkrView.insertProbationTrackerInfo}" />
+				<p:commandButton value="Reset">
+					<p:ajax update="probationInfo_PGrid" resetValues="true" />
+				</p:commandButton>
+			</h:panelGrid>
+
+
+			<p:dataTable id="probation_cycle_dTab" value="#{probationTrkrView.probationTrkrRevCyc}"
+			widgetVar="projectTable" filteredValue="#{probationTrkrView.probationsearchhistory}"  lazy="false"
+			rows="5" paginator="true" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks}
+			 {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,15"
+				var="probTrkr" style="width: 150%; height: 100%; "  styleClass="employeeTable" border="1" rowStyleClass="#{(row mod 2) eq 0 ? 'employeeTableEvenRow' : 'employeeTableOddRow'}"  
+				headerClass="employeeTableHeader" rowIndexVar="rowId">
+				<f:facet name="header">
+					Probation List
+		      	</f:facet>
+		      	
+		      	<p:column>
+				<f:facet name="header">Sr. No.</f:facet>
+				<h:outputText value="#{rowId}"/>
+				</p:column>
+				
+				<p:column sortBy="#{probTrkr.employeeId}" filterBy="#{probTrkr.employeeId}">
+				<f:facet name="header">Emp ID</f:facet>
+				<h:outputText value="#{probTrkr.employeeId}"/>
+				</p:column>
+				
+				<p:column sortBy="#{probTrkr.firstChaserDate}">
+					<f:facet name="header">First Chaser Date</f:facet>
+					<p:calendar  value="#{probTrkr.firstChaserDate}"
+						effect="clip" pattern="dd-MM-yyyy" styleClass="calendar-input">
+					<p:ajax event="dateSelect"  listener="#{probationTrkrView.onDateSelect}" />
+						</p:calendar>
+					
+				</p:column>
+				
+				<p:column sortBy="#{probTrkr.secondChaserDate}">
+					<f:facet name="header">Second Chaser Date</f:facet>
+					<p:calendar  value="#{probTrkr.secondChaserDate}"
+						effect="clip" pattern="dd-MM-yyyy" styleClass="calendar-input">
+						<p:ajax event="dateSelect"  listener="#{probationTrkrView.onDateSelect}" />
+						</p:calendar>
+					
+				</p:column>
+				
+				<p:column sortBy="#{probTrkr.thirdChaserDate}">
+					<f:facet name="header">Third Chaser Date</f:facet>
+					<p:calendar  value="#{probTrkr.thirdChaserDate}"
+						effect="clip" pattern="dd-MM-yyyy" styleClass="calendar-input">
+					<p:ajax event="dateSelect"  listener="#{probationTrkrView.onDateSelect}" />	
+						</p:calendar>
+				
+				</p:column>
+				
+				<p:column sortBy="#{probTrkr.escalatedToHcbpOnDate}">
+					<f:facet name="header">Escalated to HCBP</f:facet>
+					<p:calendar  value="#{probTrkr.escalatedToHcbpOnDate}"
+						effect="clip" pattern="dd-MM-yyyy" styleClass="calendar-input">
+					<p:ajax event="dateSelect"  listener="#{probationTrkrView.onDateSelect}" />
+						</p:calendar>
+					
+				</p:column>
+				
+				<p:column sortBy="#{probTrkr.probationConfirmationDate}">
+					<f:facet name="header">Probation Confirmation date</f:facet>
+					<p:calendar  value="#{probTrkr.probationConfirmationDate}"
+						effect="clip" pattern="dd-MM-yyyy" styleClass="calendar-input">
+					<p:ajax event="dateSelect"  listener="#{probationTrkrView.onDateSelect}" />
+						</p:calendar>
+				
+				</p:column>
+				
+				<p:column sortBy="#{probTrkr.confirmationStatus}">
+					<f:facet name="header">Confirmation Status</f:facet>
+					<p:selectBooleanButton value="#{probTrkr.confirmationStatus}"
+					onLabel="Yes" offLabel="No" onIcon="ui-icon-check" offIcon="ui-icon-close"
+					styleClass="ui-boolean-button" immediate="true" style="width:120px !important;">
+						<p:ajax event="blur"></p:ajax>
+					</p:selectBooleanButton>
+				</p:column>
+				
+				
+				
+				<p:column sortBy="#{probTrkr.feedbackFormReceived}">
+					<f:facet name="header">Feedback Form Recieved</f:facet>
+					<p:selectBooleanButton value="#{probTrkr.feedbackFormReceived}"
+					onLabel="Yes" offLabel="No" onIcon="ui-icon-check" offIcon="ui-icon-close"
+					styleClass="ui-boolean-button" immediate="true" style="width:120px !important;">
+						<p:ajax event="blur"></p:ajax>
+					</p:selectBooleanButton>
+				</p:column>
+				
+				<p:column sortBy="#{probTrkr.confirmationDate}">
+					<f:facet name="header">Confirmation Date</f:facet>
+					<p:calendar  value="#{probTrkr.confirmationDate}"
+						effect="clip" pattern="dd-MM-yyyy" styleClass="calendar-input">
+					<p:ajax event="dateSelect"  listener="#{probationTrkrView.onDateSelect}" />	
+						</p:calendar>
+					
+				</p:column>
+				
+				<p:column sortBy="#{probTrkr.extendedToDate}">
+					<f:facet name="header">Extended to Date</f:facet>
+					<p:calendar  value="#{probTrkr.extendedToDate}"
+						effect="clip" pattern="dd-MM-yyyy" styleClass="calendar-input">
+					<p:ajax event="dateSelect"  listener="#{probationTrkrView.onDateSelect}" />
+						</p:calendar>
+					
+				</p:column>
+				
+				<p:column sortBy="#{probTrkr.letterSentDate}">
+					<f:facet name="header">Letter Sent Date</f:facet>
+					<p:calendar  value="#{probTrkr.letterSentDate}"
+						effect="clip" pattern="dd-MM-yyyy" styleClass="calendar-input">
+					<p:ajax event="dateSelect"  listener="#{probationTrkrView.onDateSelect}" />	
+						</p:calendar>
+					
+				</p:column>
+				
+				
+				
+				<p:column sortBy="#{probTrkr.extensionReason}">
+					<f:facet name="header">Probation Reason</f:facet>
+					<h:inputText value="#{probTrkr.extensionReason}">
+						<p:ajax event="blur"></p:ajax>
+					</h:inputText>
+					
+				</p:column>
+				
+				<p:column>		
+					<f:facet name="header">STATUS</f:facet>
+					<h:outputText value="#{probTrkr.deletedB eq true ? 'DELETED' : ''}"/>
+				</p:column>
+				
+				
+				<!-- <p:column style="width: auto; text-align: center !important;">
+					<f:facet name="header">Click To Load</f:facet>
+					<p:commandButton icon="ui-icon-search" oncomplete="PF('probationConfirm').show()"  
+						actionListener="#{probationTrkrView.setSelectedProbationInfoForLoad(probTrkr)}" 
+						styleClass="search-button">
+					</p:commandButton>
+				</p:column>
+				 -->
+				<p:column style="width: auto; text-align: center !important;">
+				<f:facet name="header">SAVE</f:facet>
+					<p:commandButton icon="ui-icon-disk" styleClass="search-button" immediate="true" disabled="#{probTrkr.deletedB eq true}"
+				update="probation_cycle_dTab" actionListener="#{probationTrkrView.updateProbationTracker(probTrkr)}">
+					</p:commandButton>
+				</p:column>
+				
+				<p:column style="width: auto; text-align: center !important;">
+				<f:facet name="header">DELETE</f:facet>
+				<p:commandButton icon="ui-icon-trash"  styleClass="search-button"  immediate="true" disabled="#{probTrkr.deletedB eq true}"
+				 update="probation_cycle_dTab" actionListener="#{probationTrkrView.deleteProbationRecord(probTrkr)}" >
+ 				</p:commandButton>
+			</p:column>
+				
+			</p:dataTable>
+			
+			
+	<!-- 	<p:dialog header="Confirm" widgetVar="probationConfirm"  showEffect="fade" hideEffect="fade" resizable="false">
+			<h:outputText value="Are you sure you want to load the selected Employee?" styleClass="ui-staticLabel"/>
+			<h:panelGrid columns="2" styleClass="button-panel" cellpadding="2" cellspacing="2" style="margin-top: 15px;">
+				<p:commandButton value="Load" update="@form" action="#{probationTrkrView.loadSelectedProbationInfo}"/>
+				<p:commandButton value="Cancel" update="@form" oncomplete="PF('probationConfirm').hide()"/>
+			</h:panelGrid>
+		</p:dialog>  -->
+	
+			</h:panelGrid>
+	</h:form>
+	
+		
+			
+			
+	
+</ui:composition>
